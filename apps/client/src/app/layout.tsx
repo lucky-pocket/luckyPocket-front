@@ -1,7 +1,4 @@
 import React from "react";
-import { Suspense } from "react";
-
-import Script from "next/script";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
