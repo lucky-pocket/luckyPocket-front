@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { theme } from "common";
+import { theme } from "../../../../packages/common";
 import { ThemeProvider } from "@emotion/react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
