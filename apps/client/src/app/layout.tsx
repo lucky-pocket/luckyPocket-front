@@ -1,36 +1,12 @@
+"use client";
+
 import React from "react";
 
+import { theme } from "../../../../packages/common";
+import { ThemeProvider } from "@emotion/react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { GlobalStyle } from "common";
-
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  applicationName: "luckPocket",
-  title: {
-    template: "복주머니 - %s",
-    default: "복주머니",
-  },
-  openGraph: {
-    title: "새해 복주머니 게임",
-    description: "즐거운 새해를 맞아 서로서로 복주머니를 전달해보아요!",
-    url: "",
-    siteName: "luckyPocket",
-    images: [
-      {
-        url: "/favicon.png",
-        width: 800,
-        height: 800,
-      },
-    ],
-    locale: "ko",
-    type: "website",
-  },
-  icons: {
-    icon: "/favicon.png",
-  },
-};
+import Providers from "./providers";
 
 export default function RootLayout({
   children,
@@ -49,9 +25,12 @@ export default function RootLayout({
       </head>
 
       <body>
-        <ReactQueryDevtools />
-        <GlobalStyle />
-        {children}
+        <ThemeProvider theme={theme}>
+          <Providers>
+            <ReactQueryDevtools />
+            {children}
+          </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );
