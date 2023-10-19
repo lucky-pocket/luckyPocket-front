@@ -1,9 +1,5 @@
 import React from "react";
 
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-import { GlobalStyle } from "common";
-
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -48,11 +44,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body>
-        <ReactQueryDevtools />
-        <GlobalStyle />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
