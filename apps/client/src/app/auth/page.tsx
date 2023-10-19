@@ -1,3 +1,9 @@
+import Image from "next/image";
+
 export default function Siginin() {
-  return <div>회원가입 페이지</div>;
+  return (
+    <div>
+      <Image src="images/loginBackground.png" alt="배경화면" />
+    </div>
+  );
 }
