@@ -48,39 +48,39 @@ const typo = {
   title: {
     large: {
       fontSize: "2.5rem",
-      fontWeight: bold,
+      fontWeight: "bold",
       lineHeight: "120%",
     },
     medium: {
       fontSize: "2rem",
-      fontWeight: bold,
+      fontWeight: "bold",
       lineHeight: "120%",
     },
     sub_md: {
       fontSize: "1.5rem",
-      fontWeight: bold,
+      fontWeight: "bold",
       lineHeight: "120%",
     },
     small: {
       fontSize: "1.125rem",
-      fontWeight: bold,
+      fontWeight: "bold",
       lineHeight: "120%",
     },
   },
   text: {
     medium: {
       fontSize: "1.25rem",
-      fontWeight: regular,
+      fontWeight: "regular",
       lineHeight: "120%",
     },
     small: {
       fontSize: "1rem",
-      fontWeight: regular,
+      fontWeight: "regular",
       lineHeight: "120%",
     },
     caption: {
       fontSize: "1rem",
-      fontWeight: regular,
+      fontWeight: "regular",
       lineHeight: "120%",
     },
   },
