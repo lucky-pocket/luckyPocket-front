@@ -1,9 +1,9 @@
-import Image from "next/image";
+import { SiginPage } from "@/pageContainer";
 
 export default function Siginin() {
   return (
     <div>
-      <Image src="images/loginBackground.png" alt="배경화면" />
+      <SiginPage />
     </div>
   );
 }
