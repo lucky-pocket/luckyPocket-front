@@ -76,6 +76,9 @@ importers:
 
   apps/client:
     dependencies:
+      common:
+        specifier: workspace:^
+        version: link:../../packages/common
       next:
         specifier: 13.5.4
         version: 13.5.4(react-dom@18.0.0)(react@18.0.0)
