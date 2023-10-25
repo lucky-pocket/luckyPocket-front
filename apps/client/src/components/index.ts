@@ -1,1 +1,1 @@
-export { default as AboutTitle } from "./Title/About";
+export { default as SigninButton } from "./SigninButton";
