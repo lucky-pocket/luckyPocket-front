@@ -1,12 +1,13 @@
 "use client";
 import * as S from "./style";
-import SigininIcon from "@/assets/svgs/SigninIcon";
+import { SigninIcon } from "client/assets";
 
 const SigninButton = () => {
   return (
-    <>
-      <SigininIcon />
-    </>
+    <S.SigninButton>
+      <SigninIcon />
+      <S.Title>시작하기</S.Title>
+    </S.SigninButton>
   );
 };
 
