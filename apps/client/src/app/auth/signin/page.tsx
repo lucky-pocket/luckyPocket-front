@@ -1,4 +1,4 @@
-import { SiginPage } from "client/pageContainer";
+import { SiginPage } from 'client/pageContainer';
 export default function Siginin() {
   return (
     <div>
