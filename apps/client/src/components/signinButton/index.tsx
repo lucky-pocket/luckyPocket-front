@@ -1,6 +1,6 @@
-"use client";
-import * as S from "./style";
-import { SigninIcon } from "client/assets";
+'use client';
+import * as S from './style';
+import { SigninIcon } from 'client/assets';
 
 const SigninButton = () => {
   return (

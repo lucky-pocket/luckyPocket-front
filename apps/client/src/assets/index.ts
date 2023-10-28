@@ -1,1 +1,1 @@
-export { default as SigninIcon } from "./svgs/SigninIcon";
+export { default as SigninIcon } from './svgs/SigninIcon';
