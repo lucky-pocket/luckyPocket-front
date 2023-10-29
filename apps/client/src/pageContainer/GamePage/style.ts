@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-import { theme } from 'common';
 
-export const Signin = styled.div`
+export const Game = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -16,5 +15,5 @@ export const Background = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/images/loginBackground.png');
+  background: ${({ theme }) => theme.color.ivory['010']};
 `;
