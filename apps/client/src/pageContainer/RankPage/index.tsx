@@ -1,8 +1,9 @@
 'use client';
+
 import { Header } from 'client/components';
 import * as S from './style';
 
-export default function RankPage() {
+export default function Rank() {
   return (
     <S.Rank>
       <S.Background>

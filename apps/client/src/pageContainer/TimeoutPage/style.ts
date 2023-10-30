@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const NotFound = styled.div`
+export const Timeout = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;

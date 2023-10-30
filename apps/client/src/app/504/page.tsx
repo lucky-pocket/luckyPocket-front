@@ -1,8 +1,8 @@
-import { NotFoundPage } from 'client/pageContainer';
+import { TimeoutPage } from 'client/pageContainer';
 export default function NotFound() {
   return (
     <div>
-      <NotFoundPage />
+      <TimeoutPage />
     </div>
   );
 }

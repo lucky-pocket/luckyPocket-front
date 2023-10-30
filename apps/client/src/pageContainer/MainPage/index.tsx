@@ -1,8 +1,9 @@
 'use client';
+
 import { Header } from 'client/components';
 import * as S from './style';
 
-export default function MainPage() {
+export default function Main() {
   return (
     <S.Main>
       <S.Background>

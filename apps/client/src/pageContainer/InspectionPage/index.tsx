@@ -1,9 +1,10 @@
 'use client';
+
 import Image from 'next/image';
 import * as S from './style';
 import { ErrorIcon } from 'client/assets';
 
-export default function InspectionPage() {
+export default function Inspection() {
   return (
     <S.Inspection>
       <S.Background>
