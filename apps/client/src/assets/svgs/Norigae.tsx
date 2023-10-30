@@ -1,6 +1,7 @@
 const Norigae = () => {
   return (
     <svg
+      className='norigae'
       width='79'
       height='115'
       viewBox='0 0 79 115'

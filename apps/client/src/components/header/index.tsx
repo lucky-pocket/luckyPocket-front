@@ -1,7 +1,7 @@
 'use client';
 import * as S from './style';
 import Link from 'next/link';
-import { LogoIcon, AlarmIcon, Eaves, Norigae } from 'client/assets';
+import { LogoIcon, AlarmIcon, Norigae, HeaderBackground } from 'client/assets';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -12,6 +12,7 @@ const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
 
   return (
     <S.HeaderContainer>
+      <HeaderBackground />
       <S.HeaderWrap>
         <Link href='/'>
           <LogoIcon />
@@ -32,13 +33,7 @@ const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
           </S.Alarm>
         </S.NavBar>
       </S.HeaderWrap>
-      <S.UnderBarWrapper>
-        <S.EavesWrapper>
-          <Eaves />
-          <Eaves />
-        </S.EavesWrapper>
-        {hasNorigae && <Norigae />}
-      </S.UnderBarWrapper>
+      {hasNorigae && <Norigae />}
     </S.HeaderContainer>
   );
 };
