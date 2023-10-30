@@ -1,3 +1,8 @@
-export default function Home() {
-  return <div>메인페이지</div>;
+import { MainPage } from 'client/pageContainer';
+export default function Main() {
+  return (
+    <div>
+      <MainPage />
+    </div>
+  );
 }
