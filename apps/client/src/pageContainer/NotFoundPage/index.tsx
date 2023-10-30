@@ -1,11 +1,12 @@
 'use client';
+
 import { Norigae } from 'client/assets';
 import * as S from './style';
 import Image from 'next/image';
 
-export default function NotFoundPage() {
+export default function NotFound() {
   return (
-    <S.Main>
+    <S.NotFound>
       <S.Background>
         <Norigae />
         <S.Wrapper>
@@ -25,6 +26,6 @@ export default function NotFoundPage() {
           </S.ContentWrapper>
         </S.Wrapper>
       </S.Background>
-    </S.Main>
+    </S.NotFound>
   );
 }
