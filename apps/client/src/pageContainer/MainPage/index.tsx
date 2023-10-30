@@ -2,7 +2,7 @@
 import { Header } from 'client/components';
 import * as S from './style';
 
-export default function GamePage() {
+export default function MainPage() {
   return (
     <S.Main>
       <S.Background>

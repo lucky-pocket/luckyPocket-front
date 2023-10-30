@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import * as S from './style';
 import { ErrorIcon } from 'client/assets';
