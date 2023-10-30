@@ -8,7 +8,7 @@ import { useState } from 'react';
 const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
   const pathname = usePathname();
   const [alarmClicked, setAlarmClicked] = useState<boolean>(false);
-  const [isAlarm, setIsAlarm] = useState<boolean>(true);
+  const [isAlarm, setIsAlarm] = useState<boolean>(false);
 
   return (
     <S.HeaderContainer>
