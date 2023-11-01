@@ -46,3 +46,14 @@ export const LuckypocketMoney = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const MoveContainer = styled.div<{ slideIndex: number }>`
+  display: flex;
+  position: absolute;
+  left: -${({ slideIndex }) => slideIndex * 72.75}rem;
+  transition: ease-in-out 0.3s;
+`;
+
+export const Card = styled.div`
+  position: relative;
+`;
