@@ -1,0 +1,13 @@
+{
+  "name": "ui",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "common": "workspace:^",
+    "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "tsconfig": "workspace:^"
+  }
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { Header } from 'client/components';
+import { Header, GameBox } from 'client/components';
 import * as S from './style';
 
 export default function Game() {
@@ -8,6 +8,7 @@ export default function Game() {
     <S.Game>
       <S.Background>
         <Header hasNorigae />
+        <GameBox />
       </S.Background>
     </S.Game>
   );
