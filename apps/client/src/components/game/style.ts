@@ -54,7 +54,6 @@ export const Game = styled.div`
 export const YutBox = styled.div`
   display: flex;
   gap: 40px;
-
   .first {
     animation: ${FirstYut} 1.5s ease-in-out forwards;
     z-index: 0;
