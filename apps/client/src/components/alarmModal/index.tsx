@@ -32,15 +32,6 @@ const alarmModal = ({ modalRef, modalOutSideClick }: propsType) => {
             <S.AlarmItem key={idx}>
               <S.AlarmTitle>
                 {data.svg}
-                <S.AlarmContent isRead>{data.title}</S.AlarmContent>
-              </S.AlarmTitle>
-              <S.AlarmTime>{data.time}</S.AlarmTime>
-            </S.AlarmItem>
-          ))}
-          {data.map((data, idx) => (
-            <S.AlarmItem key={idx}>
-              <S.AlarmTitle>
-                {data.svg}
                 <S.AlarmContent>{data.title}</S.AlarmContent>
               </S.AlarmTitle>
               <S.AlarmTime>{data.time}</S.AlarmTime>
