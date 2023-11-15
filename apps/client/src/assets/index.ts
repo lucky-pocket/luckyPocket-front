@@ -4,3 +4,6 @@ export { default as AlarmIcon } from './svgs/AlarmIcon';
 export { default as Norigae } from './svgs/Norigae';
 export { default as HeaderBackground } from './svgs/HeaderBackground';
 export { default as ErrorIcon } from './svgs/ErrorIcon';
+export { default as Coin } from './svgs/Coin';
+export { default as LuckyPocket } from './svgs/LuckyPocket';
+export { default as EyesIcon } from './svgs/EyesIcon';
