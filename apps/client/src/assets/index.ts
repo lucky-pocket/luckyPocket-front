@@ -6,3 +6,4 @@ export { default as HeaderBackground } from './svgs/HeaderBackground';
 export { default as ErrorIcon } from './svgs/ErrorIcon';
 export { default as BoardIcon } from './svgs/BoardIcon';
 export { default as YutIcon } from './svgs/YutIcon';
+export { default as FlippedYutIcon } from './svgs/FlippedYutIcon';
