@@ -6,7 +6,7 @@ interface propsType {
   modalOutSideClick: (e: any) => void;
 }
 
-const alarmModal = ({ modalRef, modalOutSideClick }: propsType) => {
+const AlarmModal = ({ modalRef, modalOutSideClick }: propsType) => {
   const data = [
     {
       svg: <LuckyPocket />,
@@ -43,4 +43,4 @@ const alarmModal = ({ modalRef, modalOutSideClick }: propsType) => {
   );
 };
 
-export default alarmModal;
+export default AlarmModal;
