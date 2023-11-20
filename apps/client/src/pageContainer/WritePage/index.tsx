@@ -1,20 +1,17 @@
 'use client';
 
-import { ArrowIcon, WriteBoard } from 'client/assets';
+import { WriteBoard } from 'client/assets';
 import * as S from './style';
 import { Header } from 'client/components';
 import { useState } from 'react';
-import Link from 'next/link';
+import WriteButton from 'client/components/writeButton';
 
 export default function Write() {
   const [inputValue, setInputValue] = useState<string>('');
-
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
   };
-
   const isInputEmpty = inputValue.trim() === '';
-  const getArrowIcon = (stroke: string) => <ArrowIcon stroke={stroke} />;
 
   return (
     <S.Write>
@@ -28,18 +25,7 @@ export default function Write() {
             onChange={handleInputChange}
           />
         </S.WriteBoxContainer>
-        <S.ButtonContainer>
-          <Link href='/'>
-            <S.BeforeButton>
-              {getArrowIcon('#6F6B63')}
-              이전
-            </S.BeforeButton>
-          </Link>
-          <S.NextButton disabled={isInputEmpty}>
-            다음
-            {isInputEmpty ? getArrowIcon('#6F6B63') : getArrowIcon('#F2EDE5')}
-          </S.NextButton>
-        </S.ButtonContainer>
+        <WriteButton disabled={isInputEmpty} />
       </S.Background>
     </S.Write>
   );
