@@ -18,7 +18,6 @@ export const Wrapper = styled.div`
   align-items: center;
   box-shadow: 0 0.25rem 0.5rem 0 rgba(144, 116, 72, 0.5);
   border-radius: 0.625rem;
-  cursor: pointer;
 `;
 
 export const CoinWrapper = styled.div`
@@ -47,6 +46,7 @@ export const AlarmItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 export const AlarmTitle = styled.div`
