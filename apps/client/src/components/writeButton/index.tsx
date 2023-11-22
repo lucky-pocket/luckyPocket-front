@@ -4,9 +4,10 @@ import Link from 'next/link';
 
 interface PropsType {
   disabled: boolean;
+  nextLink: string;
 }
 
-const WriteButton = ({ disabled }: PropsType) => {
+const WriteButton = ({ disabled, nextLink }: PropsType) => {
   const getArrowIcon = (stroke: string) => <ArrowIcon stroke={stroke} />;
 
   return (
@@ -17,10 +18,12 @@ const WriteButton = ({ disabled }: PropsType) => {
           이전
         </S.BeforeButton>
       </Link>
-      <S.NextButton disabled={disabled}>
-        다음
-        {disabled ? getArrowIcon('#6F6B63') : getArrowIcon('#F2EDE5')}
-      </S.NextButton>
+      <Link href={nextLink}>
+        <S.NextButton disabled={disabled}>
+          다음
+          {disabled ? getArrowIcon('#6F6B63') : getArrowIcon('#F2EDE5')}
+        </S.NextButton>
+      </Link>
     </S.ButtonContainer>
   );
 };
