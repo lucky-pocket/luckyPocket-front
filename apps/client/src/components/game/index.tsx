@@ -1,21 +1,23 @@
 'use client';
-import { BoardIcon, FlippedYutIcon, YutIcon } from 'client/assets';
+import { FlippedYutIcon, YutIcon } from 'client/assets';
 import * as S from './style';
 import { Button } from 'common';
 import { useRouter } from 'next/navigation';
+import { Loading } from '..';
 import { useState } from 'react';
+import axios from 'axios';
 
 interface GameProps {
   coin: number;
   count: number;
-  isLoading?: boolean;
 }
 
-const Game: React.FC<GameProps> = ({ coin, count, isLoading }) => {
+const Game: React.FC<GameProps> = ({ coin, count }) => {
   const { push } = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const handleButtonClick = () => {
     if (coin !== 0) {
-      push('/loading');
+      setIsLoading((prev) => !prev);
     } else {
       alert('보유하신 잔액이 부족합니다');
     }
@@ -23,24 +25,7 @@ const Game: React.FC<GameProps> = ({ coin, count, isLoading }) => {
   return (
     <S.GameContainer>
       {isLoading ? (
-        <>
-          <S.Game>
-            <S.YutBox>
-              <span className='first'>
-                <YutIcon />
-              </span>
-              <span className='second'>
-                <YutIcon />
-              </span>
-              <span className='third'>
-                <YutIcon />
-              </span>
-              <span className='fourth'>
-                <FlippedYutIcon />
-              </span>
-            </S.YutBox>
-          </S.Game>
-        </>
+        <Loading />
       ) : (
         <>
           <S.Count>

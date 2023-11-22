@@ -76,34 +76,7 @@ export const YutBox = styled.div`
   }
 `;
 
-export const Subtitle = styled.div`
-  display: flex;
-  gap: 40px;
-  span {
-    color: #a19e97;
-  }
-`;
-
-export const WarnMessage = styled.div`
-  color: #df454a;
-  text-align: center;
-`;
-export const Message = styled.div`
-  color: #a19e97;
-  text-align: center;
-`;
-
-export const Count = styled.div`
-  text-align: center;
-  div {
-    color: #99522f;
-    font-size: 18px;
-    padding-top: 8px;
-    font-weight: 700;
-  }
-`;
-
-export const GameContainer = styled.div<{ isLoading?: boolean }>`
+export const GameContainer = styled.div`
   margin-top: 130px;
   height: 800px;
   width: 100%;
