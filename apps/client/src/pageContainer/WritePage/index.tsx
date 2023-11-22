@@ -25,7 +25,7 @@ export default function Write() {
             onChange={handleInputChange}
           />
         </S.WriteBoxContainer>
-        <WriteButton disabled={isInputEmpty} />
+        <WriteButton nextLink='/search' disabled={isInputEmpty} />
       </S.Background>
     </S.Write>
   );
