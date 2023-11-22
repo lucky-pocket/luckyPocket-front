@@ -6,4 +6,3 @@ export { default as InspectionPage } from './InspectionPage';
 export { default as NotFoundPage } from './NotFoundPage';
 export { default as TimeoutPage } from './TimeoutPage';
 export { default as WritePage } from './WritePage';
-export { default as LoadingPage } from './LoadingPage';
