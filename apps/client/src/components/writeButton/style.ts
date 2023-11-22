@@ -26,7 +26,7 @@ export const Button = styled.button`
 `;
 
 export const BeforeButton = styled(Button)`
-  border: 1px solid ${({ theme }) => theme.color.gray['050']};
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['050']};
 `;
 
 export const NextButton = styled(Button)`
