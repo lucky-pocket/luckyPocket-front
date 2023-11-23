@@ -19,6 +19,7 @@ export const Button = styled.button`
   height: 2.875rem;
   border-radius: 0.625rem;
   color: ${({ theme }) => theme.color.gray['060']};
+  line-height: 0;
 
   svg {
     margin-bottom: 0.125rem;
