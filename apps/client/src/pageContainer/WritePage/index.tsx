@@ -12,6 +12,7 @@ export default function Write() {
     setInputValue(e.target.value);
   };
   const isInputEmpty = inputValue.trim() === '';
+  const MAX_LENGTH = 300 as const;
 
   return (
     <S.Write>
@@ -23,6 +24,7 @@ export default function Write() {
             placeholder='최대 300글자까지 작성할 수 있습니다.*'
             value={inputValue}
             onChange={handleInputChange}
+            maxLength={MAX_LENGTH}
           />
         </S.WriteBoxContainer>
         <WriteButton nextLink='/search' disabled={isInputEmpty} />
