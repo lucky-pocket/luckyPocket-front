@@ -4,15 +4,16 @@ import Link from 'next/link';
 
 interface PropsType {
   disabled: boolean;
+  beforeButton: string;
   nextLink: string;
 }
 
-const WriteButton = ({ disabled, nextLink }: PropsType) => {
+const WriteButton = ({ disabled, beforeButton, nextLink }: PropsType) => {
   const getArrowIcon = (stroke: string) => <ArrowIcon stroke={stroke} />;
 
   return (
     <S.ButtonContainer>
-      <Link href='/'>
+      <Link href={beforeButton}>
         <S.BeforeButton>
           {getArrowIcon('#6F6B63')}
           이전
