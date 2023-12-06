@@ -12,6 +12,3 @@ export { default as LuckyPocket } from './svgs/LuckyPocket';
 export { default as EyesIcon } from './svgs/EyesIcon';
 export { default as WriteBoard } from './svgs/WriteBoard';
 export { default as ArrowIcon } from './svgs/ArrowIcon';
-export { default as BoardIcon } from './svgs/BoardIcon';
-export { default as YutIcon } from './svgs/YutIcon';
-export { default as FlippedYutIcon } from './svgs/FlippedYutIcon';

@@ -16,3 +16,5 @@ const Main: React.FC<Props> = ({ pocketList }) => {
     </S.Main>
   );
 };
+
+export default Main;
