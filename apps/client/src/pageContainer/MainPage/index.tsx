@@ -2,8 +2,12 @@
 
 import { Header } from 'client/components';
 import * as S from './style';
+import { PocketListType } from 'client/types';
+interface Props {
+  pocketList: PocketListType[];
+}
 
-export default function Main() {
+const Main: React.FC<Props> = ({ pocketList }) => {
   return (
     <S.Main>
       <S.Background>
@@ -11,4 +15,4 @@ export default function Main() {
       </S.Background>
     </S.Main>
   );
-}
+};
