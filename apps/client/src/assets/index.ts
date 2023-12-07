@@ -10,3 +10,7 @@ export { default as EyesIcon } from './svgs/EyesIcon';
 export { default as WriteBoard } from './svgs/WriteBoard';
 export { default as ArrowIcon } from './svgs/ArrowIcon';
 export { default as SearchIcon } from './svgs/SearchIcon';
+export { default as Rabbit1 } from './svgs/Rabbit1';
+export { default as Rabbit2 } from './svgs/Rabbit2';
+export { default as Rabbit3 } from './svgs/Rabbit3';
+export { default as Rabbit4 } from './svgs/Rabbit4';
