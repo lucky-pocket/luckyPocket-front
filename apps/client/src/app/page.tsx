@@ -30,17 +30,17 @@ const getPocketList = async (): Promise<PocketListType[]> => {
     }
   );
 
-  if (response.status === 403) {
-    return redirect('/auth/signup');
-  }
+  // if (response.status === 403) {
+  //   return redirect('/auth/signup');
+  // }
 
   if (response.status === 404) {
     return redirect('/404');
   }
 
-  if (!response.ok) {
-    return redirect('/auth/signin');
-  }
+  // if (!response.ok) {
+  //   return redirect('/auth/signin');
+  // }
 
   const pocketList = await response.json();
 

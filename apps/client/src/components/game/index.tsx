@@ -15,11 +15,18 @@ interface GameProps {
 const Game: React.FC<GameProps> = ({ coin, count }) => {
   const { push } = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showResult, setShowResult] = useState<boolean>(false);
+  const [btnDisabled, setDisabled] = useState<boolean>(false);
   const handleButtonClick = () => {
     if (coin !== 0) {
-      setIsLoading((prev) => !prev);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        setShowResult(true);
+      }, 5000);
     } else {
       alert('보유하신 잔액이 부족합니다');
+      setDisabled(true);
     }
   };
   return (
@@ -40,8 +47,18 @@ const Game: React.FC<GameProps> = ({ coin, count }) => {
               <YutIcon />
             </S.YutBox>
           </S.Game>
+          {showResult && (
+            <S.Result>
+              <div>빽도</div>
+            </S.Result>
+          )}
           <S.BottomBox>
-            <Button onClick={handleButtonClick} title='무료로 윷 던지기' />
+            <Button
+              onClick={handleButtonClick}
+              title='윷 던지기'
+              hoverBgColor='#C98554'
+              isError={btnDisabled}
+            />
             <S.Subtitle>
               <span>현재 보유중인 엽전 개수</span>
               {coin}개

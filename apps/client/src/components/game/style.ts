@@ -7,7 +7,7 @@ const FirstYut = keyframes`
         transform: rotateX(0deg);
 	}
 	to {
-        transform: translate(100px, -100px) rotate(60deg);
+        transform: translate(6.25rem, -6.25rem) rotate(60deg);
 	}
 `;
 
@@ -17,7 +17,7 @@ const SecondYut = keyframes`
         transform: rotateX(0deg);
 	}
 	to {
-        transform: translate(-30px, 50px) rotate(45deg);
+        transform: translate(-1.875rem, 3.125rem) rotate(45deg);
 	}
 `;
 
@@ -27,7 +27,7 @@ const ThirdYut = keyframes`
         transform: rotateX(0deg);
 	}
 	to {
-        transform: translate(30px, 30px) rotate(45deg);
+        transform: translate(1.875rem, 1.875rem) rotate(45deg);
 	}
 `;
 
@@ -37,13 +37,13 @@ const FourthYut = keyframes`
         transform: rotateX(0deg);
 	}
 	to {
-        transform: translate(-30px, 100px) rotate(-45deg);
+        transform: translate(-1.875rem, 6.25rem) rotate(-45deg);
 	}
 `;
 
 export const Game = styled.div`
-  width: 512px;
-  height: 512px;
+  width: 32rem;
+  height: 32rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,7 +53,7 @@ export const Game = styled.div`
 
 export const YutBox = styled.div`
   display: flex;
-  gap: 40px;
+  gap: 2.5rem;
   .first {
     animation: ${FirstYut} 1.5s ease-in-out forwards;
     z-index: 0;
@@ -77,34 +77,35 @@ export const YutBox = styled.div`
 
 export const Subtitle = styled.div`
   display: flex;
-  gap: 40px;
+  gap: 2.5rem;
   span {
-    color: #a19e97;
+    color: ${({ theme }) => theme.color.gray['040']};
   }
 `;
 
 export const WarnMessage = styled.div`
-  color: #df454a;
+  color: ${({ theme }) => theme.color.error['050']};
   text-align: center;
 `;
+
 export const Message = styled.div`
-  color: #a19e97;
+  color: ${({ theme }) => theme.color.gray['040']};
   text-align: center;
 `;
 
 export const Count = styled.div`
   text-align: center;
   div {
-    color: #99522f;
-    font-size: 18px;
-    padding-top: 8px;
+    color: ${({ theme }) => theme.color.sub.brown['500']};
+    font-size: 1.125rem;
+    padding-top: 0.5rem;
     font-weight: 700;
   }
 `;
 
 export const GameContainer = styled.div<{ isLoading?: boolean }>`
-  margin-top: 130px;
-  height: 800px;
+  margin-top: 8.125rem;
+  height: 50rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -113,8 +114,8 @@ export const GameContainer = styled.div<{ isLoading?: boolean }>`
 `;
 
 export const BottomBox = styled.div`
-  height: 159px;
-  width: 544px;
+  height: 9.9375rem;
+  width: 34rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -122,10 +123,25 @@ export const BottomBox = styled.div`
 `;
 
 export const Loading = styled.div`
-  color: #99522f;
+  color: ${({ theme }) => theme.color.sub.brown['500']};
   font-family: Inter;
-  font-size: 32px;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 700;
   line-height: 120%;
+`;
+
+export const Result = styled.div`
+  position: absolute;
+  font-size: 5rem;
+  font-family: JS Arirang HON;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/images/Durumari.png');
+  width: 35rem;
+  height: 10rem;
+  background-size: 35rem 10.0938rem;
+  bottom: 28.125rem;
+  padding-bottom: 1.25rem;
 `;

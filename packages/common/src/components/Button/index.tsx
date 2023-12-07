@@ -40,16 +40,20 @@ const Button: React.FC<ButtonProps> = ({
         width: ${width};
         :hover {
           background: ${hoverBgColor};
+          color: white;
+          cursor: pointer;
         }
         :disabled {
           background: ${isError && (bgColor || 'rgba(223, 69, 74, 0.20)')};
           border-color: ${isError && (bgColor || '#DF454A')};
+          color: #df454a;
+          cursor: default;
         }
       `}
       disabled={disabled || isError}
       {...attributes}
     >
-      {isError ? <>에러</> : <>{title}</>}
+      {title}
     </CustomButton>
   );
 };
