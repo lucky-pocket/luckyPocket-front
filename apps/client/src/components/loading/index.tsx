@@ -21,7 +21,7 @@ const Loading = () => {
           </span>
         </S.YutBox>
       </S.Game>
-      <S.Loading>윷 던지는중...</S.Loading>
+      <S.Loading>윷 던지는 중...</S.Loading>
     </>
   );
 };

@@ -96,10 +96,8 @@ export const Message = styled.div`
 export const Count = styled.div`
   text-align: center;
   div {
+    ${({ theme }) => theme.typo.title.small}
     color: ${({ theme }) => theme.color.sub.brown['500']};
-    font-size: 1.125rem;
-    padding-top: 0.5rem;
-    font-weight: 700;
   }
 `;
 

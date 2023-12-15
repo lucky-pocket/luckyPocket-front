@@ -15,5 +15,6 @@ export const CustomButton = styled.button`
   height: 46px;
 
   border: 1px solid #c98554;
+
   background: var(--ivory-100, #f2ede5);
 `;

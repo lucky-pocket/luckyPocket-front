@@ -64,8 +64,8 @@ const Game: React.FC<GameProps> = ({ coin, count }) => {
               {coin}개
             </S.Subtitle>
             <S.WarnMessage>
-              하루에 한 번 무료로 던질 수 있으며 그 뒤로는 엽전 2냥을 사용해
-              던질 수 있습니다.
+              1일 1회 무료로 던질 수 있습니다. 그 후 엽전 2닢을 소모해 던질 수
+              있습니다.
             </S.WarnMessage>
             <S.Message>
               도 개는 1냥, 걸은 2냥, 윷은 3냥, 모는 5냥, 빽도는 -2냥을 얻게
