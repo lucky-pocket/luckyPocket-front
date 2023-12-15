@@ -7,10 +7,8 @@ export const UserCard = styled.div`
   padding: 10px;
   flex-direction: column;
   border-radius: 10px;
-  /* background: var(--ivory-100, #f2ede5); */
-  background-color: pink;
+  background: #f2ede5;
   justify-content: space-between;
-  box-shadow: 0px 1px 6px 0px rgba(144, 116, 72, 0.25);
   padding: 10px;
 `;
 

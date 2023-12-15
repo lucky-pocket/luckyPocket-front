@@ -16,4 +16,15 @@ export const Background = styled.div`
   align-items: center;
   justify-content: center;
   background: ${({ theme }) => theme.color.ivory['010']};
+  overflow: hidden;
+`;
+
+export const Conatiner = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  height: 100%;
+  overflow: hidden;
+  margin-top: 9.5rem;
 `;

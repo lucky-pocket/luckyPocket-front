@@ -69,6 +69,56 @@ const UserList: React.FC<Props> = ({ coin, pocket }) => {
       class: '2학년 2반',
       coin: 24,
     },
+    {
+      name: '서주미',
+      class: '2학년 2반',
+      coin: 24,
+    },
+    {
+      name: '서주미',
+      class: '2학년 2반',
+      coin: 24,
+    },
+    {
+      name: '서주미',
+      class: '2학년 2반',
+      coin: 24,
+    },
+    {
+      name: '서주미',
+      class: '2학년 2반',
+      coin: 24,
+    },
+    {
+      name: '서주미',
+      class: '2학년 2반',
+      coin: 24,
+    },
+    {
+      name: '서주미',
+      class: '2학년 2반',
+      coin: 24,
+    },
+    {
+      name: '서주미',
+      class: '2학년 2반',
+      coin: 24,
+    },
+    {
+      name: '서주미',
+      class: '2학년 2반',
+      coin: 24,
+    },
+    {
+      name: '서주미',
+      class: '2학년 2반',
+      coin: 24,
+    },
+    {
+      name: '서주미',
+      class: '2학년 2반',
+      coin: 24,
+    },
   ];
   const [userList, setUserList] = useState<userType[]>(data);
   return (
