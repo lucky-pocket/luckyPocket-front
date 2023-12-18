@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { MainPage } from 'client/pageContainer';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -5,11 +7,13 @@ import { pocketUrl } from 'api/client';
 import { PocketListType } from 'client/types';
 
 export default async function Main() {
-  // TODO: resolve request waterfalls (e.g. Promise.allSettled)
-  const pocketList = await getPocketList();
-  // const myInfo = await getMyInfo('/');
-
-  return <MainPage pocketList={[...pocketList]} />;
+  try {
+    const pocketList = await getPocketList();
+    return <MainPage pocketList={pocketList} />;
+  } catch (error) {
+    console.error(error);
+    //return <ErrorPage />;
+  }
 }
 
 const getPocketList = async (): Promise<PocketListType[]> => {
