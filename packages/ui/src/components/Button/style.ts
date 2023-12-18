@@ -8,7 +8,6 @@ export const CustomButton = styled.button`
   align-items: center;
   color: #ffffff;
   background: #050505;
-  ${({ theme }) => theme.typo.title};
   border-radius: 1.25rem;
   font-size: 0.938rem;
   font-weight: 700;
