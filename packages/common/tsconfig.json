@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "incremental": true,
     "forceConsistentCasingInFileNames": true,
+    "jsxImportSource": "@emotion/react",
     "jsx": "preserve"
   },
   "main": "index.ts",
