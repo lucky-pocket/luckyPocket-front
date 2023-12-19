@@ -6,8 +6,5 @@
   "dependencies": {
     "common": "workspace:^",
     "typescript": "5.0.4"
-  },
-  "devDependencies": {
-    "tsconfig": "workspace:^"
   }
 }
