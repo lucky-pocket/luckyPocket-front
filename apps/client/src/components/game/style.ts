@@ -78,7 +78,8 @@ export const YutBox = styled.div`
 
 export const Subtitle = styled.div`
   display: flex;
-  gap: 2.5rem;
+  gap: 0.25rem;
+  margin-top: 0.875rem;
   span {
     color: ${({ theme }) => theme.color.gray['040']};
   }
@@ -87,11 +88,13 @@ export const Subtitle = styled.div`
 export const WarnMessage = styled.div`
   color: ${({ theme }) => theme.color.error['050']};
   text-align: center;
+  margin-top: 2.5rem;
 `;
 
 export const Message = styled.div`
   color: ${({ theme }) => theme.color.gray['040']};
   text-align: center;
+  margin-top: 0.5rem;
 `;
 
 export const Count = styled.div`
@@ -106,29 +109,30 @@ export const Button = styled.button<{ isError?: boolean }>`
   ${({ theme }) => theme.typo.title.small}
   color: ${({ theme }) => theme.color.sub.brown['500']};
   display: flex;
-  width: 250px;
-  height: 46px;
+  width: 15.625rem;
+  height: 2.875rem;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  border: 1px solid var(--browm-100, #c98554);
+  border-radius: 0.625rem;
+  border: 0.0625rem solid ${({ theme }) => theme.color.sub.brown['500']};
   ${({ isError, theme }) =>
     isError &&
     css`
       color: ${theme.color.error['050']};
-      border: 1px solid ${theme.color.error['050']};
+      border: 0.0625rem solid ${theme.color.error['050']};
       background: rgba(223, 69, 74, 0.2);
     `}
 `;
 
 export const GameContainer = styled.div<{ isLoading?: boolean }>`
-  margin-top: 8.125rem;
   height: 50rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  position: relative;
+  top: 3.25rem;
 `;
 
 export const BottomBox = styled.div`
@@ -137,7 +141,6 @@ export const BottomBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 `;
 
 export const Loading = styled.div`
