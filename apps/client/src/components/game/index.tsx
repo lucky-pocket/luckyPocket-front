@@ -1,7 +1,6 @@
 'use client';
 import { FlippedYutIcon, YutIcon } from 'client/assets';
 import * as S from './style';
-import { Button } from 'common';
 import { useRouter } from 'next/navigation';
 import { Loading } from '..';
 import { useState } from 'react';
@@ -53,10 +52,10 @@ const Game: React.FC<GameProps> = ({ coin, count }) => {
             </S.Result>
           )}
           <S.BottomBox>
-            <Button
+            <S.Button
               onClick={handleButtonClick}
               title='윷 던지기'
-              hoverBgColor='#C98554'
+              disabled={btnDisabled}
               isError={btnDisabled}
             />
             <S.Subtitle>

@@ -8,45 +8,46 @@ import { PocketListType } from 'client/types';
 
 export default async function Main() {
   try {
-    const pocketList = await getPocketList();
-    return <MainPage pocketList={pocketList} />;
+    // const pocketList = await getPocketList();
+    // return <MainPage pocketList={[...pocketList]} />;
+    return <MainPage pocketList={[]} />;
   } catch (error) {
     console.error(error);
     //return <ErrorPage />;
   }
 }
 
-const getPocketList = async (): Promise<PocketListType[]> => {
-  const accessToken = cookies().get('accessToken')?.value;
+// const getPocketList = async (): Promise<PocketListType[]> => {
+// const accessToken = cookies().get('accessToken')?.value;
 
-  // if (!accessToken) return redirect('/auth/refresh');
+// if (!accessToken) return redirect('/auth/refresh');
 
-  const response = await fetch(
-    new URL(
-      `/users/me${pocketUrl.getMyPocketList()}`,
-      process.env.CLIENT_API_URL
-    ),
-    {
-      method: 'GET',
-      headers: {
-        Cookie: `accessToken=${accessToken}`,
-      },
-    }
-  );
+// const response = await fetch(
+//   new URL(
+//     `/users/me${pocketUrl.getMyPocketList()}`,
+//     process.env.CLIENT_API_URL
+//   ),
+//   {
+//     method: 'GET',
+//     headers: {
+//       Cookie: `accessToken=${accessToken}`,
+//     },
+//   }
+// );
 
-  // if (response.status === 403) {
-  //   return redirect('/auth/signup');
-  // }
+// if (response.status === 403) {
+//   return redirect('/auth/signup');
+// }
 
-  if (response.status === 404) {
-    return redirect('/404');
-  }
+// if (response.status === 404) {
+//   return redirect('/404');
+// }
 
-  // if (!response.ok) {
-  //   return redirect('/auth/signin');
-  // }
+// if (!response.ok) {
+//   return redirect('/auth/signin');
+// }
 
-  const pocketList = await response.json();
+// const pocketList = await response.json();
 
-  return pocketList;
-};
+// return pocketList;
+// };

@@ -101,6 +101,18 @@ export const Count = styled.div`
   }
 `;
 
+export const Button = styled.button<{ isError?: boolean }>`
+  ${({ isError, theme }) =>
+    isError &&
+    `
+      color: ${theme.color.gray['090']};
+      fill: ${theme.color.gray['090']};
+    `}
+  :hover {
+    background-color: #c98554;
+  }
+`;
+
 export const GameContainer = styled.div<{ isLoading?: boolean }>`
   margin-top: 8.125rem;
   height: 50rem;
