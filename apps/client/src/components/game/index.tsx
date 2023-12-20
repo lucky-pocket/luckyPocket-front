@@ -54,10 +54,11 @@ const Game: React.FC<GameProps> = ({ coin, count }) => {
           <S.BottomBox>
             <S.Button
               onClick={handleButtonClick}
-              title='윷 던지기'
               disabled={btnDisabled}
               isError={btnDisabled}
-            />
+            >
+              윷 던지기
+            </S.Button>
             <S.Subtitle>
               <span>현재 보유중인 엽전 개수</span>
               {coin}개

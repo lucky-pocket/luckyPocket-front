@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -102,15 +103,22 @@ export const Count = styled.div`
 `;
 
 export const Button = styled.button<{ isError?: boolean }>`
+  ${({ theme }) => theme.typo.title.small}
+  color: ${({ theme }) => theme.color.sub.brown['500']};
+  display: flex;
+  width: 250px;
+  height: 46px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--browm-100, #c98554);
   ${({ isError, theme }) =>
     isError &&
-    `
-      color: ${theme.color.gray['090']};
-      fill: ${theme.color.gray['090']};
+    css`
+      color: ${theme.color.error['050']};
+      border: 1px solid ${theme.color.error['050']};
+      background: rgba(223, 69, 74, 0.2);
     `}
-  :hover {
-    background-color: #c98554;
-  }
 `;
 
 export const GameContainer = styled.div<{ isLoading?: boolean }>`
