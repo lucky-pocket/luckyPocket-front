@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as S from './style';
-import { FilterIcon } from 'client/assets';
 
 interface Props {}
 
@@ -15,12 +14,13 @@ type GradeType = (typeof GradeArray)[number];
 type GradeClassType = (typeof GradeClassArray)[number];
 
 const FilterModal: React.FC<Props> = () => {
-  const [selectedStandard, setSelectedStandard] = useState<StandardType | null>(
-    null
+  const [selectedStandard, setSelectedStandard] = useState<StandardType>(
+    StandardArray[0]
   );
-  const [selectedGrade, setSelectedGrade] = useState<GradeType | null>(null);
-  const [selectedGradeClass, setSelectedGradeClass] =
-    useState<GradeClassType | null>(null);
+  const [selectedGrade, setSelectedGrade] = useState<GradeType>(GradeArray[0]);
+  const [selectedGradeClass, setSelectedGradeClass] = useState<GradeClassType>(
+    GradeClassArray[0]
+  );
 
   const handleStandardClick = (standard: StandardType) => {
     setSelectedStandard(standard);

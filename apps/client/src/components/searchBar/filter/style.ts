@@ -1,25 +1,24 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 export const Button = styled.button<{ isActive: boolean }>`
+  ${({ theme }) => theme.typo.text.small};
   display: flex;
-  padding: 12px 16px;
+  padding: 0.75rem 1rem;
   justify-content: center;
   align-items: center;
-  gap: 4px;
-  border-radius: 10px;
-  background: var(--ivory-200, #e1d5c3);
+  gap: 0.25rem;
+  border-radius: 0.625rem;
+  background: ${({ theme }) => theme.color.ivory['020']};
+  color: ${({ theme }) => theme.color.ivory['060']};
+  width: 5.625rem;
+  height: 3rem;
+  ${({ isActive, theme }) =>
+    isActive &&
+    css`
+      background: ${theme.color.ivory['060']};
+    `}
   :hover {
     cursor: pointer;
   }
-  color: var(--ivory-600, #907448);
-  /* text-sm */
-  font-family: Noto Sans;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%; /* 19.2px */
-  width: 90px;
-  height: 48px;
-
-  ${({ isActive }) => isActive && `background: #907448;`}
 `;

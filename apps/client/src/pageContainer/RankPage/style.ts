@@ -23,8 +23,8 @@ export const Conatiner = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 30px;
+  gap: 1.875rem;
   height: 100%;
   overflow: hidden;
-  margin-top: 9.5rem;
+  margin-top: 5.9375rem;
 `;

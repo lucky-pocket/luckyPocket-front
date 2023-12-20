@@ -2,58 +2,63 @@ import styled from '@emotion/styled';
 
 export const UserCard = styled.div`
   display: flex;
-  height: 174px;
-  width: 168px;
-  padding: 10px;
+  height: 10.875rem;
+  width: 10.5rem;
+  padding: 0.625rem;
   flex-direction: column;
-  border-radius: 10px;
-  background: #f2ede5;
+  border-radius: 0.625rem;
+  background: ${({ theme }) => theme.color.ivory['010']};
   justify-content: space-between;
-  padding: 10px;
+  padding: 0.625rem;
 `;
 
 export const DescBox = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 0.5rem;
 `;
+
 export const Name = styled.div`
   ${({ theme }) => theme.typo.text.small}
-  font-family: Noto Sans;
 `;
+
 export const Class = styled.div`
   ${({ theme }) => theme.typo.text.caption}
   color: ${({ theme }) => theme.color.gray['040']};
 `;
+
 export const Amount = styled.div`
   display: flex;
-  width: 39px;
-  height: 18px;
-  gap: 4px;
+  width: 2.4375rem;
+  height: 1.125rem;
+  gap: 0.25rem;
   align-items: center;
 `;
+
 export const Score = styled.div`
   ${({ theme }) => theme.typo.text.caption}
-  padding-top: 3px;
+  padding-top: 0.1875rem;
 `;
+
 export const Person = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 59px;
-  height: 40px;
+  width: 3.6875rem;
+  height: 2.5rem;
 `;
-export const Rabbit = styled.div``;
+
 export const Corner = styled.div`
-  display: inline-flex;
-  padding: 2px 5px;
+  display: flex;
+  padding: 0.125rem 0.3125rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  border-radius: 10px 0px 5px 0px;
+  gap: 0.625rem;
+  border-radius: 0.625rem 0rem 0.3125rem 0rem;
   background: #d34e41;
-  color: white;
-  font-size: 12px;
-  width: 17px;
-  height: 16px;
+  color: ${({ theme }) => theme.color.white};
+  font-size: 0.75rem;
+  width: 1.0625rem;
+  height: 1rem;
 `;

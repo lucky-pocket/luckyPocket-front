@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 
-import * as I from 'client/assets';
 import * as S from './style';
 import { userType } from 'common';
 import { UserCard } from '..';

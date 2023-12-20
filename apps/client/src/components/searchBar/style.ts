@@ -13,12 +13,12 @@ export const InputWrapper = styled.div`
 
   svg {
     position: absolute;
-    right: 20px;
+    right: 1.25rem;
   }
 `;
 
 export const Input = styled.input`
-  width: 418px;
+  width: 26.125rem;
   height: 3rem;
   border-radius: 0.625rem;
   background: none;

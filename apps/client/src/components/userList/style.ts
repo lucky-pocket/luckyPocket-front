@@ -4,10 +4,9 @@ export const UserList = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
-  // 100vh - (리스트 상단 height + 하단 여백 2.5rem)
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 18px;
-  height: 840px;
+  gap: 1.125rem;
+  height: 52.5rem;
   overflow-y: scroll;
 `;
 export const NoSearchContainer = styled.div``;

@@ -1,70 +1,70 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const FilterModal = styled.div`
-  padding: 20px;
-  gap: 20px;
-  border-radius: 10px;
-  background: #f2ede5;
-  box-shadow: 0px 4px 12px 0px rgba(144, 116, 72, 0.4);
+  padding: 1.25rem;
+  gap: 1.25rem;
+  border-radius: 0.625rem;
+  background: ${({ theme }) => theme.color.ivory['010']};
+  box-shadow: 0rem 0.25rem 0.75rem 0rem rgba(144, 116, 72, 0.4);
   position: absolute;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  top: 230px;
-  right: 30px;
+  top: 14.375rem;
+  right: 1.875rem;
 `;
 
 export const Title = styled.div`
-  color: #000;
+  color: ${({ theme }) => theme.color.black};
+  ${({ theme }) => theme.typo.title.sub_md};
+`;
 
-  font-family: Noto Sans;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 100%;
-`;
 export const Desc = styled.div`
-  color: #1e1d1b;
-  /* text-sm */
-  font-family: Noto Sans;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%; /* 19.2px */
+  color: ${({ theme }) => theme.color.gray['090']};
+  ${({ theme }) => theme.typo.text.small};
 `;
+
 export const FilterBox = styled.div`
-  width: 384px;
-  height: 317px;
+  width: 24rem;
+  height: 19.8125rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
+
 export const Standard = styled.div``;
+
 export const Grade = styled.div``;
+
 export const GradeClass = styled.div``;
+
 export const OptionBox = styled.div`
   display: flex;
 `;
+
 export const Option = styled.div<{ isActive?: boolean }>`
   cursor: pointer;
-  width: 64px;
-  height: 64px;
-  background-size: 64px 64px;
+  width: 4rem;
+  height: 4rem;
+  background-size: 4rem 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--dark-400, #a19e97);
+  color: ${({ theme }) => theme.color.gray['040']};
   text-align: center;
-  font-family: Noto Sans;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%; /* 14px */
-  padding-top: 10px;
-  ${({ isActive }) =>
+  padding-top: 0.625rem;
+
+  ${({ theme }) => theme.typo.text.caption};
+  ${({ isActive, theme }) =>
     isActive &&
-    `background-image: url('/images/PocketBack.png');
-    color: var(--browm-500, #99522F);
+    css`
+      background-image: url('/images/PocketBack.png');
+      color: ${theme.color.sub.brown['500']};
     `}
+
+  :hover {
+    background-image: url('/images/HoverPocket.png');
+  }
 `;
