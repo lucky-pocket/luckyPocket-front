@@ -12,7 +12,7 @@ interface Props {
 const UserCard: React.FC<Props> = ({ user, rank }) => {
   return (
     <S.UserCard>
-      <S.Corner>{rank}</S.Corner>
+      <S.Corner rank={rank}>{rank}</S.Corner>
       <I.Rabbit1 />
       <S.DescBox>
         <S.Person>

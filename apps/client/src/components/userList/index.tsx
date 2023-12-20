@@ -125,7 +125,7 @@ const UserList: React.FC<Props> = ({ coin, pocket }) => {
       {userList.length ? (
         <S.UserList>
           {userList.map((user, index) => (
-            <UserCard key={index} user={user} rank={index} />
+            <UserCard key={index} user={user} rank={index + 1} />
           ))}
         </S.UserList>
       ) : (

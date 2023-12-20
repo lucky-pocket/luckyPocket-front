@@ -48,7 +48,7 @@ export const Person = styled.div`
   height: 2.5rem;
 `;
 
-export const Corner = styled.div`
+export const Corner = styled.div<{ rank?: number }>`
   display: flex;
   padding: 0.125rem 0.3125rem;
   flex-direction: column;
@@ -56,7 +56,14 @@ export const Corner = styled.div`
   align-items: center;
   gap: 0.625rem;
   border-radius: 0.625rem 0rem 0.3125rem 0rem;
-  background: #d34e41;
+  background: ${({ rank, theme }) =>
+    rank === 1
+      ? '#d34e41'
+      : rank === 2
+      ? '#d34e41'
+      : rank === 3
+      ? '#d34e41'
+      : theme.color.black};
   color: ${({ theme }) => theme.color.white};
   font-size: 0.75rem;
   width: 1.0625rem;
