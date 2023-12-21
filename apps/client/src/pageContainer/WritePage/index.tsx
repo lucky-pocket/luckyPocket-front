@@ -27,7 +27,11 @@ export default function Write() {
             maxLength={MAX_LENGTH}
           />
         </S.WriteBoxContainer>
-        <WriteButton nextLink='/search' disabled={isTextareaEmpty} />
+        <WriteButton
+          disabled={isTextareaEmpty}
+          beforeButton='/search'
+          nextLink='/send'
+        />
       </S.Background>
     </S.Write>
   );
