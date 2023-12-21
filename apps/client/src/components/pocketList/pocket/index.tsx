@@ -12,14 +12,14 @@ const Pocket: React.FC<PocketProps> = ({ isEmpty, isPublic, sender }) => {
     <>
       {isEmpty ? (
         isPublic ? (
-          <S.PocketMoney />
+          <S.Pocket />
         ) : (
-          <S.LockPocketMoney />
+          <S.LockPocket />
         )
       ) : isPublic ? (
-        <S.Pocket />
+        <S.PocketMoney />
       ) : (
-        <S.LockPocket />
+        <S.LockPocketMoney />
       )}
     </>
   );

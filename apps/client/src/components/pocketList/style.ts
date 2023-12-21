@@ -1,7 +1,21 @@
 import styled from '@emotion/styled';
 
 export const PocketListContainer = styled.div``;
-export const Title = styled.div``;
+export const Title = styled.div`
+  ${({ theme }) => theme.typo.title.medium};
+  span {
+    ${({ theme }) => theme.typo.title.large};
+  }
+`;
+export const SubTitle = styled.div`
+  ${({ theme }) => theme.typo.title.medium};
+  p {
+    ${({ theme }) => theme.typo.title.large};
+  }
+  span {
+    color: ${({ theme }) => theme.color.sub.brown['500']};
+  }
+`;
 export const Button = styled.div`
   display: flex;
   justify-content: center;

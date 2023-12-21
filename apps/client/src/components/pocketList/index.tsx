@@ -17,7 +17,12 @@ interface PocketListProps {
 const PocketList: React.FC<PocketListProps> = ({ pockets, totalCount }) => {
   return (
     <S.PocketListContainer>
-      <S.Title>Total Count: {totalCount}</S.Title>
+      <S.Title>
+        <span>홍길동</span>님
+      </S.Title>
+      <S.SubTitle>
+        <span>{totalCount}</span>개의 복주머니를 받았어요
+      </S.SubTitle>
       <S.PocketDrawer>
         {pockets.map((pocket, index) => (
           <div key={pocket.id}>
@@ -26,14 +31,14 @@ const PocketList: React.FC<PocketListProps> = ({ pockets, totalCount }) => {
               isPublic={pocket.isPublic}
               sender={pocket.sender}
             />
-            <S.Index>{index + 1}</S.Index>
-            <S.Message>복주머니에 덕담을 담아 나눠보세요!</S.Message>
-            <S.Button />
-            <S.WarnMessage>
-              복주머니를 보내기 위해서는 엽전 1닢이 필요해요
-            </S.WarnMessage>
           </div>
         ))}
+        <S.Index>1/1</S.Index>
+        <S.Message>복주머니에 덕담을 담아 나눠보세요!</S.Message>
+        <S.Button />
+        <S.WarnMessage>
+          복주머니를 보내기 위해서는 엽전 1닢이 필요해요
+        </S.WarnMessage>
       </S.PocketDrawer>
     </S.PocketListContainer>
   );
