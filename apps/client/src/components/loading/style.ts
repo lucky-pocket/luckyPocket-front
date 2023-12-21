@@ -7,7 +7,7 @@ const FirstYut = keyframes`
         transform: rotateX(0deg);
 	}
 	to {
-        transform: translate(100px, -100px) rotate(60deg);
+        transform: translate(6.25rem, -6.25rem) rotate(60deg);
 	}
 `;
 
@@ -17,7 +17,7 @@ const SecondYut = keyframes`
         transform: rotateX(0deg);
 	}
 	to {
-        transform: translate(-30px, 50px) rotate(45deg);
+        transform: translate(-1.875rem, 3.125rem) rotate(45deg);
 	}
 `;
 
@@ -27,7 +27,7 @@ const ThirdYut = keyframes`
         transform: rotateX(0deg);
 	}
 	to {
-        transform: translate(30px, 30px) rotate(45deg);
+        transform: translate(1.875rem, 1.875rem) rotate(45deg);
 	}
 `;
 
@@ -37,13 +37,13 @@ const FourthYut = keyframes`
         transform: rotateX(0deg);
 	}
 	to {
-        transform: translate(-30px, 100px) rotate(-45deg);
+        transform: translate(-1.875rem, 6.25rem) rotate(-45deg);
 	}
 `;
 
 export const Game = styled.div`
-  width: 512px;
-  height: 512px;
+  width: 32rem;
+  height: 32rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,8 +77,8 @@ export const YutBox = styled.div`
 `;
 
 export const GameContainer = styled.div`
-  margin-top: 130px;
-  height: 800px;
+  margin-top: 8.125rem;
+  height: 50rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -87,8 +87,8 @@ export const GameContainer = styled.div`
 `;
 
 export const BottomBox = styled.div`
-  height: 159px;
-  width: 544px;
+  height: 9.9375rem;
+  width: 34rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,10 +96,6 @@ export const BottomBox = styled.div`
 `;
 
 export const Loading = styled.div`
-  color: #99522f;
-  font-family: Inter;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 120%;
+  color: ${({ theme }) => theme.color.sub.brown['500']};
+  ${({ theme }) => theme.typo.title.medium};
 `;
