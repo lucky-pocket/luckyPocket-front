@@ -10,10 +10,21 @@ interface Props {
 }
 
 const UserCard: React.FC<Props> = ({ user, rank }) => {
+  const rabbitComponents = [
+    <I.Rabbit1 />,
+    <I.Rabbit2 />,
+    <I.Rabbit3 />,
+    <I.Rabbit4 />,
+  ];
+
+  const randomIndex = Math.floor(Math.random() * rabbitComponents.length);
+
   return (
     <S.UserCard>
-      <S.Corner rank={rank}>{rank}</S.Corner>
-      <I.Rabbit1 />
+      <S.RabbitBox>
+        <S.Corner rank={rank}>{rank}</S.Corner>
+        {rabbitComponents[randomIndex]}
+      </S.RabbitBox>
       <S.DescBox>
         <S.Person>
           <S.Name>{user.name}</S.Name>

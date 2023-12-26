@@ -18,6 +18,12 @@ export const DescBox = styled.div`
   margin-top: 0.5rem;
 `;
 
+export const RabbitBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Name = styled.div`
   ${({ theme }) => theme.typo.text.small}
 `;
@@ -45,7 +51,7 @@ export const Person = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 3.6875rem;
-  height: 2.5rem;
+  height: 2.3rem;
 `;
 
 export const Corner = styled.div<{ rank?: number }>`
@@ -57,15 +63,13 @@ export const Corner = styled.div<{ rank?: number }>`
   gap: 0.625rem;
   border-radius: 0.625rem 0rem 0.3125rem 0rem;
   background: ${({ rank, theme }) =>
-    rank === 1
-      ? '#d34e41'
-      : rank === 2
-      ? '#d34e41'
-      : rank === 3
-      ? '#d34e41'
-      : theme.color.black};
+    rank && rank <= 3 ? '#d34e41' : theme.color.black};
   color: ${({ theme }) => theme.color.white};
   font-size: 0.75rem;
+  min-width: 1.0625rem;
   width: 1.0625rem;
   height: 1rem;
+  position: relative;
+  bottom: 2.625rem;
+  right: 1.25rem;
 `;

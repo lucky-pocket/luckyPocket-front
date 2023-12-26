@@ -42,6 +42,7 @@ export const GradeClass = styled.div``;
 
 export const OptionBox = styled.div`
   display: flex;
+  gap: 1rem;
 `;
 
 export const Option = styled.div<{ isActive?: boolean }>`
