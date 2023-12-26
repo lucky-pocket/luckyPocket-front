@@ -146,11 +146,7 @@ export const BottomBox = styled.div`
 
 export const Loading = styled.div`
   color: ${({ theme }) => theme.color.sub.brown['500']};
-  font-family: Inter;
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 120%;
+  ${({ theme }) => theme.typo.title.medium};
 `;
 
 export const Result = styled.div`
