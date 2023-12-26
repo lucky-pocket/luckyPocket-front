@@ -52,6 +52,7 @@ export const SectionOption = styled.span`
 
 export const CoinInput = styled.input<{ error: boolean }>`
   ${({ theme }) => theme.typo.text.small}
+  color: ${({ theme }) => theme.color.gray['090']};
 
   width: 100%;
   height: 3.1875rem;
