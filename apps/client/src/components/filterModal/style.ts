@@ -14,6 +14,7 @@ export const FilterModal = styled.div`
   flex-direction: column;
   top: 14.375rem;
   right: 1.875rem;
+  z-index: 1;
 `;
 
 export const Title = styled.div`
