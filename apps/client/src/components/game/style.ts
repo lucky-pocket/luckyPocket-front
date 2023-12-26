@@ -100,6 +100,7 @@ export const Message = styled.div`
 export const Count = styled.div`
   text-align: center;
   div {
+    margin-top: 0.5rem;
     ${({ theme }) => theme.typo.title.small}
     color: ${({ theme }) => theme.color.sub.brown['500']};
   }
@@ -107,14 +108,14 @@ export const Count = styled.div`
 
 export const Button = styled.button<{ isError?: boolean }>`
   ${({ theme }) => theme.typo.title.small}
-  color: ${({ theme }) => theme.color.sub.brown['500']};
+  color: ${({ theme }) => theme.color.sub.brown['100']};
   display: flex;
   width: 15.625rem;
   height: 2.875rem;
   justify-content: center;
   align-items: center;
   border-radius: 0.625rem;
-  border: 0.0625rem solid ${({ theme }) => theme.color.sub.brown['500']};
+  border: 0.0625rem solid ${({ theme }) => theme.color.sub.brown['100']};
   ${({ isError, theme }) =>
     isError &&
     css`
