@@ -16,7 +16,7 @@ export const Background = styled.div`
   align-items: center;
   justify-content: center;
   background-image: url('/images/frame.png');
-  background-size: 608px 100vh;
+  background-size: 38rem 100vh;
   background-color: ${({ theme }) => theme.color.ivory['010']};
 
   .norigae {
