@@ -5,7 +5,7 @@ import * as S from './style';
 
 interface Props {}
 
-const StandardArray = ['복주머니', '랭킹'] as const;
+const StandardArray = ['복주머니', '엽전'] as const;
 const GradeArray = ['전체', '1학년', '2학년', '3학년', '선생님'] as const;
 const GradeClassArray = ['전체', '1반', '2반', '3반', '4반'] as const;
 
