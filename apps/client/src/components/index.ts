@@ -1,4 +1,4 @@
-export { default as SigninButton } from './SigninButton';
+export { default as SigninButton } from './signinButton';
 export { default as Header } from './header';
 export { default as AlarmModal } from './alarmModal';
 export { default as WriteButton } from './writeButton';

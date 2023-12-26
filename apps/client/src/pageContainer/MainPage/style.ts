@@ -57,3 +57,41 @@ export const MoveContainer = styled.div<{ slideIndex: number }>`
 export const Card = styled.div`
   position: relative;
 `;
+
+export const Title = styled.div`
+  ${({ theme }) => theme.typo.title.medium};
+  span {
+    ${({ theme }) => theme.typo.title.large};
+  }
+`;
+export const SubTitle = styled.div`
+  ${({ theme }) => theme.typo.title.medium};
+  p {
+    ${({ theme }) => theme.typo.title.large};
+  }
+  span {
+    color: ${({ theme }) => theme.color.sub.brown['500']};
+  }
+`;
+
+export const TitleBox = styled.div`
+  display: flex;
+`;
+export const Message = styled.div`
+  ${({ theme }) => theme.typo.text.small};
+`;
+export const WarnMessage = styled.div`
+  ${({ theme }) => theme.typo.text.caption};
+  color: ${({ theme }) => theme.color.error['050']};
+`;
+
+export const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: ${({ theme }) => theme.color.gray['090']};
+  width: 320px;
+  height: 48px;
+  color: ${({ theme }) => theme.color.white};
+`;

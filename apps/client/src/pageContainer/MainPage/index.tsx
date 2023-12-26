@@ -43,10 +43,20 @@ export default function Main() {
     <S.Main>
       <S.Background>
         <Header hasNorigae />
-        <PocketList
-          pockets={listData.pockets}
-          totalCount={listData.totalCount}
-        />
+        <S.TitleBox>
+          <S.Title>
+            <span>홍길동</span>님
+          </S.Title>
+        </S.TitleBox>
+        <S.SubTitle>
+          <span>{listData.totalCount}</span>개의 복주머니를 받았어요
+        </S.SubTitle>
+        <PocketList pockets={listData.pockets} />
+        <S.Message>복주머니에 덕담을 담아 나눠보세요!</S.Message>
+        <S.Button>복주머니 전달하기</S.Button>
+        <S.WarnMessage>
+          복주머니를 보내기 위해서는 엽전 1닢이 필요해요
+        </S.WarnMessage>
       </S.Background>
     </S.Main>
   );
