@@ -36,6 +36,12 @@ export default function Main() {
         sender: '김하온',
         isPublic: true,
       },
+      {
+        id: 6,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
     ],
     totalCount: 32,
   };
@@ -47,10 +53,10 @@ export default function Main() {
           <S.Title>
             <span>홍길동</span>님
           </S.Title>
+          <S.SubTitle>
+            <span>{listData.totalCount}</span>개의 복주머니를 받았어요
+          </S.SubTitle>
         </S.TitleBox>
-        <S.SubTitle>
-          <span>{listData.totalCount}</span>개의 복주머니를 받았어요
-        </S.SubTitle>
         <PocketList pockets={listData.pockets} />
         <S.Message>복주머니에 덕담을 담아 나눠보세요!</S.Message>
         <S.Button>복주머니 전달하기</S.Button>

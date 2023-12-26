@@ -16,6 +16,7 @@ export const Background = styled.div`
   align-items: center;
   justify-content: center;
   background: ${({ theme }) => theme.color.ivory['010']};
+  flex-direction: column;
 `;
 
 export const Writer = styled.div`
@@ -76,6 +77,7 @@ export const SubTitle = styled.div`
 
 export const TitleBox = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 export const Message = styled.div`
   ${({ theme }) => theme.typo.text.small};

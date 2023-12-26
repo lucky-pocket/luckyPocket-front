@@ -5,23 +5,35 @@ interface PocketProps {
   isEmpty: boolean;
   sender: string | null;
   isPublic: boolean;
+  onClick?: () => void;
 }
 
-const Pocket: React.FC<PocketProps> = ({ isEmpty, isPublic, sender }) => {
+const Pocket: React.FC<PocketProps> = ({
+  isEmpty,
+  isPublic,
+  sender,
+  onClick,
+}) => {
   return (
-    <>
+    <S.PocketContainer onClick={onClick}>
       {isEmpty ? (
         isPublic ? (
-          <S.Pocket />
+          <S.Pocket>{sender && <S.Sender>{sender}</S.Sender>}</S.Pocket>
         ) : (
           <S.LockPocket />
         )
       ) : isPublic ? (
-        <S.PocketMoney />
+        sender ? (
+          <S.PocketMoney>
+            {sender && <S.Sender>{sender}</S.Sender>}
+          </S.PocketMoney>
+        ) : (
+          <S.PocketMoney />
+        )
       ) : (
         <S.LockPocketMoney />
       )}
-    </>
+    </S.PocketContainer>
   );
 };
 

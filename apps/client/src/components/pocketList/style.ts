@@ -9,4 +9,5 @@ export const PocketDrawer = styled.div`
   height: 514px;
   background-image: url('/images/drawer.png');
   background-size: 480px 514px;
+  display: flex;
 `;
