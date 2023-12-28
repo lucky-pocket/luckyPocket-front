@@ -55,3 +55,10 @@ export const Input = styled.input`
     }
   }
 `;
+
+export const ContentContainer = styled.div`
+  height: 64vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

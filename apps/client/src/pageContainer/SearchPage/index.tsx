@@ -57,8 +57,11 @@ export default function Search() {
             />
             <SearchIcon />
           </S.InputWrapper>
+
           {searchedUsers.length === 0 ? (
-            <NoSearch />
+            <S.ContentContainer>
+              <NoSearch />
+            </S.ContentContainer>
           ) : (
             <UserList searchedUsers={searchedUsers} />
           )}
