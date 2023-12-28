@@ -3,15 +3,14 @@
 import { Header, WriteButton } from 'client/components';
 import * as S from './style';
 import { useState } from 'react';
+import { ScopeType } from 'client/type/ScopeType';
 
 const Send = () => {
   let coins = 46;
 
   const [coinsToSend, setCoinsToSend] = useState<number | null>(null);
   const [coinsError, setCoinsError] = useState<boolean>(false);
-  const [selectedScope, setSelectedScope] = useState<
-    'PUBLIC' | 'PRIVATE' | null
-  >('PRIVATE');
+  const [selectedScope, setSelectedScope] = useState<ScopeType>('PRIVATE');
   const [coinsErrorMessage, setCoinsErrorMessage] = useState<string>('');
 
   const ERROR_MESSAGES = {
@@ -38,7 +37,7 @@ const Send = () => {
     setCoinsError(hasError);
   };
 
-  const handleButtonClick = (scope: 'PUBLIC' | 'PRIVATE') => {
+  const handleButtonClick = (scope: ScopeType) => {
     setSelectedScope((prev) => (prev === scope ? null : scope));
   };
 
