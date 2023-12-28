@@ -7,3 +7,4 @@ export { default as NotFoundPage } from './NotFoundPage';
 export { default as TimeoutPage } from './TimeoutPage';
 export { default as WritePage } from './WritePage';
 export { default as SearchPage } from './SearchPage';
+export { default as SendPage } from './SendPage';
