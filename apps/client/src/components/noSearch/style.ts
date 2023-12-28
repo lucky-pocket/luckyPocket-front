@@ -11,4 +11,5 @@ export const EmptyText = styled.span`
   color: ${({ theme }) => theme.color.gray['050']};
   text-align: center;
   line-height: 150%;
+  font-size: 1.25rem;
 `;
