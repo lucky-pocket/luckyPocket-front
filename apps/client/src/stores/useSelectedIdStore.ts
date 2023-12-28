@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
 interface SelectedId {
-  selectedId: string | null;
-  setSelectedId: (value: string | null) => void;
+  selectedId: number | null;
+  setSelectedId: (value: number | null) => void;
 }
 
 const useSelectedIdState = create<SelectedId>((set) => ({
