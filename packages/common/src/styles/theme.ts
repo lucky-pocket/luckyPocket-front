@@ -79,7 +79,7 @@ const typo = {
       lineHeight: '120%',
     },
     caption: {
-      fontSize: '1rem',
+      fontSize: '0.875rem',
       fontWeight: 'regular',
       lineHeight: '120%',
     },
