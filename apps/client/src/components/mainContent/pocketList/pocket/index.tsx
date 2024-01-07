@@ -1,5 +1,7 @@
 'use client';
+import { useState } from 'react';
 import * as S from './style';
+import { RevealModal } from 'client/components';
 
 interface PocketProps {
   isEmpty: boolean;
@@ -14,13 +16,15 @@ const Pocket: React.FC<PocketProps> = ({
   sender,
   onClick,
 }) => {
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   return (
     <S.PocketContainer onClick={onClick}>
       {isEmpty ? (
         isPublic ? (
           <S.Pocket>{sender && <S.Sender>{sender}</S.Sender>}</S.Pocket>
         ) : (
-          <S.LockPocket />
+          <S.LockPocket onClick={() => setShowModal(true)} />
         )
       ) : isPublic ? (
         sender ? (
@@ -31,8 +35,9 @@ const Pocket: React.FC<PocketProps> = ({
           <S.PocketMoney />
         )
       ) : (
-        <S.LockPocketMoney />
+        <S.LockPocketMoney onClick={() => setShowModal(true)} />
       )}
+      {showModal && <RevealModal setShowModal={setShowModal} />}
     </S.PocketContainer>
   );
 };

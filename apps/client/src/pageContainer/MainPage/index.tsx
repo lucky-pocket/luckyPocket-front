@@ -1,6 +1,6 @@
 'use client';
 
-import { Header, PocketList } from 'client/components';
+import { Header, MainContent } from 'client/components';
 import * as S from './style';
 
 export default function Main() {
@@ -42,6 +42,126 @@ export default function Main() {
         sender: '옙인',
         isPublic: true,
       },
+      {
+        id: 7,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 8,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 9,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 10,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 11,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 12,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 13,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 14,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 15,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 16,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 17,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 18,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 19,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 20,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 21,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 22,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 23,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 24,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 25,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
+      {
+        id: 26,
+        isEmpty: true,
+        sender: '옙인',
+        isPublic: true,
+      },
     ],
     totalCount: 32,
   };
@@ -49,20 +169,10 @@ export default function Main() {
     <S.Main>
       <S.Background>
         <Header hasNorigae />
-        <S.TitleBox>
-          <S.Title>
-            <span>홍길동</span>님
-          </S.Title>
-          <S.SubTitle>
-            <span>{listData.totalCount}</span>개의 복주머니를 받았어요
-          </S.SubTitle>
-        </S.TitleBox>
-        <PocketList pockets={listData.pockets} />
-        <S.Message>복주머니에 덕담을 담아 나눠보세요!</S.Message>
-        <S.Button>복주머니 전달하기</S.Button>
-        <S.WarnMessage>
-          복주머니를 보내기 위해서는 엽전 1닢이 필요해요
-        </S.WarnMessage>
+        <MainContent
+          pockets={listData.pockets}
+          totalCount={listData.totalCount}
+        />
       </S.Background>
     </S.Main>
   );
