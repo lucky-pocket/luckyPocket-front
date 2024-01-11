@@ -63,15 +63,14 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
       setSlideIndex((curIndex) => curIndex + 1);
     }
   };
+  const drawer = [<I.Drawer />, <I.Drawer />, <I.Drawer />];
 
   return (
     <S.PocketListContainer>
       <S.Container>
-        {pockets.length >= pocketsPerPage && (
-          <S.ChevronBox onClick={handlePrevSlide}>
-            <I.ChevronIcon turn={'right'} />
-          </S.ChevronBox>
-        )}
+        <S.ChevronBox onClick={handlePrevSlide} isVisible={slideIndex !== 0}>
+          <I.ChevronIcon turn={'right'} />
+        </S.ChevronBox>
         <S.PocketDrawer>
           <S.PocketBox slideIndex={slideIndex}>
             {getCurrentPockets().map((pocket, index) => (
@@ -82,15 +81,22 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
                   sender={pocket.sender}
                   onClick={() => handlePocketClick(pocket.id, pocket.isPublic)}
                 />
+                {/* {index % 4 === 0 && <I.Drawer />} */}
               </div>
             ))}
+            <S.DrawerBox>
+              {drawer.map((drawerComponent, index) => (
+                <div key={index}>{drawerComponent}</div>
+              ))}
+            </S.DrawerBox>
           </S.PocketBox>
         </S.PocketDrawer>
-        {pockets.length >= pocketsPerPage && (
-          <S.ChevronBox onClick={handleNextSlide}>
-            <I.ChevronIcon turn={'left'} />
-          </S.ChevronBox>
-        )}
+        <S.ChevronBox
+          onClick={handleNextSlide}
+          isVisible={slideIndex !== maxIndex}
+        >
+          <I.ChevronIcon turn={'left'} />
+        </S.ChevronBox>
       </S.Container>
       <S.Index>{`${slideIndex + 1}/${maxIndex + 1}`}</S.Index>
     </S.PocketListContainer>

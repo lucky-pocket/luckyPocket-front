@@ -10,7 +10,8 @@ export const RevealModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  z-index: 5;
+  cursor: default;
 `;
 
 export const RevealModal = styled.div`
