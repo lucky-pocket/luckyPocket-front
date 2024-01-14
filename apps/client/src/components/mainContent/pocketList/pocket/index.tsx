@@ -1,10 +1,7 @@
-/** @jsxImportSource @emotion/react */
-
 'use client';
 import { useState } from 'react';
 import * as S from './style';
 import { RevealModal } from 'client/components';
-import { css } from '@emotion/react';
 
 interface PocketProps {
   isEmpty: boolean;

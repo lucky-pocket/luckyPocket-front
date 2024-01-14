@@ -5,5 +5,5 @@ export const MainContentBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 798px;
+  height: 47.375rem;
 `;

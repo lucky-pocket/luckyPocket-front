@@ -25,8 +25,8 @@ const usePocketQuery = (pocketId: number) => {
 };
 
 const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
-  const { data, isLoading, isError } = usePocketQuery(1);
   const handlePocketClick = async (pocketId: number, isPublic: boolean) => {
+    const { data, isLoading, isError } = usePocketQuery(pocketId);
     if (isPublic) {
       console.log(data);
 
@@ -63,6 +63,7 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
       setSlideIndex((curIndex) => curIndex + 1);
     }
   };
+
   const drawer = [<I.Drawer />, <I.Drawer />, <I.Drawer />];
 
   return (
@@ -73,7 +74,7 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
         </S.ChevronBox>
         <S.PocketDrawer>
           <S.PocketBox slideIndex={slideIndex}>
-            {getCurrentPockets().map((pocket, index) => (
+            {getCurrentPockets().map((pocket) => (
               <div key={pocket.id}>
                 <Pocket
                   isEmpty={pocket.isEmpty}
@@ -81,7 +82,6 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
                   sender={pocket.sender}
                   onClick={() => handlePocketClick(pocket.id, pocket.isPublic)}
                 />
-                {/* {index % 4 === 0 && <I.Drawer />} */}
               </div>
             ))}
             <S.DrawerBox>

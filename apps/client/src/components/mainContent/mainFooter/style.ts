@@ -5,8 +5,8 @@ export const FooterBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 320px;
-  height: 104px;
+  width: 20rem;
+  height: 6.5rem;
 `;
 
 export const Message = styled.div`
@@ -22,9 +22,9 @@ export const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   background: ${({ theme }) => theme.color.gray['090']};
-  width: 320px;
-  height: 48px;
+  width: 20rem;
+  height: 3rem;
   color: ${({ theme }) => theme.color.white};
 `;
