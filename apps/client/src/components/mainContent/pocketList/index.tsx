@@ -5,6 +5,7 @@ import * as S from './style';
 import Pocket from './pocket';
 import * as I from 'client/assets';
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 
 interface Pocket {
   id: number;
@@ -17,17 +18,15 @@ interface PocketListProps {
   pockets: Pocket[];
 }
 
-const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
-  const handlePocketClick = async (pocketId: number, isPublic: boolean) => {
-    try {
-      const response = await axios.post(
-        `${process.env.CLIENT_API_URL}/pockets/${pocketId}`
-      );
-      console.log(response.data);
-    } catch (error) {}
-  };
-  const [slideIndex, setSlideIndex] = useState<number>(0);
+const usePocketMutation = () => {
+  return useMutation((pocketId: number) =>
+    axios.post(`${process.env.CLIENT_API_URL}/pockets/${pocketId}`)
+  );
+};
 
+const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
+  const pocketMutation = usePocketMutation();
+  const [slideIndex, setSlideIndex] = useState<number>(0);
   const maxIndex = Math.ceil(pockets.length / 16);
   const pocketsPerPage = 12;
 
@@ -69,7 +68,7 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
                   isEmpty={pocket.isEmpty}
                   isPublic={pocket.isPublic}
                   sender={pocket.sender}
-                  onClick={() => handlePocketClick(pocket.id, pocket.isPublic)}
+                  onClick={() => pocketMutation.mutate(pocket.id)}
                 />
               </div>
             ))}
