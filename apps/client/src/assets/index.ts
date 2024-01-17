@@ -12,3 +12,4 @@ export { default as ArrowIcon } from './svgs/ArrowIcon';
 export { default as SearchIcon } from './svgs/SearchIcon';
 export { default as ChevronIcon } from './svgs/ChevronIcon';
 export { default as Drawer } from './svgs/Drawer';
+export { default as CompletePocket } from './svgs/CompletePocket';
