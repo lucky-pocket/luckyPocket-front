@@ -3,7 +3,6 @@
 import axios from 'axios';
 import * as S from './style';
 import Pocket from './pocket';
-import { useQuery } from '@tanstack/react-query';
 import * as I from 'client/assets';
 import { useState } from 'react';
 
@@ -18,25 +17,15 @@ interface PocketListProps {
   pockets: Pocket[];
 }
 
-const usePocketQuery = (pocketId: number) => {
-  return useQuery(['pocket', pocketId], () =>
-    axios.get(`${process.env.CLIENT_API_URL}/pockets/${pocketId}`)
-  );
-};
-
 const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
   const handlePocketClick = async (pocketId: number, isPublic: boolean) => {
-    const { data, isLoading, isError } = usePocketQuery(pocketId);
-    if (isPublic) {
-      console.log(data);
-
-      if (!isLoading && !isError) {
-        console.log('Fetched data:', data);
-      }
-    } else {
-    }
+    try {
+      const response = await axios.post(
+        `${process.env.CLIENT_API_URL}/pockets/${pocketId}`
+      );
+      console.log(response.data);
+    } catch (error) {}
   };
-
   const [slideIndex, setSlideIndex] = useState<number>(0);
 
   const maxIndex = Math.ceil(pockets.length / 16);
