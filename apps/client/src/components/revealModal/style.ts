@@ -15,10 +15,10 @@ export const RevealModalContainer = styled.div`
 `;
 
 export const RevealModal = styled.div`
-  width: 480px;
-  height: 157px;
-  border-radius: 10px;
-  padding: 24px;
+  width: 30rem;
+  height: 9.8125rem;
+  border-radius: 0.625rem;
+  padding: 1.5rem;
   background: ${({ theme }) => theme.color.ivory['010']};
   display: flex;
   flex-direction: column;
@@ -55,12 +55,12 @@ export const Reveal = styled.div`
 export const TopBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 `;
 
 export const BottomBox = styled.div`
   display: flex;
   position: relative;
-  left: 350px;
-  gap: 16px;
+  left: 21.875rem;
+  gap: 1rem;
 `;

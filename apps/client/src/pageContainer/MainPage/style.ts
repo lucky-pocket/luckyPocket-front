@@ -18,5 +18,5 @@ export const Background = styled.div`
   background: ${({ theme }) => theme.color.ivory['010']};
   flex-direction: column;
   background-image: url('/images/frame.png');
-  background-size: 608px 1080px;
+  background-size: 38rem 67.5rem;
 `;
