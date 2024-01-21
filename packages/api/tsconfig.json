@@ -13,10 +13,12 @@
     "isolatedModules": true,
     "incremental": true,
     "forceConsistentCasingInFileNames": true,
-    "jsxImportSource": "@emotion/react",
-    "jsx": "preserve"
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "api/*": ["./*"]
+    }
   },
-  "main": "index.ts",
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
