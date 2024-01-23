@@ -1,6 +1,6 @@
 import * as S from './style';
 import { UserItem } from '..';
-import { useSelectedIdState } from 'client/stores';
+import { useSearchedUsersState } from 'client/stores';
 
 interface User {
   userId: number;
@@ -14,7 +14,7 @@ interface UserListProps {
 }
 
 const UserList = ({ searchedUsers }: UserListProps) => {
-  const { selectedId, setSelectedId } = useSelectedIdState();
+  const { selectedId, setSelectedId } = useSearchedUsersState();
 
   const handleItemClick = (userId: number) => {
     setSelectedId(userId !== selectedId ? userId : null);

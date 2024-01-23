@@ -3,11 +3,7 @@
 import { Header, WriteButton, UserList, NoSearch } from 'client/components';
 import * as S from './style';
 import { SearchIcon } from 'client/assets';
-import {
-  useSelectedIdState,
-  useSearchUserState,
-  useSearchedUsersState,
-} from 'client/stores';
+import { useSearchedUsersState } from 'client/stores';
 import { useEffect } from 'react';
 
 export default function Search() {
@@ -29,13 +25,15 @@ export default function Search() {
     { userId: 15, grade: 2, class: 4, name: '유명한' },
   ];
 
-  const { selectedId } = useSelectedIdState();
-  const { searchUser, setSearchUser } = useSearchUserState();
+  const { selectedId } = useSearchedUsersState();
+  const { searchUser, setSearchUser } = useSearchedUsersState();
   const { searchedUsers, setSearchedUsers } = useSearchedUsersState();
 
   const handleSearchUser = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchUser(e.target.value);
   };
+
+  console.log(selectedId);
 
   useEffect(() => {
     const filteredUsers = userList.filter(({ name }) =>
