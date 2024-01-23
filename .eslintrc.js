@@ -5,31 +5,31 @@ module.exports = {
     node: true,
   },
   extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
   ],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  plugins: ["@typescript-eslint", "react"],
+  plugins: ['@typescript-eslint', 'react'],
   rules: {
-    "arrow-body-style": ["error", "as-needed"],
-    "react/self-closing-comp": ["error", { component: true, html: true }],
-    "@typescript-eslint/consistent-type-imports": [
-      "error",
+    'arrow-body-style': ['error', 'as-needed'],
+    'react/self-closing-comp': ['error', { component: true, html: true }],
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
       {
-        prefer: "type-imports",
+        prefer: 'type-imports',
       },
     ],
-    "no-console": "error",
+    'no-console': 'error',
 
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
     test: /\.tsx$/, // 또는 /\.tsx$/ for TypeScript 파일
-    use: "ts-loader",
+    use: 'ts-loader',
     exclude: /node_modules/,
   },
 };
