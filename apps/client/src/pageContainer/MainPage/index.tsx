@@ -2,6 +2,10 @@
 
 import { Header, MainContent } from 'client/components';
 import * as S from './style';
+import { PocketListType } from 'client/types';
+interface Props {
+  pocketList: PocketListType[];
+}
 
 export default function Main() {
   const listData = {
