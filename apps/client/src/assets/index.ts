@@ -14,4 +14,6 @@ export { default as WriteBoard } from './svgs/WriteBoard';
 export { default as ArrowIcon } from './svgs/ArrowIcon';
 export { default as DurumariIcon } from './svgs/DurumariIcon';
 export { default as SearchIcon } from './svgs/SearchIcon';
+export { default as ChevronIcon } from './svgs/ChevronIcon';
+export { default as Drawer } from './svgs/Drawer';
 export { default as CompletePocket } from './svgs/CompletePocket';
