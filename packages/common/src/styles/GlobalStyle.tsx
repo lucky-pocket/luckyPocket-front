@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Global, css } from "@emotion/react";
-import emotionReset from "emotion-reset";
+import { Global, css } from '@emotion/react';
+import emotionReset from 'emotion-reset';
 
 export function GlobalStyle() {
   return (
@@ -11,21 +11,20 @@ export function GlobalStyle() {
 
         body {
           overscroll-behavior-y: none;
-          overflow-x: hidden;
         }
 
         body,
         * {
-          font-family: "Noto Sans KR";
+          font-family: 'Noto Sans KR';
           box-sizing: border-box;
         }
         @font-face {
-          font-family: "JS Arirang HON";
-          src: url("/fonts/JSArirangHON.ttf");
+          font-family: 'JS Arirang HON';
+          src: url('/fonts/JSArirangHON.ttf');
         }
         @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
         .notosanskr * {
-          font-family: "Noto Sans KR", sans-serif;
+          font-family: 'Noto Sans KR', sans-serif;
         }
         button {
           border: none;
