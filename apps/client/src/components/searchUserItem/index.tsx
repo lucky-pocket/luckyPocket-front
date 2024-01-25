@@ -7,7 +7,7 @@ interface UserItemProps {
   onClick: () => void;
 }
 
-const UserItem = ({ children, isClicked, onClick }: UserItemProps) => {
+const SearchUserItem = ({ children, isClicked, onClick }: UserItemProps) => {
   return (
     <S.UserItem isClicked={isClicked} onClick={onClick}>
       {children}
@@ -15,4 +15,4 @@ const UserItem = ({ children, isClicked, onClick }: UserItemProps) => {
   );
 };
 
-export default UserItem;
+export default SearchUserItem;

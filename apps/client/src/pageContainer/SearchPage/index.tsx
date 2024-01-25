@@ -1,6 +1,11 @@
 'use client';
 
-import { Header, WriteButton, UserList, NoSearch } from 'client/components';
+import {
+  Header,
+  WriteButton,
+  SearchUserList,
+  NoSearch,
+} from 'client/components';
 import * as S from './style';
 import { SearchIcon } from 'client/assets';
 import { useSearchedUsersState } from 'client/stores';
@@ -61,7 +66,7 @@ export default function Search() {
               <NoSearch />
             </S.ContentContainer>
           ) : (
-            <UserList searchedUsers={searchedUsers} />
+            <SearchUserList searchedUsers={searchedUsers} />
           )}
         </S.Container>
         <WriteButton

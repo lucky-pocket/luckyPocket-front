@@ -1,5 +1,5 @@
 import * as S from './style';
-import { UserItem } from '..';
+import { SearchUserItem } from '..';
 import { useSearchedUsersState } from 'client/stores';
 
 interface User {
@@ -9,11 +9,11 @@ interface User {
   name: string;
 }
 
-interface UserListProps {
+interface SearchUserListProps {
   searchedUsers: User[];
 }
 
-const UserList = ({ searchedUsers }: UserListProps) => {
+const SearchUserList = ({ searchedUsers }: SearchUserListProps) => {
   const { selectedId, setSelectedId } = useSearchedUsersState();
 
   const handleItemClick = (userId: number) => {
@@ -23,18 +23,18 @@ const UserList = ({ searchedUsers }: UserListProps) => {
   return (
     <S.UserListWrapper>
       {searchedUsers.map(({ userId, grade, class: userClass, name }, idx) => (
-        <UserItem
+        <SearchUserItem
           key={idx}
           userId={userId}
           isClicked={selectedId === userId}
           onClick={() => handleItemClick(userId)}
         >
           {grade}학년 {userClass}반 {name}
-        </UserItem>
+        </SearchUserItem>
       ))}
       <S.BackgroundFilter />
     </S.UserListWrapper>
   );
 };
 
-export default UserList;
+export default SearchUserList;
