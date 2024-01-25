@@ -8,7 +8,7 @@ export const Title = styled.div`
   align-items: center;
   gap: 0.625rem;
   background: ${({ theme }) => theme.color.gray['090']};
-  box-shadow: 0px 4px 8px 0px rgba(88, 61, 46, 0.8);
+  box-shadow: 0rem 0.25rem 0.5rem 0rem rgba(88, 61, 46, 0.8);
   border-radius: 1.25rem;
   width: 13.875rem;
   height: 2.625rem;
@@ -20,5 +20,5 @@ export const SigninButton = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 2rem;
 `;
