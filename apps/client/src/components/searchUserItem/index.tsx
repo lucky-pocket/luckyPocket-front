@@ -2,17 +2,17 @@ import * as S from './style';
 
 interface UserItemProps {
   children: React.ReactNode;
-  id: string;
+  userId: number;
   isClicked: boolean;
   onClick: () => void;
 }
 
-const UserItem = ({ children, id, isClicked, onClick }: UserItemProps) => {
+const SearchUserItem = ({ children, isClicked, onClick }: UserItemProps) => {
   return (
-    <S.UserItem id={id} isClicked={isClicked} onClick={onClick}>
+    <S.UserItem isClicked={isClicked} onClick={onClick}>
       {children}
     </S.UserItem>
   );
 };
 
-export default UserItem;
+export default SearchUserItem;
