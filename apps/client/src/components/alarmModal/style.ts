@@ -18,6 +18,7 @@ export const Wrapper = styled.div`
   align-items: center;
   box-shadow: 0 0.25rem 0.5rem 0 rgba(144, 116, 72, 0.5);
   border-radius: 0.625rem;
+  z-index: 2;
 `;
 
 export const CoinWrapper = styled.div`
