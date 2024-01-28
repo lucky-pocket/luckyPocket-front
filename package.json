@@ -14,21 +14,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@tanstack/react-query": "^4.36.1",
-    "@tanstack/react-query-devtools": "^5.0.0",
+    "@tanstack/react-query-devtools": "^5.17.21",
+    "axios": "^1.6.7",
     "emotion-reset": "^3.0.1",
-    "zustand": "^4.4.7",
-    "axios": "^1.6.2",
-    "emotion-reset": "^3.0.1"
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.8.0",
-    "@typescript-eslint/parser": "^6.8.0",
-    "eslint": "^8",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
-    "ts-loader": "^9.5.0",
+    "ts-loader": "^9.5.1",
     "webpack-cli": "^5.1.4"
   }
 }
