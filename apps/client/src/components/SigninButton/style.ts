@@ -13,6 +13,7 @@ export const Title = styled.div`
   width: 13.875rem;
   height: 2.625rem;
   font-size: 1.5rem;
+  cursor: pointer;
 `;
 
 export const SigninButton = styled.div`
