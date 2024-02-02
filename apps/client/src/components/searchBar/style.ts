@@ -35,3 +35,17 @@ export const Input = styled.input`
     }
   }
 `;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.875rem;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  top: 4.375rem;
+  @media (max-height: 62.75rem) {
+    top: 6.25rem;
+  }
+`;
