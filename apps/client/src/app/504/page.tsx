@@ -1,5 +1,5 @@
 import { TimeoutPage } from 'client/pageContainer';
-export default function NotFound() {
+export default function Timeout() {
   return (
     <div>
       <TimeoutPage />
