@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const SearchBar = styled.div`
   display: flex;
-  width: 100%;
+  width: 34.375rem;
   justify-content: space-between;
 `;
 

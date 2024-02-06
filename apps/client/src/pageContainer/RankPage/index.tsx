@@ -1,9 +1,9 @@
 'use client';
 
-import { Header, SearchBar, UserList } from 'client/components';
+import { Header, SearchBar } from 'client/components';
 import * as S from './style';
 import { useState } from 'react';
-import { StandardType, PocketListType } from 'client/types';
+import { PocketListType } from 'client/types';
 
 export default function Rank({ pocketList }: { pocketList?: PocketListType }) {
   const data = {
@@ -47,6 +47,42 @@ export default function Rank({ pocketList }: { pocketList?: PocketListType }) {
       {
         userId: 5,
         name: '전예빈',
+        gender: 'MALE',
+        amount: 23123,
+        userType: 'STUDENT',
+        grade: 1,
+        class: 2,
+      },
+      {
+        userId: 6,
+        name: '김원욱',
+        gender: 'MALE',
+        amount: 23123,
+        userType: 'STUDENT',
+        grade: 1,
+        class: 2,
+      },
+      {
+        userId: 6,
+        name: '김원욱',
+        gender: 'MALE',
+        amount: 23123,
+        userType: 'STUDENT',
+        grade: 1,
+        class: 2,
+      },
+      {
+        userId: 6,
+        name: '김원욱',
+        gender: 'MALE',
+        amount: 23123,
+        userType: 'STUDENT',
+        grade: 1,
+        class: 2,
+      },
+      {
+        userId: 6,
+        name: '김원욱',
         gender: 'MALE',
         amount: 23123,
         userType: 'STUDENT',
