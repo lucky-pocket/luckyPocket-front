@@ -4,11 +4,12 @@ import React from 'react';
 import * as S from './style';
 import { userType } from 'common';
 import { NoSearch, UserCard } from '..';
+import { PocketType } from 'client/types';
 
 interface Props {
   coin?: number;
   pocket?: number;
-  userList: userType[];
+  userList: PocketType[];
 }
 
 const UserList: React.FC<Props> = ({ coin, pocket, userList }) => {
