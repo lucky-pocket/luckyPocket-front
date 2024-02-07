@@ -14,10 +14,10 @@ interface Props {
 
 const UserCard: React.FC<Props> = ({ user, rank, selectedStandard }) => {
   const rabbitComponents = [
-    <I.Rabbit1 />,
-    <I.Rabbit2 />,
-    <I.Rabbit3 />,
-    <I.Rabbit4 />,
+    <I.Rabbit1 key={1} />,
+    <I.Rabbit2 key={2} />,
+    <I.Rabbit3 key={3} />,
+    <I.Rabbit4 key={4} />,
   ];
 
   const randomIndex = Math.floor(Math.random() * rabbitComponents.length);

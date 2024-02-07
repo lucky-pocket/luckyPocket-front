@@ -17,12 +17,6 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react'],
   rules: {
     'react/self-closing-comp': ['error', { component: true, html: true }],
-    '@typescript-eslint/consistent-type-imports': [
-      'error',
-      {
-        prefer: 'type-imports',
-      },
-    ],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['off'],
     use: 'off',
