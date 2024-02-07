@@ -16,8 +16,10 @@ export default function Signin() {
       const {
         data: { accessToken, expiresAt },
       } = await API.get(authUrl.getAuth(code));
-      document.cookie = `accessToken=${accessToken}`;
-      document.cookie = `expiresAt=${expiresAt}`;
+      document.cookie = `accessToken=${accessToken}; path=/;`;
+      document.cookie = `expiresAt=${new Date(
+        expiresAt
+      ).toUTCString()}; path=/;`;
       router.push('/');
     })();
   }, []);
