@@ -16,18 +16,73 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react'],
   rules: {
-    'arrow-body-style': ['error', 'as-needed'],
-    'react/self-closing-comp': ['error', { component: true, html: true }],
-    '@typescript-eslint/consistent-type-imports': [
-      'error',
-      {
-        prefer: 'type-imports',
-      },
-    ],
-    'no-console': 'error',
+    rules: {
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error'],
+      'sort-imports': [
+        'error',
+        {
+          ignoreCase: true,
+          ignoreDeclarationSort: true,
+          ignoreMemberSort: false,
+          allowSeparatedGroups: true,
+        },
+      ],
+      'import/order': [
+        'error',
+        {
+          'newlines-between': 'always',
+          groups: ['builtin', ['external', 'type'], 'internal'],
 
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error'],
-    use: 'ts-loader',
+          pathGroups: [
+            {
+              pattern: 'next',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: 'next/**',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: 'react',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: 'components',
+              group: 'internal',
+              position: 'after',
+            },
+            {
+              pattern: 'shared/**',
+              group: 'internal',
+              position: 'after',
+            },
+            {
+              pattern: 'utils/**',
+              group: 'internal',
+              position: 'after',
+            },
+            {
+              pattern: 'types/**',
+              group: 'internal',
+              position: 'after',
+            },
+            {
+              pattern: 'styles/**',
+              group: 'internal',
+              position: 'after',
+            },
+          ],
+
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
+      ],
+    },
   },
 };
