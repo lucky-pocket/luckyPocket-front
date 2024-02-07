@@ -9,3 +9,4 @@ export { default as WritePage } from './WritePage';
 export { default as SearchPage } from './SearchPage';
 export { default as SendPage } from './SendPage';
 export { default as CompletePage } from './CompletePage';
+export { default as ServerErrorPage } from './ServerErrorPage';
