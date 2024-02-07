@@ -3,7 +3,7 @@
 import { Header, WriteButton } from 'client/components';
 import * as S from './style';
 import { useState } from 'react';
-import { ScopeType } from 'client/type/ScopeType';
+import { ScopeType } from 'client/types/ScopeType';
 
 const Send = () => {
   let coins = 46;

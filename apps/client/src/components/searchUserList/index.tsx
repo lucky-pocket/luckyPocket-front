@@ -1,31 +1,29 @@
 import * as S from './style';
 import { SearchUserItem } from '..';
-import { useSearchedUsersState } from 'client/stores';
-
-interface User {
-  userId: number;
-  grade: number;
-  class: number;
-  name: string;
-}
+import { usePocketSendState, useSearchedUsersState } from 'client/stores';
+import { UsersType } from 'client/types';
 
 interface SearchUserListProps {
-  searchedUsers: User[];
+  searchedUsers: UsersType[];
 }
 
 const SearchUserList = ({ searchedUsers }: SearchUserListProps) => {
   const { selectedId, setSelectedId } = useSearchedUsersState();
+  const { pocketSend, setPocketSend } = usePocketSendState();
 
   const handleItemClick = (userId: number) => {
     setSelectedId(userId !== selectedId ? userId : null);
+    setPocketSend({
+      ...pocketSend,
+      receiver: userId,
+    });
   };
 
   return (
     <S.UserListWrapper>
-      {searchedUsers.map(({ userId, grade, class: userClass, name }, idx) => (
+      {searchedUsers.map(({ userId, grade, class: userClass, name }) => (
         <SearchUserItem
-          key={idx}
-          userId={userId}
+          key={userId}
           isClicked={selectedId === userId}
           onClick={() => handleItemClick(userId)}
         >
