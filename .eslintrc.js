@@ -28,8 +28,6 @@ module.exports = {
 
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
-    test: /\.tsx$/, // 또는 /\.tsx$/ for TypeScript 파일
     use: 'ts-loader',
-    exclude: /node_modules/,
   },
 };
