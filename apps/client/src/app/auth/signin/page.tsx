@@ -2,12 +2,12 @@
 import { authUrl } from 'api/client';
 import { API } from 'api/client/API';
 import { SiginPage } from 'client/pageContainer';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-export default function Siginin() {
+export default function Signin() {
   const searchParams = useSearchParams();
-  console.log(searchParams.get('code'));
+  const router = useRouter();
 
   useEffect(() => {
     const code = searchParams.get('code');
@@ -16,7 +16,9 @@ export default function Siginin() {
       const {
         data: { accessToken, expiresAt },
       } = await API.get(authUrl.getAuth(code));
-      console.log(accessToken);
+      document.cookie = `accessToken=${accessToken}`;
+      document.cookie = `expiresAt=${expiresAt}`;
+      router.push('/');
     })();
   }, []);
 
