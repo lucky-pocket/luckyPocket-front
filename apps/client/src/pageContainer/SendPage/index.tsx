@@ -8,33 +8,20 @@ import { ScopeType } from 'client/type/ScopeType';
 const Send = () => {
   let coins = 46;
 
-  const [coinsToSend, setCoinsToSend] = useState<number | null>(null);
+  const [coinsToSend, setCoinsToSend] = useState<string | null>(null);
   const [coinsError, setCoinsError] = useState<boolean>(false);
   const [selectedScope, setSelectedScope] = useState<ScopeType>('PRIVATE');
-  const [coinsErrorMessage, setCoinsErrorMessage] = useState<string>('');
 
-  const ERROR_MESSAGES = {
-    exceedCoins:
-      '복주머니 배송비는 엽전 1닢입니다, 선물 금액은 배송비를 고려해 정해주세요!',
-    lessThanOne: '다른 사람의 엽전을 뺏어 올 수는 없어요!',
-  };
+  const ERROR_MESSAGES =
+    '복주머니 배송비는 엽전 1닢입니다, 선물 금액은 배송비를 고려해 정해주세요!';
 
-  const notNullCoinToSend = coinsToSend ?? 0;
+  const notNullCoinToSend =
+    coinsToSend === '' || coinsToSend === null ? 0 : coinsToSend;
 
-  const validateCoinsToSend = (value: number) => {
-    let errorMessage = '';
-    let hasError = false;
+  console.log(notNullCoinToSend);
 
-    if (value > coins - 2) {
-      errorMessage = ERROR_MESSAGES.exceedCoins;
-      hasError = true;
-    } else if (value < 0) {
-      errorMessage = ERROR_MESSAGES.lessThanOne;
-      hasError = true;
-    }
-
-    setCoinsErrorMessage(errorMessage);
-    setCoinsError(hasError);
+  const hasError = (value: number) => {
+    setCoinsError(value > coins - 1);
   };
 
   const handleButtonClick = (scope: ScopeType) => {
@@ -42,9 +29,23 @@ const Send = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.valueAsNumber;
-    Number.isNaN(value) ? setCoinsToSend(null) : setCoinsToSend(value);
-    validateCoinsToSend(value);
+    const isNotNumber = (value: string) => {
+      const regExp = /[a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
+      return regExp.test(value);
+    };
+
+    if (!isNotNumber(e.target.value)) {
+      const value = e.target.value;
+
+      const sanitizedValue = value
+        .replace(/^0+/, '0')
+        .replace(/^0+(\d+)/, '$1');
+
+      if (!isNaN(Number(sanitizedValue))) {
+        setCoinsToSend(sanitizedValue);
+        hasError(Number(sanitizedValue));
+      }
+    }
   };
 
   return (
@@ -62,19 +63,16 @@ const Send = () => {
               onChange={handleInputChange}
               placeholder='보낼 엽전 개수를 입력해 주세요.'
               error={coinsError}
-              type='number'
-              onKeyDown={(e) =>
-                ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
-              }
+              type='string'
             />
             <S.SectionDetailWrapper>
               <S.SectionDetail>
                 현재 보유중인 엽전 개수 <S.Coins>{coins}닢</S.Coins>
               </S.SectionDetail>
               {coinsError ? (
-                <S.Caption>{coinsErrorMessage}</S.Caption>
+                <S.Caption>{ERROR_MESSAGES}</S.Caption>
               ) : (
-                <S.SectionDetail>{ERROR_MESSAGES.exceedCoins}</S.SectionDetail>
+                <S.SectionDetail>{ERROR_MESSAGES}</S.SectionDetail>
               )}
             </S.SectionDetailWrapper>
           </S.Section>
