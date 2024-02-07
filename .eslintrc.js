@@ -16,11 +16,6 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react'],
   rules: {
-    'arrow-body-style': [
-      'error',
-      'as-needed',
-      { requireReturnForObjectLiteral: false },
-    ],
     'react/self-closing-comp': ['error', { component: true, html: true }],
     '@typescript-eslint/consistent-type-imports': [
       'error',
