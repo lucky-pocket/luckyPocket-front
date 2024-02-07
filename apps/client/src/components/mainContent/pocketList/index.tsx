@@ -52,7 +52,11 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
     }
   };
 
-  const drawer = [<I.Drawer />, <I.Drawer />, <I.Drawer />];
+  const drawer = [
+    <I.Drawer key={1} />,
+    <I.Drawer key={2} />,
+    <I.Drawer key={3} />,
+  ];
 
   return (
     <S.PocketListContainer>
