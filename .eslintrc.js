@@ -28,6 +28,6 @@ module.exports = {
 
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
-    use: 2,
+    use: 'off',
   },
 };
