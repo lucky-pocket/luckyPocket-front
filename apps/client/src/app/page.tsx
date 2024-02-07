@@ -4,7 +4,8 @@ import { MainPage } from 'client/pageContainer';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { pocketUrl } from 'api/client';
-import { PocketListType } from 'client/types';
+import { PocketListType, StandardType } from 'client/types';
+import { useState } from 'react';
 
 export default async function Main() {
   try {

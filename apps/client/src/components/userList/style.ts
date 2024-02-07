@@ -1,12 +1,25 @@
 import styled from '@emotion/styled';
 
+export const UserListContainer = styled.div`
+  height: 55rem;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
 export const UserList = styled.div`
   display: grid;
-  justify-content: center;
-  align-items: center;
+
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.125rem;
-  height: 52.5rem;
-  overflow-y: scroll;
 `;
-export const NoSearchContainer = styled.div``;
+
+export const NoSearchContainer = styled.div`
+  height: 51.25rem;
+  width: 34.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
