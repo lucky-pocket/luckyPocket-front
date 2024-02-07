@@ -16,7 +16,11 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react'],
   rules: {
-    'arrow-body-style': ['error', 'as-needed'],
+    'arrow-body-style': [
+      'error',
+      'as-needed',
+      { requireReturnForObjectLiteral: false },
+    ],
     'react/self-closing-comp': ['error', { component: true, html: true }],
     '@typescript-eslint/consistent-type-imports': [
       'error',
@@ -25,6 +29,7 @@ module.exports = {
       },
     ],
     'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['off'],
     use: 'off',
   },
 };
