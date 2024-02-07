@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { theme } from "common";
+import styled from '@emotion/styled';
+import { theme } from 'common';
 
 export const Signin = styled.div`
   width: 100vw;
@@ -10,10 +10,11 @@ export const Signin = styled.div`
 `;
 
 export const Background = styled.div`
+  position: relative;
   width: 38rem;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("/images/loginBackground.png");
+  background-image: url('/images/loginBackground.png');
 `;

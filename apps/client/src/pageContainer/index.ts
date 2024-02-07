@@ -1,1 +1,12 @@
-export { default as SiginPage } from "./SigninPage";
+export { default as SiginPage } from './SigninPage';
+export { default as RankPage } from './RankPage';
+export { default as GamePage } from './GamePage';
+export { default as MainPage } from './MainPage';
+export { default as InspectionPage } from './InspectionPage';
+export { default as NotFoundPage } from './NotFoundPage';
+export { default as TimeoutPage } from './TimeoutPage';
+export { default as WritePage } from './WritePage';
+export { default as SearchPage } from './SearchPage';
+export { default as SendPage } from './SendPage';
+export { default as CompletePage } from './CompletePage';
+export { default as ServerErrorPage } from './ServerErrorPage';

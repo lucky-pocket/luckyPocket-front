@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import * as S from "./style";
-import { SigninButton } from "client/components";
+import * as S from './style';
+import { SigninButton } from 'client/components';
 
 export default function Siginin() {
   return (
