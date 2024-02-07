@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const SearchBar = styled.div`
   display: flex;
-  width: 100%;
+  width: 34.375rem;
   justify-content: space-between;
 `;
 
@@ -33,5 +33,19 @@ export const Input = styled.input`
     & ~ svg path {
       fill: ${({ theme }) => theme.color.gray['090']};
     }
+  }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.875rem;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  top: 4.375rem;
+  @media (max-height: 62.75rem) {
+    top: 6.25rem;
   }
 `;

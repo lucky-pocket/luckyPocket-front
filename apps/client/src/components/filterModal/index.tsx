@@ -1,38 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import React from 'react';
 import * as S from './style';
 
-interface Props {}
+interface Props {
+  selectedStandard: '복주머니' | '엽전';
+  selectedGrade: '전체' | '1학년' | '2학년' | '3학년' | '선생님';
+  selectedGradeClass: '전체' | '1반' | '2반' | '3반' | '4반';
+  onStandardClick: (standard: '복주머니' | '엽전') => void;
+  onGradeClick: (
+    grade: '전체' | '1학년' | '2학년' | '3학년' | '선생님'
+  ) => void;
+  onGradeClassClick: (
+    gradeClass: '전체' | '1반' | '2반' | '3반' | '4반'
+  ) => void;
+}
 
-const StandardArray = ['복주머니', '엽전'] as const;
-const GradeArray = ['전체', '1학년', '2학년', '3학년', '선생님'] as const;
-const GradeClassArray = ['전체', '1반', '2반', '3반', '4반'] as const;
-
-type StandardType = (typeof StandardArray)[number];
-type GradeType = (typeof GradeArray)[number];
-type GradeClassType = (typeof GradeClassArray)[number];
-
-const FilterModal: React.FC<Props> = () => {
-  const [selectedStandard, setSelectedStandard] = useState<StandardType>(
-    StandardArray[0]
-  );
-  const [selectedGrade, setSelectedGrade] = useState<GradeType>(GradeArray[0]);
-  const [selectedGradeClass, setSelectedGradeClass] = useState<GradeClassType>(
-    GradeClassArray[0]
-  );
-
-  const handleStandardClick = (standard: StandardType) => {
-    setSelectedStandard(standard);
-  };
-  const handleGradeClick = (grade: GradeType) => {
-    setSelectedGrade(grade);
-  };
-
-  const handleGradeClassClick = (gradeClass: GradeClassType) => {
-    setSelectedGradeClass(gradeClass);
-  };
-
+const FilterModal: React.FC<Props> = ({
+  selectedStandard,
+  selectedGrade,
+  selectedGradeClass,
+  onStandardClick,
+  onGradeClick,
+  onGradeClassClick,
+}) => {
   return (
     <S.FilterModal>
       <S.Title>필터</S.Title>
@@ -40,10 +31,10 @@ const FilterModal: React.FC<Props> = () => {
         <S.Standard>
           <S.Desc>랭킹 기준</S.Desc>
           <S.OptionBox>
-            {StandardArray.map((standard) => (
+            {['복주머니', '엽전'].map((standard) => (
               <S.Option
                 key={standard}
-                onClick={() => handleStandardClick(standard)}
+                onClick={() => onStandardClick(standard as '복주머니' | '엽전')}
                 isActive={selectedStandard === standard}
               >
                 {standard}
@@ -54,10 +45,14 @@ const FilterModal: React.FC<Props> = () => {
         <S.Grade>
           <S.Desc>학년</S.Desc>
           <S.OptionBox>
-            {GradeArray.map((grade) => (
+            {['전체', '1학년', '2학년', '3학년', '선생님'].map((grade) => (
               <S.Option
                 key={grade}
-                onClick={() => handleGradeClick(grade)}
+                onClick={() =>
+                  onGradeClick(
+                    grade as '전체' | '1학년' | '2학년' | '3학년' | '선생님'
+                  )
+                }
                 isActive={selectedGrade === grade}
               >
                 {grade}
@@ -68,10 +63,14 @@ const FilterModal: React.FC<Props> = () => {
         <S.GradeClass>
           <S.Desc>반</S.Desc>
           <S.OptionBox>
-            {GradeClassArray.map((gradeClass) => (
+            {['전체', '1반', '2반', '3반', '4반'].map((gradeClass) => (
               <S.Option
                 key={gradeClass}
-                onClick={() => handleGradeClassClick(gradeClass)}
+                onClick={() =>
+                  onGradeClassClick(
+                    gradeClass as '전체' | '1반' | '2반' | '3반' | '4반'
+                  )
+                }
                 isActive={selectedGradeClass === gradeClass}
               >
                 {gradeClass}
