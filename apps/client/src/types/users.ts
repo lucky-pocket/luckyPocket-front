@@ -5,3 +5,10 @@ export interface UsersType {
   name: string;
   userType: string;
 }
+
+export interface MyInfoType {
+  userId: number;
+  userRole: 'MEMBER';
+  name: string;
+  hasNewNotification: boolean;
+}
