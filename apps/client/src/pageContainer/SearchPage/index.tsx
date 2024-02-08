@@ -25,8 +25,10 @@ export default function Search() {
   const { searchUser, setSearchUser } = useSearchedUsersState();
   const { searchedUsers, setSearchedUsers } = useSearchedUsersState();
 
-  const { data } = useQuery<{ users: UsersType[] }>(['getUserSearch'], () =>
-    useUserSearch(searchUser)
+  const userSearchResult = useUserSearch(searchUser);
+  const { data } = useQuery<{ users: UsersType[] }>(
+    ['getUserSearch'],
+    () => userSearchResult
   );
 
   const handleSearchUser = (e: React.ChangeEvent<HTMLInputElement>) => {
