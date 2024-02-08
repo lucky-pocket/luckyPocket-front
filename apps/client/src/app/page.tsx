@@ -11,7 +11,7 @@ export default async function Main() {
   try {
     // const pocketList = await getPocketList();
     // return <MainPage pocketList={[...pocketList]} />;
-    return <MainPage pocketList={[]} />;
+    return <MainPage />;
   } catch (error) {
     console.error(error);
     //return <ErrorPage />;
