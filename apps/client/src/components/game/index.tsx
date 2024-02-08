@@ -1,28 +1,48 @@
-'use client';
 import { FlippedYutIcon, YutIcon } from 'client/assets';
 import * as S from './style';
 import { useRouter } from 'next/navigation';
 import { Loading } from '..';
 import { useState } from 'react';
 import axios from 'axios';
+import { GameResult } from 'client/types';
 
 interface GameProps {
-  coin: number;
   count: number;
 }
 
-const Game: React.FC<GameProps> = ({ coin, count }) => {
+const Game: React.FC<GameProps> = ({ count }) => {
   const { push } = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showResult, setShowResult] = useState<boolean>(false);
   const [btnDisabled, setDisabled] = useState<boolean>(false);
-  const handleButtonClick = () => {
+  const [coin, setCoin] = useState<number>(10);
+  const [result, setResult] = useState<string>('');
+  const handleButtonClick = async () => {
     if (coin !== 0) {
       setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
+      try {
+        const accessToken = document.cookie;
+        console.log(accessToken);
+        const response = await axios.post<GameResult>(
+          `${process.env.NEXT_PUBLIC_CLIENT_API_URL}games/yut`,
+          { free: true }, // 요청 데이터 추가
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${accessToken}`, // JWT 토큰 추가
+            },
+          }
+        );
+        const { coinsEarned } = response.data;
+        const updatedCoin = coin + coinsEarned;
+        setCoin(updatedCoin);
         setShowResult(true);
-      }, 5000);
+        setResult(response.data.output);
+      } catch (error) {
+        console.error('윷 던지기 요청 중 오류 발생:', error);
+      } finally {
+        setIsLoading(false);
+      }
     } else {
       alert('보유하신 잔액이 부족합니다');
       setDisabled(true);
@@ -46,11 +66,7 @@ const Game: React.FC<GameProps> = ({ coin, count }) => {
               <YutIcon />
             </S.YutBox>
           </S.Game>
-          {showResult && (
-            <S.Result>
-              <div>빽도</div>
-            </S.Result>
-          )}
+          {showResult && <S.Result>{result}</S.Result>}
           <S.BottomBox>
             <S.Button
               onClick={handleButtonClick}

@@ -8,7 +8,7 @@ export default function Game() {
     <S.Game>
       <S.Background>
         <Header hasNorigae />
-        <GameBox coin={0} count={11} />
+        <GameBox count={11} />
       </S.Background>
     </S.Game>
   );
