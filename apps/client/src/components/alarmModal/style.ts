@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const Conatiner = styled.div`
+export const Container = styled.div`
   width: 38rem;
   height: calc(100vh - 4.5rem);
 `;
@@ -66,7 +66,7 @@ export const AlarmContent = styled.span<{ isRead?: boolean }>`
           color: ${theme.color.gray['050']};
         `
       : css`
-          color: ${theme.color.ivory['050']};
+          color: ${theme.color.sub.brown['500']};
         `}
 `;
 

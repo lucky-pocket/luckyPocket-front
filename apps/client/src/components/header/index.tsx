@@ -5,11 +5,28 @@ import { LogoIcon, AlarmIcon, Norigae, HeaderBackground } from 'client/assets';
 import { usePathname } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { AlarmModal } from '..';
+import { API } from 'api/client/API';
+import { userMyNoticeUrl } from 'api/client';
+import { useQuery } from '@tanstack/react-query';
+
+interface noticeType {
+  id: string;
+  kind: string;
+  pocketId: number;
+  checked: boolean;
+  createdAt: string;
+}
 
 const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
+  const getNotice = async () => {
+    const response = await API.get(userMyNoticeUrl.getNotice());
+    return response.data;
+  };
+
+  const { data } = useQuery(['getNotice'], () => getNotice());
+
   const pathname = usePathname();
   const [alarmClicked, setAlarmClicked] = useState<boolean>(false);
-  const [isAlarm, setIsAlarm] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   const modalOutSideClick = (e: any) => {
@@ -36,7 +53,10 @@ const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
             <AlarmIcon
               fill={alarmClicked ? `#1E1D1B` : '#A19E97'}
               alarmClicked={alarmClicked}
-              alarm={isAlarm}
+              alarm={
+                data?.notices?.filter((item: noticeType) => !item.checked)
+                  .length !== 0
+              }
             />
           </S.Alarm>
         </S.NavBar>
