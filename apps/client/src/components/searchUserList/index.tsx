@@ -9,14 +9,15 @@ interface SearchUserListProps {
 
 const SearchUserList = ({ searchedUsers }: SearchUserListProps) => {
   const { selectedId, setSelectedId } = useSearchedUsersState();
-  const { pocketSend, setPocketSend } = usePocketSendState();
+  const { pocketSend, setPocketSend, setReceiverName } = usePocketSendState();
 
-  const handleItemClick = (userId: number) => {
+  const handleItemClick = (userId: number, name: string) => {
     setSelectedId(userId !== selectedId ? userId : null);
     setPocketSend({
       ...pocketSend,
-      receiver: userId,
+      receiverID: userId,
     });
+    setReceiverName(name);
   };
 
   return (
@@ -25,7 +26,7 @@ const SearchUserList = ({ searchedUsers }: SearchUserListProps) => {
         <SearchUserItem
           key={userId}
           isClicked={selectedId === userId}
-          onClick={() => handleItemClick(userId)}
+          onClick={() => handleItemClick(userId, name)}
         >
           {grade}학년 {userClass}반 {name}
         </SearchUserItem>
