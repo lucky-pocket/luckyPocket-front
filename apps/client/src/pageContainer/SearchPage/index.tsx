@@ -16,18 +16,18 @@ import { useEffect } from 'react';
 import { UsersType } from 'client/types';
 
 export default function Search() {
-  const useUserSearch = async (query: string) => {
+  const userSearch = async (query: string) => {
     const response = await API.get(pocketUrl.getUserSearch(query));
     return response.data;
   };
 
+  const { data } = useQuery<{ users: UsersType[] }>(['getUserSearch'], () =>
+    userSearch(searchUser)
+  );
+
   const { selectedId } = useSearchedUsersState();
   const { searchUser, setSearchUser } = useSearchedUsersState();
   const { searchedUsers, setSearchedUsers } = useSearchedUsersState();
-
-  const { data } = useQuery<{ users: UsersType[] }>(['getUserSearch'], () =>
-    useUserSearch(searchUser)
-  );
 
   const handleSearchUser = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchUser(e.target.value);

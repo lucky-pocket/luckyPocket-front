@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
 interface PocketSend {
-  receiver: number;
-  reveal: boolean;
+  receiverID: number;
+  isPublic: boolean;
   coins: number;
   message: string;
 }
@@ -10,16 +10,20 @@ interface PocketSend {
 interface PocketSendStore {
   pocketSend: PocketSend;
   setPocketSend: (value: PocketSend) => void;
+  receiverName: string;
+  setReceiverName: (value: string) => void;
 }
 
 export const usePocketSendState = create<PocketSendStore>((set) => ({
   pocketSend: {
-    receiver: 0,
-    reveal: true,
+    receiverID: 0,
+    isPublic: false,
     coins: 0,
     message: '',
   },
   setPocketSend: (value) => set({ pocketSend: value }),
+  receiverName: '',
+  setReceiverName: (value) => set({ receiverName: value }),
 }));
 
 export default usePocketSendState;
