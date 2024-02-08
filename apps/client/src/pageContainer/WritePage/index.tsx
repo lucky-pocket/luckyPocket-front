@@ -14,8 +14,6 @@ export default function Write() {
   const isTextareaEmpty = pocketSend.message.trim() === '';
   const MAX_LENGTH = 300 as const;
 
-  console.log(pocketSend);
-
   return (
     <S.Write>
       <S.Background>
