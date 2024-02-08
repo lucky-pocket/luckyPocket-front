@@ -2,10 +2,12 @@ import { FlippedYutIcon, YutIcon } from 'client/assets';
 import * as S from './style';
 import { useRouter } from 'next/navigation';
 import { Loading } from '..';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GameResult } from 'client/types';
-
+import { API } from 'api/client/API';
+import { userMyUrl, gameUrl } from 'api/client';
+import { useQuery } from '@tanstack/react-query';
 interface GameProps {
   count: number;
 }
@@ -16,30 +18,32 @@ const Game: React.FC<GameProps> = ({ count }) => {
   const [showResult, setShowResult] = useState<boolean>(false);
   const [btnDisabled, setDisabled] = useState<boolean>(false);
   const [coin, setCoin] = useState<number>(10);
-  const [result, setResult] = useState<string>('');
+
+  const getMyCoins = async () => {
+    const response = await API.get(userMyUrl.getMyCoin());
+    return response.data;
+  };
+
+  const { data: coinsData } = useQuery<{ coins: number }>(['getMyCoin'], () =>
+    getMyCoins()
+  );
+
+  const postYut = async () => {
+    const response = await API.post(gameUrl.postYut(), { free: false });
+
+    return response.data.output;
+  };
+
+  const { data } = useQuery(['postYut'], () => postYut());
+
   const handleButtonClick = async () => {
     if (coin !== 0) {
       setIsLoading(true);
       try {
-        const accessToken = document.cookie;
-        console.log(accessToken);
-        const response = await axios.post<GameResult>(
-          `${process.env.NEXT_PUBLIC_CLIENT_API_URL}games/yut`,
-          { free: true }, // 요청 데이터 추가
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${accessToken}`, // JWT 토큰 추가
-            },
-          }
-        );
-        const { coinsEarned } = response.data;
-        const updatedCoin = coin + coinsEarned;
-        setCoin(updatedCoin);
+        await postYut();
         setShowResult(true);
-        setResult(response.data.output);
       } catch (error) {
-        console.error('윷 던지기 요청 중 오류 발생:', error);
+        console.error(error);
       } finally {
         setIsLoading(false);
       }
@@ -66,7 +70,7 @@ const Game: React.FC<GameProps> = ({ count }) => {
               <YutIcon />
             </S.YutBox>
           </S.Game>
-          {showResult && <S.Result>{result}</S.Result>}
+          {showResult && <S.Result>{data}</S.Result>}
           <S.BottomBox>
             <S.Button
               onClick={handleButtonClick}
@@ -77,7 +81,7 @@ const Game: React.FC<GameProps> = ({ count }) => {
             </S.Button>
             <S.Subtitle>
               <span>현재 보유중인 엽전 개수</span>
-              {coin}개
+              {coinsData?.coins}개
             </S.Subtitle>
             <S.WarnMessage>
               1일 1회 무료로 던질 수 있습니다. 그 후 엽전 2닢을 소모해 던질 수
