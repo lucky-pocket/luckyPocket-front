@@ -2,7 +2,6 @@ import * as S from './style';
 
 interface UserItemProps {
   children: React.ReactNode;
-  userId: number;
   isClicked: boolean;
   onClick: () => void;
 }

@@ -9,43 +9,38 @@ import {
 import * as S from './style';
 import { SearchIcon } from 'client/assets';
 import { useSearchedUsersState } from 'client/stores';
+import { useQuery } from '@tanstack/react-query';
+import { pocketUrl } from 'api/client';
+import { API } from 'api/client/API';
 import { useEffect } from 'react';
+import { UsersType } from 'client/types';
 
 export default function Search() {
-  const userList = [
-    { userId: 1, grade: 1, class: 1, name: '남도일' },
-    { userId: 2, grade: 2, class: 1, name: '유미란' },
-    { userId: 3, grade: 3, class: 3, name: '하인성' },
-    { userId: 4, grade: 1, class: 2, name: '서가영' },
-    { userId: 5, grade: 2, class: 4, name: '유명한' },
-    { userId: 6, grade: 1, class: 1, name: '남도일' },
-    { userId: 7, grade: 2, class: 1, name: '유미란' },
-    { userId: 8, grade: 3, class: 3, name: '하인성' },
-    { userId: 9, grade: 1, class: 2, name: '서가영' },
-    { userId: 10, grade: 2, class: 4, name: '유명한' },
-    { userId: 11, grade: 1, class: 1, name: '남도일' },
-    { userId: 12, grade: 2, class: 1, name: '유미란' },
-    { userId: 13, grade: 3, class: 3, name: '하인성' },
-    { userId: 14, grade: 1, class: 2, name: '서가영' },
-    { userId: 15, grade: 2, class: 4, name: '유명한' },
-  ];
+  const useUserSearch = async (query: string) => {
+    const response = await API.get(pocketUrl.getUserSearch(query));
+    return response.data;
+  };
 
   const { selectedId } = useSearchedUsersState();
   const { searchUser, setSearchUser } = useSearchedUsersState();
   const { searchedUsers, setSearchedUsers } = useSearchedUsersState();
 
+  const { data } = useQuery<{ users: UsersType[] }>(['getUserSearch'], () =>
+    useUserSearch(searchUser)
+  );
+
   const handleSearchUser = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchUser(e.target.value);
   };
 
-  console.log(selectedId);
-
   useEffect(() => {
-    const filteredUsers = userList.filter(({ name }) =>
-      name.includes(searchUser)
-    );
-    setSearchedUsers(filteredUsers);
-  }, [searchUser, setSearchedUsers]);
+    if (data) {
+      const filteredUsers = data.users.filter(({ name }) =>
+        name.includes(searchUser)
+      );
+      setSearchedUsers(filteredUsers);
+    }
+  }, [data, searchUser, setSearchedUsers]);
 
   return (
     <S.Search>
@@ -60,7 +55,6 @@ export default function Search() {
             />
             <SearchIcon />
           </S.InputWrapper>
-
           {searchedUsers.length === 0 ? (
             <S.ContentContainer>
               <NoSearch />
