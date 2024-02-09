@@ -1,4 +1,5 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
+import { authUrl } from './src';
 
 export const API = axios.create({
   baseURL: process.env.NEXT_PUBLIC_CLIENT_API_URL,
