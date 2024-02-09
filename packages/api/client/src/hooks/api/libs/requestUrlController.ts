@@ -1,6 +1,6 @@
 export const pocketUrl = {
   postPocket: () => '/pockets',
-  getDetailPocket: (pocket_id: string) => `/pockets/${pocket_id}`,
+  getDetailPocket: (pocket_id: number) => `/pockets/${pocket_id}`,
   getUserSearch: (query: string) => `/users?query=${query}`,
 };
 
@@ -22,8 +22,8 @@ export const userMyNoticeUrl = {
 
 export const userMyPocketUrl = {
   getPocketList: () => '/users/me/pockets',
-  postMyPocketName: (pocket_id: string) =>
-    `/users/me/pockets/${pocket_id}/senders`,
+  postMyPocketName: (pocket_id: number) =>
+    `/users/me/pockets/${pocket_id}/sender`,
   patchPocketScope: (pocket_id: string) =>
     `/users/me/pockets/${pocket_id}/visibility`,
 };

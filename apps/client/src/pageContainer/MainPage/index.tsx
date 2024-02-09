@@ -19,14 +19,19 @@ const Main: React.FC<Props> = ({}) => {
     getMyInfo()
   );
 
-  const getPocketList = async () => {
-    const response = await API.get(userMyPocketUrl.getPocketList());
+  const getPocketList = async (offset: number, limit: number) => {
+    const response = await API.get(
+      `${userMyPocketUrl.getPocketList()}/received?`,
+      {
+        params: { offset, limit },
+      }
+    );
     return response.data;
   };
 
   const { data: pocketList } = useQuery<MyPocketListType>(
     ['getPocketList'],
-    () => getPocketList()
+    () => getPocketList(1, 14)
   );
 
   return (
@@ -35,7 +40,7 @@ const Main: React.FC<Props> = ({}) => {
         <Header hasNorigae />
         <MainContent
           pockets={pocketList?.pockets}
-          totalCount={pocketList?.totalCount}
+          totalCount={pocketList?.pockets.length}
           userInfo={userInfo}
         />
       </S.Background>

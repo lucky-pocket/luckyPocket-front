@@ -8,6 +8,7 @@ export interface MyPocketsType {
 export interface MyPocketListType {
   pockets: MyPocketsType[];
   totalCount: number;
+  length?: number;
 }
 
 export interface PocketType {
@@ -26,4 +27,15 @@ export interface PocketListType {
 
 export interface StandardType {
   standard: '복주머니' | '엽전' | null;
+}
+
+export interface Sender {
+  userId: number;
+  name: string;
+}
+
+export interface DetailPocketType {
+  content: string;
+  coins: number;
+  sender: Sender | null;
 }
