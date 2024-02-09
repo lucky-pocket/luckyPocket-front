@@ -17,7 +17,6 @@ const Game: React.FC<GameProps> = ({ count }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showResult, setShowResult] = useState<boolean>(false);
   const [btnDisabled, setDisabled] = useState<boolean>(false);
-  const [coin, setCoin] = useState<number>(10);
 
   const getMyCoins = async () => {
     const response = await API.get(userMyUrl.getMyCoin());
@@ -29,29 +28,39 @@ const Game: React.FC<GameProps> = ({ count }) => {
   );
 
   const postYut = async () => {
-    const response = await API.post(gameUrl.postYut(), { free: false });
+    const response = await API.post(gameUrl.postYut(), {
+      free: false,
+    });
 
     return response.data.output;
   };
 
-  const { data } = useQuery(['postYut'], () => postYut());
+  const { data } = useQuery(['postYut', showResult], () => postYut(), {
+    enabled: showResult,
+  });
 
   const handleButtonClick = async () => {
-    if (coin !== 0) {
-      setIsLoading(true);
+    if (coinsData !== undefined && coinsData.coins !== 0) {
       try {
-        await postYut();
+        setIsLoading(true);
         setShowResult(true);
+        setDisabled(true);
       } catch (error) {
         console.error(error);
       } finally {
-        setIsLoading(false);
+        setInterval(() => {
+          setIsLoading(false);
+        }, 3000);
+        setInterval(() => {
+          window.location.reload();
+        }, 4000);
       }
     } else {
       alert('보유하신 잔액이 부족합니다');
       setDisabled(true);
     }
   };
+
   return (
     <S.GameContainer>
       {isLoading ? (
@@ -81,7 +90,7 @@ const Game: React.FC<GameProps> = ({ count }) => {
             </S.Button>
             <S.Subtitle>
               <span>현재 보유중인 엽전 개수</span>
-              {coinsData?.coins}개
+              {coinsData ? `${coinsData.coins}개` : '불러오는 중...'}
             </S.Subtitle>
             <S.WarnMessage>
               1일 1회 무료로 던질 수 있습니다. 그 후 엽전 2닢을 소모해 던질 수
