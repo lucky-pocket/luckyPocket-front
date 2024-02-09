@@ -53,6 +53,14 @@ API.interceptors.response.use(
   async (error) => {
     const cookie = document.cookie.split(';');
 
+    if (error.response && error.response.status === 500) {
+      window.location.href = '/500';
+    }
+
+    if (error.response && error.response.status === 504) {
+      window.location.href = '/504';
+    }
+
     if (error.response && error.response.status === 401) {
       await API.post(
         authUrl.postLogout(),
