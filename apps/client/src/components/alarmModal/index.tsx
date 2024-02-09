@@ -61,7 +61,7 @@ const AlarmModal = ({ modalRef, modalOutSideClick }: propsType) => {
         </S.CoinWrapper>
         <S.AlarmWrapper>
           {data &&
-            data.notices.map((data: noticeType) => (
+            data.map((data: noticeType) => (
               <S.AlarmItem key={data.id}>
                 <S.AlarmTitle>
                   {data.kind === 'REVEALED' ? <EyesIcon /> : <LuckyPocket />}

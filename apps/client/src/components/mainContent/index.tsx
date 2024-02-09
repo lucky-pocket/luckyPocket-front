@@ -4,8 +4,10 @@ import MainFooter from './mainFooter';
 import MainTitle from './mainTitle';
 import PocketList from './pocketList';
 import * as S from './style';
+import { MyPocketListType } from 'client/types';
 
 import { MyInfoType } from 'client/types';
+
 interface Pocket {
   id: number;
   isEmpty: boolean;
@@ -14,9 +16,9 @@ interface Pocket {
 }
 
 interface MainContentProps {
-  pockets: Pocket[];
-  totalCount: number;
-  userInfo: MyInfoType;
+  pockets?: Pocket[];
+  totalCount?: number;
+  userInfo?: MyInfoType;
 }
 
 const MainContent: React.FC<MainContentProps> = ({

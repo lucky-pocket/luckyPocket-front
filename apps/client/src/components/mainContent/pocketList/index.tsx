@@ -6,6 +6,7 @@ import Pocket from './pocket';
 import * as I from 'client/assets';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { MyPocketListType } from 'client/types';
 
 interface Pocket {
   id: number;
@@ -15,7 +16,7 @@ interface Pocket {
 }
 
 interface PocketListProps {
-  pockets: Pocket[];
+  pockets?: Pocket[];
 }
 
 const usePocketMutation = () => {
@@ -25,15 +26,16 @@ const usePocketMutation = () => {
 };
 
 const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
-  const pocketMutation = usePocketMutation();
   const [slideIndex, setSlideIndex] = useState<number>(0);
-  const maxIndex = Math.ceil(pockets.length / 16);
+  const maxIndex = Math.ceil((pockets?.length || 0) / 16);
   const pocketsPerPage = 12;
+
+  const pocketMutation = usePocketMutation();
 
   const getCurrentPockets = () => {
     const startIndex = slideIndex * pocketsPerPage;
     const endIndex = startIndex + pocketsPerPage;
-    return pockets.slice(startIndex, endIndex);
+    return pockets?.slice(startIndex, endIndex);
   };
 
   const handlePrevSlide = () => {
@@ -66,7 +68,7 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
         </S.ChevronBox>
         <S.PocketDrawer>
           <S.PocketBox slideIndex={slideIndex}>
-            {getCurrentPockets().map((pocket) => (
+            {getCurrentPockets()?.map((pocket) => (
               <div key={pocket.id}>
                 <Pocket
                   isEmpty={pocket.isEmpty}
