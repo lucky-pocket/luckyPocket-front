@@ -47,3 +47,27 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
 
   return config;
 });
+
+API.interceptors.response.use(
+  async (config) => await config,
+  async (error) => {
+    const cookie = document.cookie.split(';');
+
+    if (error.response && error.response.status === 401) {
+      await API.post(
+        authUrl.postLogout(),
+        {},
+        {
+          headers: {
+            Cookie: `refreshToken=${
+              cookie
+                .find((item) => item.includes('refreshToken'))
+                ?.split('=')[1]
+            }`,
+          },
+        }
+      );
+      window.location.href = '/auth/signin';
+    }
+  }
+);
