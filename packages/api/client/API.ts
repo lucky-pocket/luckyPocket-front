@@ -67,6 +67,7 @@ API.interceptors.response.use(
           },
         }
       );
+      window.location.href = '/auth/signin';
     }
   }
 );
