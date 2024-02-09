@@ -17,7 +17,7 @@ export const userMyUrl = {
 
 export const userMyNoticeUrl = {
   getNotice: () => '/users/me/notices',
-  patchNotice: (notice_id: string) => `/users/me/notices/${notice_id}`,
+  patchNotice: () => `/users/me/notices`,
 };
 
 export const userMyPocketUrl = {

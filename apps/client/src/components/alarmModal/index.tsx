@@ -3,6 +3,7 @@ import * as S from './style';
 import { useQuery } from '@tanstack/react-query';
 import { API } from 'api/client/API';
 import { userMyNoticeUrl, userMyUrl } from 'api/client';
+import { useEffect } from 'react';
 
 interface propsType {
   modalRef: React.ForwardedRef<HTMLDivElement>;
@@ -23,7 +24,7 @@ const AlarmModal = ({ modalRef, modalOutSideClick }: propsType) => {
     return response.data;
   };
 
-  const { data } = useQuery(['getNotice'], () => getNotice());
+  const { data, refetch } = useQuery(['getNotice'], () => getNotice());
 
   const getMyCoins = async () => {
     const response = await API.get(userMyUrl.getMyCoin());
@@ -33,6 +34,17 @@ const AlarmModal = ({ modalRef, modalOutSideClick }: propsType) => {
   const { data: coinsData } = useQuery<{ coins: number }>(['getMyCoin'], () =>
     getMyCoins()
   );
+
+  const patchNotice = async () => {
+    await API.patch(userMyNoticeUrl.patchNotice());
+    refetch();
+  };
+
+  useEffect(() => {
+    return () => {
+      patchNotice();
+    };
+  }, []);
 
   const detailDate = (a: any) => {
     const milliSeconds = (new Date() as any) - a;
