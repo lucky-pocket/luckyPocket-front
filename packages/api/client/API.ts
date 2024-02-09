@@ -54,7 +54,7 @@ API.interceptors.response.use(
     const cookie = document.cookie.split(';');
 
     if (error.response && error.response.status === 500) {
-      window.location.href = '/500';
+      window.location.href = '/error';
     }
 
     if (error.response && error.response.status === 504) {
