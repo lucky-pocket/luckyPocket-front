@@ -12,6 +12,7 @@ const Game: React.FC<GameProps> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showResult, setShowResult] = useState<boolean>(false);
   const [btnDisabled, setDisabled] = useState<boolean>(false);
+  const [isFree, setIsFree] = useState<boolean>(false);
 
   const getMyCoins = async () => {
     const response = await API.get(userMyUrl.getMyCoin());
@@ -25,6 +26,9 @@ const Game: React.FC<GameProps> = () => {
   const getFreeTicket = async () => {
     const response = await API.get(gameUrl.getFreeTicket());
     console.log(response.data);
+    if (response.data.ticketCount === 1) {
+      setIsFree(true);
+    }
     return response.data;
   };
 
@@ -43,7 +47,7 @@ const Game: React.FC<GameProps> = () => {
 
   const postYut = async () => {
     const response = await API.post(gameUrl.postYut(), {
-      free: false,
+      free: isFree,
     });
 
     return response.data.output;
