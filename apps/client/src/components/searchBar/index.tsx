@@ -13,6 +13,8 @@ interface Props {
   setKeyword: React.Dispatch<React.SetStateAction<string>>;
   setIsShowFilterModal: React.Dispatch<React.SetStateAction<boolean>>;
   data: PocketListType;
+  refetchData: () => void;
+  setOption: React.Dispatch<React.SetStateAction<'COIN' | 'POCKET'>>;
 }
 
 const SearchBar: React.FC<Props> = ({
@@ -21,6 +23,8 @@ const SearchBar: React.FC<Props> = ({
   setKeyword,
   setIsShowFilterModal,
   data,
+  refetchData,
+  setOption,
 }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -42,19 +46,13 @@ const SearchBar: React.FC<Props> = ({
     '전체' | '1반' | '2반' | '3반' | '4반'
   >('전체');
 
-  const handleStandardClick = (standard: '복주머니' | '엽전') => {
-    setSelectedStandard(standard);
-
-    if (standard === '엽전') {
-      axios
-        .get(`${process.env.BASE_URL}/users/rank?sort=COIN`)
-        .then((response) => {
-          setFilteredUsers(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+  const handleStandardClick = async (standard: '복주머니' | '엽전') => {
+    {
+      standard === '엽전' ? setOption('POCKET') : setOption('COIN');
     }
+    await refetchData();
+    console.log(standard);
+    setSelectedStandard(standard);
   };
 
   const handleGradeClick = (
