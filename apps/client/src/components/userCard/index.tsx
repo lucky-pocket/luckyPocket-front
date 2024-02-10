@@ -38,7 +38,7 @@ const UserCard: React.FC<Props> = ({ user, rank, selectedStandard }) => {
           </S.Person>
           <S.Amount>
             {selectedStandard === '복주머니' ? <I.LuckyPocket /> : <I.Coin />}
-            <S.Score>{100}</S.Score>
+            <S.Score>{user.amount}</S.Score>
           </S.Amount>
         </S.DescBox>
       </S.UserCard>

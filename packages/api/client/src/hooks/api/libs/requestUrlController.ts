@@ -33,14 +33,7 @@ export const userUrl = {
   postPocketName: (userId: string, pocket_id: string) =>
     `/users/${userId}/pockets/${pocket_id}/sender`,
   getPocketList: (user_id: string) => `/users/${user_id}/pockets`,
-  getRank: (
-    sort: string,
-    usertype?: string,
-    grade?: number,
-    classNum?: number,
-    name?: string
-  ) =>
-    `/users/rank?sortType=${sort}&userType=${usertype}&grade=${grade}&class=${classNum}&name=${name}`,
+  getRank: (sort: string) => `/users/rank?sortType=${sort}`,
 };
 
 export const gameUrl = {
