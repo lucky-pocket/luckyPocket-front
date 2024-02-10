@@ -8,6 +8,7 @@ import { AlarmModal } from '..';
 import { API } from 'api/client/API';
 import { authUrl, userMyNoticeUrl } from 'api/client';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 interface noticeType {
   id: string;
@@ -36,7 +37,9 @@ const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
   };
 
   const logout = async () => {
-    await API.post(authUrl.postLogout());
+    await axios.post(
+      process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout()
+    );
   };
 
   return (
