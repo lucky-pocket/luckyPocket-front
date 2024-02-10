@@ -42,6 +42,7 @@ const Main: React.FC<Props> = ({}) => {
           pockets={pocketList?.pockets}
           totalCount={pocketList?.pockets.length}
           userInfo={userInfo}
+          getPocketList={getPocketList}
         />
       </S.Background>
     </S.Main>

@@ -19,17 +19,19 @@ interface MainContentProps {
   pockets?: Pocket[];
   totalCount?: number;
   userInfo?: MyInfoType;
+  getPocketList: (offset: number, limit: number) => Promise<any>;
 }
 
 const MainContent: React.FC<MainContentProps> = ({
   pockets,
   totalCount,
   userInfo,
+  getPocketList,
 }) => {
   return (
     <S.MainContentBox>
       <MainTitle totalCount={totalCount} userInfo={userInfo} />
-      <PocketList pockets={pockets} />
+      <PocketList pockets={pockets} getPocketList={getPocketList} />
       <MainFooter />
     </S.MainContentBox>
   );
