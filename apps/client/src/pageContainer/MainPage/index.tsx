@@ -2,9 +2,9 @@
 
 import { Header, MainContent } from 'client/components';
 import * as S from './style';
-import { MyPocketListType, MyInfoType, MyPocketsType } from 'client/types';
+import { MyPocketListType, MyInfoType } from 'client/types';
 import { API } from 'api/client/API';
-import { userMyNoticeUrl, userMyUrl, userMyPocketUrl } from 'api/client';
+import { userMyUrl, userMyPocketUrl } from 'api/client';
 import { useQuery } from '@tanstack/react-query';
 
 interface Props {}
