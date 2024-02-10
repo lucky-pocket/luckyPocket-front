@@ -10,3 +10,8 @@ export interface GameResult {
 export interface CurrentCoin {
   coins: number;
 }
+
+export interface FreeTicketInfo {
+  refillAt: string;
+  ticketCount: number;
+}

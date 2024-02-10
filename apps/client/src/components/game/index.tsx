@@ -1,19 +1,14 @@
-import { FlippedYutIcon, YutIcon } from 'client/assets';
+import { YutIcon } from 'client/assets';
 import * as S from './style';
-import { useRouter } from 'next/navigation';
 import { Loading } from '..';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { GameResult } from 'client/types';
+import { useState } from 'react';
 import { API } from 'api/client/API';
 import { userMyUrl, gameUrl } from 'api/client';
 import { useQuery } from '@tanstack/react-query';
-interface GameProps {
-  count: number;
-}
+import { FreeTicketInfo } from 'client/types';
+interface GameProps {}
 
-const Game: React.FC<GameProps> = ({ count }) => {
-  const { push } = useRouter();
+const Game: React.FC<GameProps> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showResult, setShowResult] = useState<boolean>(false);
   const [btnDisabled, setDisabled] = useState<boolean>(false);
@@ -25,6 +20,25 @@ const Game: React.FC<GameProps> = ({ count }) => {
 
   const { data: coinsData } = useQuery<{ coins: number }>(['getMyCoin'], () =>
     getMyCoins()
+  );
+
+  const getFreeTicket = async () => {
+    const response = await API.get(gameUrl.getFreeTicket());
+    console.log(response.data);
+    return response.data;
+  };
+
+  const { data: freeTicket } = useQuery<FreeTicketInfo>(['getFreeTicket'], () =>
+    getFreeTicket()
+  );
+
+  const getGameCount = async () => {
+    const response = await API.get(gameUrl.getGameCount());
+    return response.data.count;
+  };
+
+  const { data: count } = useQuery<number>(['getGameCount'], () =>
+    getGameCount()
   );
 
   const postYut = async () => {
@@ -69,7 +83,7 @@ const Game: React.FC<GameProps> = ({ count }) => {
         <>
           <S.Count>
             오늘 윷을 던진 횟수
-            <div>{count}번</div>
+            <div> {count ? `${count}번` : '불러오는 중...'}</div>
           </S.Count>
           <S.Game>
             <S.YutBox>
@@ -86,7 +100,7 @@ const Game: React.FC<GameProps> = ({ count }) => {
               disabled={btnDisabled}
               isError={btnDisabled}
             >
-              윷 던지기
+              {freeTicket?.ticketCount === 0 ? '윳던지기' : '무료로 윷 던지기'}
             </S.Button>
             <S.Subtitle>
               <span>현재 보유중인 엽전 개수</span>
