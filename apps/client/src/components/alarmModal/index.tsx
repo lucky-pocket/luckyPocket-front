@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { API } from 'api/client/API';
 import { userMyNoticeUrl, userMyUrl } from 'api/client';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface propsType {
   modalRef: React.ForwardedRef<HTMLDivElement>;
@@ -46,6 +47,8 @@ const AlarmModal = ({ modalRef, modalOutSideClick }: propsType) => {
     };
   }, []);
 
+  const router = useRouter();
+
   const detailDate = (a: any) => {
     const milliSeconds = (new Date() as any) - a;
     const seconds = milliSeconds / 1000;
@@ -73,18 +76,18 @@ const AlarmModal = ({ modalRef, modalOutSideClick }: propsType) => {
         </S.CoinWrapper>
         <S.AlarmWrapper>
           {data &&
-            data.notices.map((data: noticeType) => (
-              <S.AlarmItem key={data.id}>
+            data.notices.map((item: noticeType) => (
+              <S.AlarmItem key={item.id} onClick={() => router.push('/')}>
                 <S.AlarmTitle>
-                  {data.kind === 'REVEALED' ? <EyesIcon /> : <LuckyPocket />}
-                  <S.AlarmContent isRead={data.checked}>
-                    {data.kind === 'REVEALED'
+                  {item.kind === 'REVEALED' ? <EyesIcon /> : <LuckyPocket />}
+                  <S.AlarmContent isRead={item.checked}>
+                    {item.kind === 'REVEALED'
                       ? '누군가 복주머니를 열람했어요!'
                       : '복주머니가 왔어요!'}
                   </S.AlarmContent>
                 </S.AlarmTitle>
                 <S.AlarmTime>
-                  {detailDate(new Date(data.createdAt))}
+                  {detailDate(new Date(item.createdAt))}
                 </S.AlarmTime>
               </S.AlarmItem>
             ))}
