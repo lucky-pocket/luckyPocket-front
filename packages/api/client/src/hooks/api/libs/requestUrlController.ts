@@ -28,10 +28,10 @@ export const userMyPocketUrl = {
 };
 
 export const userUrl = {
-  getUserInfo: (userId: string) => `/users/${userId}`,
+  getUserInfo: (userId: number) => `/users/${userId}`,
   postPocketName: (userId: string, pocket_id: string) =>
     `/users/${userId}/pockets/${pocket_id}/sender`,
-  getPocketList: (user_id: string) => `/users/${user_id}/pockets`,
+  getPocketList: (user_id: number) => `/users/${user_id}/pockets`,
   getRank: (sort: string) => `/users/rank?sortType=${sort}`,
 };
 
