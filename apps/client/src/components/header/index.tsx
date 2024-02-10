@@ -40,6 +40,7 @@ const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
     await axios.post(
       process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout()
     );
+    window.location.href = '/auth/signin';
   };
 
   return (
