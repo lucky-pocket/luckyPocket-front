@@ -36,15 +36,6 @@ const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
     }
   };
 
-  const logout = async () => {
-    await axios.post(
-      process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),
-      {},
-      { withCredentials: true }
-    );
-    window.location.href = '/auth/signin';
-  };
-
   return (
     <S.HeaderContainer>
       <HeaderBackground />
@@ -70,7 +61,6 @@ const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
             />
           </S.Alarm>
         </S.NavBar>
-        <button onClick={logout}>로그아웃</button>
       </S.HeaderWrap>
       {hasNorigae && <Norigae />}
       {alarmClicked && (

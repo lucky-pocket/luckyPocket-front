@@ -57,8 +57,12 @@ API.interceptors.response.use(
     }
 
     if (error.response && error.response.status === 401) {
-      await API.post(authUrl.postLogout());
-      // window.location.href = '/auth/signin';
+      axios.post(
+        process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),
+        {},
+        { withCredentials: true }
+      );
+      window.location.href = '/auth/signin';
     }
   }
 );
