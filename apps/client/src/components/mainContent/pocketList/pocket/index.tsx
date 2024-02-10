@@ -32,7 +32,6 @@ const Pocket: React.FC<PocketProps> = ({
     try {
       const pocketData = await getDetailPocket(pocketId);
       setContent(pocketData.content);
-      setDetailSender(pocketData.sender);
       setShowContentModal(true);
     } catch (error) {
       console.error('Error fetching pocket data:', error);
@@ -111,6 +110,7 @@ const Pocket: React.FC<PocketProps> = ({
           setShowModal={setShowModal}
           setShowContentModal={setShowContentModal}
           pocketId={pocketId}
+          setDetailSender={setDetailSender}
           setIsLock={setIsLock}
         />
       )}
