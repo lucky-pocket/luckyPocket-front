@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { AlarmModal } from '..';
 import { API } from 'api/client/API';
-import { userMyNoticeUrl } from 'api/client';
+import { authUrl, userMyNoticeUrl } from 'api/client';
 import { useQuery } from '@tanstack/react-query';
 
 interface noticeType {
@@ -35,6 +35,10 @@ const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
     }
   };
 
+  const logout = async () => {
+    await API.post(authUrl.postLogout());
+  };
+
   return (
     <S.HeaderContainer>
       <HeaderBackground />
@@ -60,6 +64,7 @@ const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
             />
           </S.Alarm>
         </S.NavBar>
+        <button onClick={logout}>로그아웃</button>
       </S.HeaderWrap>
       {hasNorigae && <Norigae />}
       {alarmClicked && (

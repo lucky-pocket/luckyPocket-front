@@ -21,9 +21,7 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
 
   if (!accessToken || !expiresAt) return config;
 
-  if (
-    new Date() > new Date('Sun Feb 11 2024 00:58:00 GMT+0900 (한국 표준시)')
-  ) {
+  if (new Date() > new Date(expiresAt)) {
     const response = await axios.post(
       process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh(),
       {},
@@ -47,22 +45,20 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   return config;
 });
 
-// API.interceptors.response.use(
-//   async (config) => await config,
-//   async (error) => {
-//     const cookie = document.cookie.split(';');
+API.interceptors.response.use(
+  async (config) => await config,
+  async (error) => {
+    if (error.response && error.response.status === 500) {
+      window.location.href = '/error';
+    }
 
-//     if (error.response && error.response.status === 500) {
-//       window.location.href = '/error';
-//     }
+    if (error.response && error.response.status === 504) {
+      window.location.href = '/504';
+    }
 
-//     if (error.response && error.response.status === 504) {
-//       window.location.href = '/504';
-//     }
-
-//     if (error.response && error.response.status === 401) {
-//       await API.post(authUrl.postLogout());
-//       window.location.href = '/auth/signin';
-//     }
-//   }
-// );
+    if (error.response && error.response.status === 401) {
+      await API.post(authUrl.postLogout());
+      // window.location.href = '/auth/signin';
+    }
+  }
+);
