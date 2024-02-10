@@ -21,6 +21,7 @@ const RevealModal: React.FC<RevealModalProps> = ({
     try {
       const name = await postMyPocketName(pocketId);
       setRevealLockSender(name);
+      setShowContentModal(true);
     } catch (error) {
       console.error('Error fetching pocket data:', error);
     }

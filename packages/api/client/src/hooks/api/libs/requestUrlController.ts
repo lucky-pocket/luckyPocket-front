@@ -22,8 +22,7 @@ export const userMyNoticeUrl = {
 
 export const userMyPocketUrl = {
   getPocketList: () => '/users/me/pockets',
-  postMyPocketName: (pocket_id: number) =>
-    `/users/me/pockets/${pocket_id}/sender`,
+  postMyPocketName: (pocket_id: number) => `/pockets/${pocket_id}/sender`,
   patchPocketScope: (pocket_id: string) =>
     `/users/me/pockets/${pocket_id}/visibility`,
 };

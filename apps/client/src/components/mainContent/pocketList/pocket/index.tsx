@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import * as S from './style';
 import { RevealModal } from 'client/components';
 import { API } from 'api/client/API';
@@ -54,29 +54,45 @@ const Pocket: React.FC<PocketProps> = ({
     setShowModal(true);
   };
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const clickOutside = (e: any) => {
+      if (showContentModal && !modalRef.current?.contains(e.target)) {
+        setShowContentModal(false);
+      }
+    };
+    document.addEventListener('mousedown', clickOutside);
+    return () => {
+      document.removeEventListener('mousedown', clickOutside);
+    };
+  }, [showContentModal]);
+
   return (
-    <S.PocketContainer onClick={handlePocketClick}>
-      {isEmpty ? (
-        isPublic ? (
-          <S.Pocket>{sender && <S.Sender>{sender}</S.Sender>}</S.Pocket>
+    <div>
+      <S.PocketContainer onClick={handlePocketClick}>
+        {isEmpty ? (
+          isPublic ? (
+            <S.Pocket>{sender && <S.Sender>{sender}</S.Sender>}</S.Pocket>
+          ) : (
+            <S.LockPocket onClick={() => setIsLock(true)} />
+          )
+        ) : isPublic ? (
+          sender ? (
+            <S.PocketMoney>
+              {sender && <S.Sender>{sender}</S.Sender>}
+            </S.PocketMoney>
+          ) : (
+            <S.PocketMoney />
+          )
         ) : (
-          <S.LockPocket onClick={() => setIsLock(true)} />
-        )
-      ) : isPublic ? (
-        sender ? (
-          <S.PocketMoney>
-            {sender && <S.Sender>{sender}</S.Sender>}
-          </S.PocketMoney>
-        ) : (
-          <S.PocketMoney />
-        )
-      ) : (
-        <S.LockPocketMoney onClick={() => setIsLock(true)} />
-      )}
+          <S.LockPocketMoney onClick={() => setIsLock(true)} />
+        )}
+      </S.PocketContainer>
       {showContentModal &&
         (isLock ? (
           <S.WriteBoxContainer>
-            <S.WriteBoard>
+            <S.WriteBoard ref={modalRef}>
               <p>{content}</p>
               {revealLockSender ? (
                 <span>{revealLockSender}</span>
@@ -89,7 +105,7 @@ const Pocket: React.FC<PocketProps> = ({
           </S.WriteBoxContainer>
         ) : (
           <S.WriteBoxContainer>
-            <S.WriteBoard>
+            <S.WriteBoard ref={modalRef}>
               <p>{content}</p>
               <span>{detailSender?.name}</span>
             </S.WriteBoard>
@@ -103,7 +119,7 @@ const Pocket: React.FC<PocketProps> = ({
           pocketId={pocketId}
         />
       )}
-    </S.PocketContainer>
+    </div>
   );
 };
 
