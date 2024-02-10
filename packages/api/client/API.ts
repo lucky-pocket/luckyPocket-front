@@ -22,13 +22,17 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   if (!accessToken || !expiresAt) return config;
 
   if (new Date() > new Date(expiresAt)) {
-    const response = await API.post(authUrl.postRefresh());
-
-    document.cookie = `accessToken=${response.data.accessToken}; path='/';`;
-    document.cookie = `expiresAt=${new Date(
-      response.data.expiresAt
-    )}; path='/';`;
-    accessToken = response.data.accessToken;
+    API.post(authUrl.postRefresh())
+      .then((response) => {
+        document.cookie = `accessToken=${response.data.accessToken}; path='/';`;
+        document.cookie = `expiresAt=${new Date(
+          response.data.expiresAt
+        )}; path='/';`;
+        accessToken = response.data.accessToken;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   config.headers['Authorization'] = accessToken
