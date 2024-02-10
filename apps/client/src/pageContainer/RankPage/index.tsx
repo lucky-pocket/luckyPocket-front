@@ -8,13 +8,13 @@ import { PocketListType } from 'client/types';
 import { API } from 'api/client/API';
 import { userUrl } from 'api/client';
 import { useQuery } from '@tanstack/react-query';
-export default function Rank({ pocketList }: { pocketList?: PocketListType }) {
+export default function Rank() {
   const getRank = async () => {
-    const response = await API.get(userUrl.getRank());
+    const response = await API.get(userUrl.getRank('COIN', 'STUDENT'));
     return response.data;
   };
 
-  const { data: rank } = useQuery(['getRank'], () => getRank());
+  const { data: rank } = useQuery<PocketListType>(['getRank'], () => getRank());
 
   console.log(rank);
   const data = {
