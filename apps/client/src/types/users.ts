@@ -8,7 +8,7 @@ export interface UsersType {
 
 export interface MyInfoType {
   userId: number;
-  userRole: 'MEMBER';
   name: string;
+  userRole: string;
   hasNewNotification: boolean;
 }
