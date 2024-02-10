@@ -7,7 +7,7 @@ export const pocketUrl = {
 export const authUrl = {
   getAuth: (code: string) => `/auth/gauth?code=${code}`,
   postLogout: () => '/auth/logout',
-  postRefresh: () => '/auth/refresh',
+  postRefresh: () => 'auth/refresh',
 };
 
 export const userMyUrl = {
