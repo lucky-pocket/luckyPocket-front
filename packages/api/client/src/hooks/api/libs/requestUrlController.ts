@@ -46,4 +46,5 @@ export const userUrl = {
 export const gameUrl = {
   postYut: () => '/games/yut',
   getFreeTicket: () => '/games/free-ticket',
+  getGameCount: () => '/games/count',
 };
