@@ -20,17 +20,26 @@ const SearchUserList = ({ searchedUsers }: SearchUserListProps) => {
     setReceiverName(name);
   };
 
+  function base64Decode(encodedString: string) {
+    return window.atob(encodedString);
+  }
+
+  let accessToken = document.cookie.split('.')[1];
+  let decodedObject = JSON.parse(base64Decode(accessToken));
+
   return (
     <S.UserListWrapper>
-      {searchedUsers.map(({ userId, grade, class: userClass, name }) => (
-        <SearchUserItem
-          key={userId}
-          isClicked={selectedId === userId}
-          onClick={() => handleItemClick(userId, name)}
-        >
-          {grade}학년 {userClass}반 {name}
-        </SearchUserItem>
-      ))}
+      {searchedUsers
+        .filter((item) => decodedObject.userId !== item.userId)
+        .map(({ userId, grade, class: userClass, name }) => (
+          <SearchUserItem
+            key={userId}
+            isClicked={selectedId === userId}
+            onClick={() => handleItemClick(userId, name)}
+          >
+            {grade}학년 {userClass}반 {name}
+          </SearchUserItem>
+        ))}
       <S.BackgroundFilter />
     </S.UserListWrapper>
   );

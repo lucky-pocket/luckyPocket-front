@@ -62,8 +62,6 @@ const Send = () => {
     }
   };
 
-  console.log(pocketSend);
-
   return (
     <S.Send>
       <S.Background>
