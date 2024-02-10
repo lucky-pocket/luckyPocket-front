@@ -22,20 +22,20 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   if (!accessToken || !expiresAt) return config;
 
   if (
-    new Date() > new Date('Sun Feb 11 2024 00:03:00 GMT+0900 (한국 표준시)')
+    new Date() > new Date('Sun Feb 11 2024 00:11:00 GMT+0900 (한국 표준시)')
   ) {
-    axios
-      .post(process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh())
-      .then((response) => {
-        document.cookie = `accessToken=${response.data.accessToken}; path='/';`;
-        document.cookie = `expiresAt=${new Date(
-          response.data.expiresAt
-        )}; path='/';`;
-        accessToken = response.data.accessToken;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const response = await axios.post(
+      process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
+    );
+    try {
+      document.cookie = `accessToken=${response.data.accessToken}; path='/';`;
+      document.cookie = `expiresAt=${new Date(
+        response.data.expiresAt
+      )}; path='/';`;
+      accessToken = response.data.accessToken;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   config.headers['Authorization'] = accessToken
