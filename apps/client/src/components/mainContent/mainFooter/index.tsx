@@ -7,7 +7,7 @@ const MainFooter = () => {
   return (
     <S.FooterBox>
       <S.Message>복주머니에 덕담을 담아 나눠보세요!</S.Message>
-      <Link href='/send'>
+      <Link href='/search'>
         <S.Button>복주머니 전달하기</S.Button>
       </Link>
       <S.WarnMessage>
