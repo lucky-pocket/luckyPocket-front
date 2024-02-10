@@ -22,5 +22,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': ['off'],
     'prefer-const': 'off',
     use: 'off',
+    'no-empty-pattern': 'off',
   },
 };

@@ -22,23 +22,20 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   if (!accessToken || !expiresAt) return config;
 
   if (new Date() > new Date(expiresAt)) {
-    const response = await API.post(
-      authUrl.postRefresh(),
+    const response = await axios.post(
+      process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh(),
       {},
-      {
-        headers: {
-          Cookie: `refreshToken={${
-            cookie.find((item) => item.includes('refreshToken'))?.split('=')[1]
-          }}`,
-        },
-      }
+      { withCredentials: true }
     );
-
-    document.cookie = `accessToken=${response.data.accessToken}; path='/';`;
-    document.cookie = `expiresAt=${new Date(
-      response.data.expiresAt
-    )}; path='/';`;
-    accessToken = response.data.accessToken;
+    try {
+      document.cookie = `accessToken=${response.data.accessToken}; path='/';`;
+      document.cookie = `expiresAt=${new Date(
+        response.data.expiresAt
+      )}; path='/';`;
+      accessToken = response.data.accessToken;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   config.headers['Authorization'] = accessToken
@@ -51,8 +48,6 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
 API.interceptors.response.use(
   async (config) => await config,
   async (error) => {
-    const cookie = document.cookie.split(';');
-
     if (error.response && error.response.status === 500) {
       window.location.href = '/error';
     }
@@ -62,18 +57,10 @@ API.interceptors.response.use(
     }
 
     if (error.response && error.response.status === 401) {
-      await API.post(
-        authUrl.postLogout(),
+      axios.post(
+        process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),
         {},
-        {
-          headers: {
-            Cookie: `refreshToken=${
-              cookie
-                .find((item) => item.includes('refreshToken'))
-                ?.split('=')[1]
-            }`,
-          },
-        }
+        { withCredentials: true }
       );
       window.location.href = '/auth/signin';
     }

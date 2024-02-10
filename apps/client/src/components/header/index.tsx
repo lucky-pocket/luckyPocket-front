@@ -6,8 +6,9 @@ import { usePathname } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { AlarmModal } from '..';
 import { API } from 'api/client/API';
-import { userMyNoticeUrl } from 'api/client';
+import { authUrl, userMyNoticeUrl } from 'api/client';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 interface noticeType {
   id: string;

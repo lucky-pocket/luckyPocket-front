@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ['shared'],
   reactStrictMode: false,
   transpilePackages: ['ui', 'common'],
   env: {
