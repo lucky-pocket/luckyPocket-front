@@ -22,17 +22,7 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   if (!accessToken || !expiresAt) return config;
 
   if (new Date() > new Date(expiresAt)) {
-    const response = await API.post(
-      authUrl.postRefresh(),
-      {},
-      {
-        headers: {
-          Cookie: `refreshToken={${
-            cookie.find((item) => item.includes('refreshToken'))?.split('=')[1]
-          }}`,
-        },
-      }
-    );
+    const response = await API.post(authUrl.postRefresh());
 
     document.cookie = `accessToken=${response.data.accessToken}; path='/';`;
     document.cookie = `expiresAt=${new Date(
@@ -62,19 +52,7 @@ API.interceptors.response.use(
     }
 
     if (error.response && error.response.status === 401) {
-      await API.post(
-        authUrl.postLogout(),
-        {},
-        {
-          headers: {
-            Cookie: `refreshToken=${
-              cookie
-                .find((item) => item.includes('refreshToken'))
-                ?.split('=')[1]
-            }`,
-          },
-        }
-      );
+      await API.post(authUrl.postLogout());
       window.location.href = '/auth/signin';
     }
   }
