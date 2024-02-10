@@ -26,7 +26,6 @@ const Pocket: React.FC<PocketProps> = ({
   const [isLock, setIsLock] = useState<boolean>(false);
   const [showContentModal, setShowContentModal] = useState<boolean>(false);
   const [content, setContent] = useState<string>('');
-  const [revealLockSender, setRevealLockSender] = useState<string>('');
   const [detailSender, setDetailSender] = useState<Sender | null>(null);
 
   const handlePocketClick = async () => {
@@ -72,12 +71,12 @@ const Pocket: React.FC<PocketProps> = ({
     <div>
       <S.PocketContainer onClick={handlePocketClick}>
         {isEmpty ? (
-          isPublic ? (
+          sender ? (
             <S.Pocket>{sender && <S.Sender>{sender}</S.Sender>}</S.Pocket>
           ) : (
             <S.LockPocket onClick={() => setIsLock(true)} />
           )
-        ) : isPublic ? (
+        ) : sender ? (
           sender ? (
             <S.PocketMoney>
               {sender && <S.Sender>{sender}</S.Sender>}
@@ -94,20 +93,16 @@ const Pocket: React.FC<PocketProps> = ({
           <S.WriteBoxContainer>
             <S.WriteBoard ref={modalRef}>
               <p>{content}</p>
-              {revealLockSender ? (
-                <span>{revealLockSender}</span>
-              ) : (
-                <S.RevealButton onClick={lockPocketClick}>
-                  누가 보냈는지 알아보기
-                </S.RevealButton>
-              )}
+              <S.RevealButton onClick={lockPocketClick}>
+                누가 보냈는지 알아보기
+              </S.RevealButton>
             </S.WriteBoard>
           </S.WriteBoxContainer>
         ) : (
           <S.WriteBoxContainer>
             <S.WriteBoard ref={modalRef}>
               <p>{content}</p>
-              <span>{detailSender?.name}</span>
+              <S.DetailSender>From. {detailSender?.name}</S.DetailSender>
             </S.WriteBoard>
           </S.WriteBoxContainer>
         ))}
@@ -115,8 +110,8 @@ const Pocket: React.FC<PocketProps> = ({
         <RevealModal
           setShowModal={setShowModal}
           setShowContentModal={setShowContentModal}
-          setRevealLockSender={setRevealLockSender}
           pocketId={pocketId}
+          setIsLock={setIsLock}
         />
       )}
     </div>

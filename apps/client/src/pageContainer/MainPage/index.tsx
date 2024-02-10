@@ -31,7 +31,7 @@ const Main: React.FC<Props> = ({}) => {
 
   const { data: pocketList } = useQuery<MyPocketListType>(
     ['getPocketList'],
-    () => getPocketList(1, 14)
+    () => getPocketList(1, 300)
   );
 
   return (

@@ -28,6 +28,13 @@ export const WriteBoard = styled(Sort)`
   }
 `;
 
+export const DetailSender = styled(Sort)`
+  position: relative;
+  ${({ theme }) => theme.typo.title.small}
+  left: 120px;
+  top: 40px;
+`;
+
 export const WriteBoxContainer = styled.div`
   width: 100%;
   height: 100%;

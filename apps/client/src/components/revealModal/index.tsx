@@ -6,22 +6,22 @@ import { userMyPocketUrl } from 'api/client';
 interface RevealModalProps {
   setShowModal: (value: boolean) => void;
   setShowContentModal: (value: boolean) => void;
-  setRevealLockSender: (value: string) => void;
+  setIsLock: (value: boolean) => void;
   pocketId: number;
 }
 
 const RevealModal: React.FC<RevealModalProps> = ({
   setShowModal,
   setShowContentModal,
-  setRevealLockSender,
   pocketId,
+  setIsLock,
 }) => {
   const handlePocketClick = async () => {
     setShowModal(false);
     try {
       const name = await postMyPocketName(pocketId);
-      setRevealLockSender(name);
       setShowContentModal(true);
+      setIsLock(false);
     } catch (error) {
       console.error('Error fetching pocket data:', error);
     }
@@ -45,7 +45,7 @@ const RevealModal: React.FC<RevealModalProps> = ({
       <S.RevealModal>
         <S.TopBox>
           <S.Title>정말 알아볼까요?</S.Title>
-          <S.SubTitle>옆전 2닢이 소모돼요.</S.SubTitle>
+          <S.SubTitle>옆전 1닢이 소모돼요.</S.SubTitle>
         </S.TopBox>
         <S.BottomBox>
           <S.Esc onClick={handleClick}>취소</S.Esc>
