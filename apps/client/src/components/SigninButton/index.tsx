@@ -10,7 +10,7 @@ const SigninButton = () => {
         onClick={() =>
           (window.location.href = `https://gauth.co.kr/login?client_id=${
             process.env.NEXT_PUBLIC_GAUTH_CLIENT_ID ?? ''
-          }&redirect_uri=http://localhost:3000/auth/signin`)
+          }&redirect_uri=https://www.lucky-pocket.site/auth/signin`)
         }
       >
         시작하기
