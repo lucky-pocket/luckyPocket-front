@@ -5,7 +5,18 @@ import * as S from './style';
 import { useState } from 'react';
 import { PocketListType } from 'client/types';
 
+import { API } from 'api/client/API';
+import { userUrl } from 'api/client';
+import { useQuery } from '@tanstack/react-query';
 export default function Rank({ pocketList }: { pocketList?: PocketListType }) {
+  const getRank = async () => {
+    const response = await API.get(userUrl.getRank());
+    return response.data;
+  };
+
+  const { data: rank } = useQuery(['getRank'], () => getRank());
+
+  console.log(rank);
   const data = {
     users: [
       {
