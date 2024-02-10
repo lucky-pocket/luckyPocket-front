@@ -20,10 +20,13 @@ interface Pocket {
 
 interface PocketListProps {
   pockets?: Pocket[];
-  getPocketList: (offset: number, limit: number) => Promise<any>;
+  refetchPocketList: () => void;
 }
 
-const PocketList: React.FC<PocketListProps> = ({ pockets, getPocketList }) => {
+const PocketList: React.FC<PocketListProps> = ({
+  pockets,
+  refetchPocketList,
+}) => {
   const [slideIndex, setSlideIndex] = useState<number>(0);
   const maxIndex = Math.ceil((pockets?.length || 0) / 12);
   const pocketsPerPage = 12;
@@ -71,7 +74,7 @@ const PocketList: React.FC<PocketListProps> = ({ pockets, getPocketList }) => {
                   isPublic={pocket.isPublic}
                   sender={pocket.sender}
                   pocketId={pocket.id}
-                  getPocketList={getPocketList}
+                  refetchPocketList={refetchPocketList}
                 />
               </div>
             ))}

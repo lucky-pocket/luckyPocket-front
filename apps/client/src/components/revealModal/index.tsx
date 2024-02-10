@@ -11,7 +11,7 @@ interface RevealModalProps {
   setDetailSender: (value: Sender | null) => void;
   setIsLock: (value: boolean) => void;
   pocketId: number;
-  getPocketList: (offset: number, limit: number) => Promise<any>;
+  refetchPocketList: () => void;
 }
 
 const RevealModal: React.FC<RevealModalProps> = ({
@@ -20,13 +20,13 @@ const RevealModal: React.FC<RevealModalProps> = ({
   pocketId,
   setIsLock,
   setDetailSender,
-  getPocketList,
+  refetchPocketList,
 }) => {
   const handlePocketClick = async () => {
     setShowModal(false);
     try {
       const data = await postMyPocketName(pocketId);
-      await getPocketList(1, 300);
+      await refetchPocketList();
       setDetailSender(data);
       setShowContentModal(true);
       setIsLock(false);

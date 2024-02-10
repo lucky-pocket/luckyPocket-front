@@ -19,19 +19,19 @@ interface MainContentProps {
   pockets?: Pocket[];
   totalCount?: number;
   userInfo?: MyInfoType;
-  getPocketList: (offset: number, limit: number) => Promise<any>;
+  refetchPocketList: () => void;
 }
 
 const MainContent: React.FC<MainContentProps> = ({
   pockets,
   totalCount,
   userInfo,
-  getPocketList,
+  refetchPocketList,
 }) => {
   return (
     <S.MainContentBox>
       <MainTitle totalCount={totalCount} userInfo={userInfo} />
-      <PocketList pockets={pockets} getPocketList={getPocketList} />
+      <PocketList pockets={pockets} refetchPocketList={refetchPocketList} />
       <MainFooter />
     </S.MainContentBox>
   );

@@ -87,7 +87,7 @@ const Game: React.FC<GameProps> = () => {
         <>
           <S.Count>
             오늘 윷을 던진 횟수
-            <div> {count ? `${count}번` : '불러오는 중...'}</div>
+            <div> {count}번</div>
           </S.Count>
           <S.Game>
             <S.YutBox>
@@ -104,7 +104,7 @@ const Game: React.FC<GameProps> = () => {
               disabled={btnDisabled}
               isError={btnDisabled}
             >
-              {freeTicket?.ticketCount === 0 ? '윳던지기' : '무료로 윷 던지기'}
+              {freeTicket?.ticketCount === 0 ? '윷던지기' : '무료로 윷 던지기'}
             </S.Button>
             <S.Subtitle>
               <span>현재 보유중인 엽전 개수</span>
