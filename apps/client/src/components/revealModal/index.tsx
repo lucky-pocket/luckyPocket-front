@@ -22,8 +22,8 @@ const RevealModal: React.FC<RevealModalProps> = ({
   const handlePocketClick = async () => {
     setShowModal(false);
     try {
-      const name = await postMyPocketName(pocketId);
-      console.log(name);
+      const data = await postMyPocketName(pocketId);
+      setDetailSender(data);
       setShowContentModal(true);
       setIsLock(false);
     } catch (error) {
@@ -32,9 +32,7 @@ const RevealModal: React.FC<RevealModalProps> = ({
   };
 
   const postMyPocketName = async (pocketId: number) => {
-    const response = await API.post<string>(
-      userMyPocketUrl.postMyPocketName(pocketId)
-    );
+    const response = await API.post(userMyPocketUrl.postMyPocketName(pocketId));
     console.log(response.data);
     return response.data;
   };
