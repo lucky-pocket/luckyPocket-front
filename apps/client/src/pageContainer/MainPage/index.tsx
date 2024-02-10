@@ -29,10 +29,8 @@ const Main: React.FC<Props> = ({}) => {
     return response.data;
   };
 
-  const { data: pocketList } = useQuery<MyPocketListType>(
-    ['getPocketList'],
-    () => getPocketList(1, 300)
-  );
+  const { data: pocketList, refetch: refetchPocketList } =
+    useQuery<MyPocketListType>(['getPocketList'], () => getPocketList(0, 300));
 
   return (
     <S.Main>
@@ -42,6 +40,7 @@ const Main: React.FC<Props> = ({}) => {
           pockets={pocketList?.pockets}
           totalCount={pocketList?.pockets.length}
           userInfo={userInfo}
+          refetchPocketList={refetchPocketList}
         />
       </S.Background>
     </S.Main>

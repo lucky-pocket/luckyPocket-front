@@ -14,6 +14,7 @@ interface PocketProps {
   sender: string | null;
   isPublic: boolean;
   pocketId: number;
+  refetchPocketList: () => void;
 }
 
 const Pocket: React.FC<PocketProps> = ({
@@ -21,6 +22,7 @@ const Pocket: React.FC<PocketProps> = ({
   isPublic,
   pocketId,
   sender,
+  refetchPocketList,
 }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isLock, setIsLock] = useState<boolean>(false);
@@ -42,7 +44,7 @@ const Pocket: React.FC<PocketProps> = ({
     const response = await API.get<DetailPocketType>(
       pocketUrl.getDetailPocket(pocketId)
     );
-    console.log(response.data);
+    setDetailSender(response.data.sender);
     return response.data;
   };
 
@@ -112,6 +114,7 @@ const Pocket: React.FC<PocketProps> = ({
           pocketId={pocketId}
           setDetailSender={setDetailSender}
           setIsLock={setIsLock}
+          refetchPocketList={refetchPocketList}
         />
       )}
     </div>

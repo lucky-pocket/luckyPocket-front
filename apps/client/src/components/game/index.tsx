@@ -12,6 +12,7 @@ const Game: React.FC<GameProps> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showResult, setShowResult] = useState<boolean>(false);
   const [btnDisabled, setDisabled] = useState<boolean>(false);
+  const [isFree, setIsFree] = useState<boolean>(false);
 
   const getMyCoins = async () => {
     const response = await API.get(userMyUrl.getMyCoin());
@@ -25,6 +26,9 @@ const Game: React.FC<GameProps> = () => {
   const getFreeTicket = async () => {
     const response = await API.get(gameUrl.getFreeTicket());
     console.log(response.data);
+    if (response.data.ticketCount === 1) {
+      setIsFree(true);
+    }
     return response.data;
   };
 
@@ -43,7 +47,7 @@ const Game: React.FC<GameProps> = () => {
 
   const postYut = async () => {
     const response = await API.post(gameUrl.postYut(), {
-      free: false,
+      free: isFree,
     });
 
     return response.data.output;
@@ -83,7 +87,7 @@ const Game: React.FC<GameProps> = () => {
         <>
           <S.Count>
             오늘 윷을 던진 횟수
-            <div> {count ? `${count}번` : '불러오는 중...'}</div>
+            <div> {count}번</div>
           </S.Count>
           <S.Game>
             <S.YutBox>
@@ -100,7 +104,7 @@ const Game: React.FC<GameProps> = () => {
               disabled={btnDisabled}
               isError={btnDisabled}
             >
-              {freeTicket?.ticketCount === 0 ? '윳던지기' : '무료로 윷 던지기'}
+              {freeTicket?.ticketCount === 0 ? '윷던지기' : '무료로 윷 던지기'}
             </S.Button>
             <S.Subtitle>
               <span>현재 보유중인 엽전 개수</span>

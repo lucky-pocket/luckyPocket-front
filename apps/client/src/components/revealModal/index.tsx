@@ -3,6 +3,7 @@ import * as S from './style';
 import { API } from 'api/client/API';
 import { userMyPocketUrl } from 'api/client';
 import { Sender } from 'client/types';
+import { DetailPocketType } from 'client/types';
 
 interface RevealModalProps {
   setShowModal: (value: boolean) => void;
@@ -10,6 +11,7 @@ interface RevealModalProps {
   setDetailSender: (value: Sender | null) => void;
   setIsLock: (value: boolean) => void;
   pocketId: number;
+  refetchPocketList: () => void;
 }
 
 const RevealModal: React.FC<RevealModalProps> = ({
@@ -18,11 +20,13 @@ const RevealModal: React.FC<RevealModalProps> = ({
   pocketId,
   setIsLock,
   setDetailSender,
+  refetchPocketList,
 }) => {
   const handlePocketClick = async () => {
     setShowModal(false);
     try {
       const data = await postMyPocketName(pocketId);
+      await refetchPocketList();
       setDetailSender(data);
       setShowContentModal(true);
       setIsLock(false);
@@ -42,6 +46,7 @@ const RevealModal: React.FC<RevealModalProps> = ({
     setShowModal(false);
     setShowContentModal(false);
   };
+
   return (
     <S.RevealModalContainer>
       <S.RevealModal>
