@@ -71,7 +71,7 @@ const Game: React.FC<GameProps> = () => {
         }, 3000);
         setInterval(() => {
           window.location.reload();
-        }, 4000);
+        }, 6000);
       }
     } else {
       alert('보유하신 잔액이 부족합니다');
