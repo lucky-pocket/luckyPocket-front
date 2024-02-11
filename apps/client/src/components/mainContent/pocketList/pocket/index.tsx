@@ -109,7 +109,9 @@ const Pocket: React.FC<PocketProps> = ({
               <S.DetailSender>From. {detailSender?.name}</S.DetailSender>
               <S.Coin>
                 {coin}
-                <I.Coin />
+                <S.CoinIcon>
+                  <I.Coin />
+                </S.CoinIcon>
               </S.Coin>
             </S.WriteBoard>
           </S.WriteBoxContainer>

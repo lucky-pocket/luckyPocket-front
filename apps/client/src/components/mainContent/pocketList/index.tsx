@@ -87,9 +87,9 @@ const PocketList: React.FC<PocketListProps> = ({
         </S.PocketDrawer>
         <S.ChevronBox
           onClick={handleNextSlide}
-          isVisible={slideIndex !== maxIndex - 1}
+          isVisible={pockets?.length === 0 ? false : true}
         >
-          {pockets?.length === 0 ? <></> : <I.ChevronIcon turn={'left'} />}
+          <I.ChevronIcon turn={'left'} />
         </S.ChevronBox>
       </S.Container>
       <S.Index>

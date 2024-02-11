@@ -44,9 +44,13 @@ export const Coin = styled.div`
   left: -160px;
   top: 20px;
   svg {
-    left: 10px;
     bottom: 0.5px;
   }
+`;
+
+export const CoinIcon = styled.div`
+  padding-left: 10px;
+  width: 50px;
 `;
 
 export const WriteBoxContainer = styled.div`
