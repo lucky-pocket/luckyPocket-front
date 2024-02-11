@@ -28,18 +28,11 @@ export const userMyPocketUrl = {
 };
 
 export const userUrl = {
-  getUserInfo: (userId: string) => `/users/${userId}`,
+  getUserInfo: (userId: number) => `/users/${userId}`,
   postPocketName: (userId: string, pocket_id: string) =>
     `/users/${userId}/pockets/${pocket_id}/sender`,
-  getPocketList: (user_id: string) => `/users/${user_id}/pockets`,
-  getRank: (
-    sort: string,
-    usertype: string,
-    grade: number,
-    classNum: number,
-    name: string
-  ) =>
-    `/users/rank?sort=${sort}&usertype=${usertype}&grade=${grade}&class=${classNum}&name=${name}`,
+  getPocketList: (user_id: number) => `/users/${user_id}/pockets`,
+  getRank: (sort: string) => `/users/rank?sortType=${sort}`,
 };
 
 export const gameUrl = {

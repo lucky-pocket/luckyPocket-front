@@ -4,29 +4,27 @@ import { Header, MainContent } from 'client/components';
 import * as S from './style';
 import { MyPocketListType, MyInfoType } from 'client/types';
 import { API } from 'api/client/API';
-import { userMyUrl, userMyPocketUrl } from 'api/client';
+import { userUrl, userMyPocketUrl } from 'api/client';
 import { useQuery } from '@tanstack/react-query';
-import MainFooter from 'client/components/mainContent/mainFooter';
 
-interface Props {}
+interface UserProps {
+  userId: number;
+}
 
-const Main: React.FC<Props> = ({}) => {
-  const getMyInfo = async () => {
-    const response = await API.get(userMyUrl.getMyInfo());
+export default function User({ userId }: UserProps) {
+  const getUserInfo = async () => {
+    const response = await API.get(userUrl.getUserInfo(userId));
     return response.data;
   };
 
-  const { data: userInfo } = useQuery<MyInfoType>(['getMyInfo'], () =>
-    getMyInfo()
+  const { data: userInfo } = useQuery<MyInfoType>(['getUserInfo'], () =>
+    getUserInfo()
   );
 
   const getPocketList = async (offset: number, limit: number) => {
-    const response = await API.get(
-      `${userMyPocketUrl.getPocketList()}/received?`,
-      {
-        params: { offset, limit },
-      }
-    );
+    const response = await API.get(`${userUrl.getPocketList(userId)}`, {
+      params: { offset, limit },
+    });
     return response.data;
   };
 
@@ -34,7 +32,7 @@ const Main: React.FC<Props> = ({}) => {
     useQuery<MyPocketListType>(['getPocketList'], () => getPocketList(0, 300));
 
   return (
-    <S.Main>
+    <S.User>
       <S.Background>
         <Header hasNorigae />
         <MainContent
@@ -42,11 +40,9 @@ const Main: React.FC<Props> = ({}) => {
           totalCount={pocketList?.pockets.length}
           userInfo={userInfo}
           refetchPocketList={refetchPocketList}
-          isUser={true}
+          isUser={false}
         />
       </S.Background>
-    </S.Main>
+    </S.User>
   );
-};
-
-export default Main;
+}

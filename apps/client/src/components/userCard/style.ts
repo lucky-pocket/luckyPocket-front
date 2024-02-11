@@ -35,7 +35,6 @@ export const Class = styled.div`
 
 export const Amount = styled.div`
   display: flex;
-  width: 2.4375rem;
   height: 1.125rem;
   gap: 0.25rem;
   align-items: center;

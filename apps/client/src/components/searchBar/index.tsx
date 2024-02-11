@@ -13,6 +13,9 @@ interface Props {
   setKeyword: React.Dispatch<React.SetStateAction<string>>;
   setIsShowFilterModal: React.Dispatch<React.SetStateAction<boolean>>;
   data: PocketListType;
+  refetchData: () => void;
+  setOption: React.Dispatch<React.SetStateAction<'COIN' | 'POCKET'>>;
+  option: 'COIN' | 'POCKET';
 }
 
 const SearchBar: React.FC<Props> = ({
@@ -21,6 +24,9 @@ const SearchBar: React.FC<Props> = ({
   setKeyword,
   setIsShowFilterModal,
   data,
+  refetchData,
+  setOption,
+  option,
 }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -35,6 +41,11 @@ const SearchBar: React.FC<Props> = ({
   const [selectedStandard, setSelectedStandard] = useState<'복주머니' | '엽전'>(
     '복주머니'
   );
+
+  useEffect(() => {
+    setSelectedStandard(option === 'COIN' ? '엽전' : '복주머니');
+  }, [option]);
+
   const [selectedGrade, setSelectedGrade] = useState<
     '전체' | '1학년' | '2학년' | '3학년' | '선생님'
   >('전체');
@@ -42,19 +53,12 @@ const SearchBar: React.FC<Props> = ({
     '전체' | '1반' | '2반' | '3반' | '4반'
   >('전체');
 
-  const handleStandardClick = (standard: '복주머니' | '엽전') => {
+  const handleStandardClick = async (standard: '복주머니' | '엽전') => {
     setSelectedStandard(standard);
+    standard === '엽전' ? setOption('COIN') : setOption('POCKET');
 
-    if (standard === '엽전') {
-      axios
-        .get(`${process.env.BASE_URL}/users/rank?sort=COIN`)
-        .then((response) => {
-          setFilteredUsers(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
+    console.log(standard);
+    console.log(selectedStandard);
   };
 
   const handleGradeClick = (
@@ -71,7 +75,11 @@ const SearchBar: React.FC<Props> = ({
 
   useEffect(() => {
     updateFilteredUsers();
-  }, [selectedStandard, selectedGrade, selectedGradeClass]);
+  }, [selectedGrade, selectedGradeClass]);
+
+  useEffect(() => {
+    setFilteredUsers(data.users);
+  }, [data]);
 
   const updateFilteredUsers = useCallback(() => {
     let filtered = data.users.filter((user) => {
@@ -90,7 +98,7 @@ const SearchBar: React.FC<Props> = ({
       return true;
     });
     setFilteredUsers(filtered);
-  }, [selectedStandard, selectedGrade, selectedGradeClass]);
+  }, [selectedGrade, selectedGradeClass]);
 
   const getGradeValue = (
     grade: '전체' | '1학년' | '2학년' | '3학년' | '선생님'

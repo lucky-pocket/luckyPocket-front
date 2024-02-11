@@ -20,6 +20,7 @@ interface MainContentProps {
   totalCount?: number;
   userInfo?: MyInfoType;
   refetchPocketList: () => void;
+  isUser: boolean;
 }
 
 const MainContent: React.FC<MainContentProps> = ({
@@ -27,12 +28,13 @@ const MainContent: React.FC<MainContentProps> = ({
   totalCount,
   userInfo,
   refetchPocketList,
+  isUser,
 }) => {
   return (
-    <S.MainContentBox>
+    <S.MainContentBox isUser={isUser}>
       <MainTitle totalCount={totalCount} userInfo={userInfo} />
       <PocketList pockets={pockets} refetchPocketList={refetchPocketList} />
-      <MainFooter />
+      {isUser && <MainFooter />}
     </S.MainContentBox>
   );
 };
