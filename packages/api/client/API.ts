@@ -21,9 +21,7 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
 
   if (!accessToken || !expiresAt) return config;
 
-  if (
-    new Date() > new Date('Sun Feb 11 2024 15:22:00 GMT+0900 (한국 표준시)')
-  ) {
+  if (new Date() > new Date(expiresAt)) {
     const response = await axios.post(
       process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh(),
       {},
