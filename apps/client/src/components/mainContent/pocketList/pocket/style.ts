@@ -90,7 +90,7 @@ export const RevealButton = styled(Sort)`
 `;
 export const Pocket = styled(Sort)`
   width: 5.75rem;
-  height: 6.5rem;
+  height: 6.4rem;
   background-image: url('/images/pocket.png');
   background-size: 5.75rem 6.3125rem;
   :hover {
@@ -100,7 +100,7 @@ export const Pocket = styled(Sort)`
 
 export const PocketMoney = styled(Sort)`
   width: 5.75rem;
-  height: 6.5rem;
+  height: 6.4rem;
   background-image: url('/images/pocketMoney.png');
   background-size: 5.75rem 6.3125rem;
   :hover {
@@ -110,7 +110,7 @@ export const PocketMoney = styled(Sort)`
 
 export const LockPocket = styled(Sort)`
   width: 5.75rem;
-  height: 6.5rem;
+  height: 6.4rem;
   background-image: url('/images/lockPocket.png');
   background-size: 5.75rem 6.3125rem;
   :hover {
