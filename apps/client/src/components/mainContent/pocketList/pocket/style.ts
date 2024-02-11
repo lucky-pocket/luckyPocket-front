@@ -9,7 +9,7 @@ const Sort = styled.div`
 export const PocketContainer = styled.div`
   cursor: pointer;
   position: relative;
-  top: 0.9375rem;
+  top: 1.5rem;
   transition: filter 100ms ease-in-out;
 `;
 
@@ -89,40 +89,40 @@ export const RevealButton = styled(Sort)`
   }
 `;
 export const Pocket = styled(Sort)`
-  width: 6.75rem;
-  height: 7.5rem;
+  width: 5.75rem;
+  height: 6.5rem;
   background-image: url('/images/pocket.png');
-  background-size: 6.75rem 7.3125rem;
+  background-size: 5.75rem 6.3125rem;
   :hover {
     filter: brightness(0.7);
   }
 `;
 
 export const PocketMoney = styled(Sort)`
-  width: 6.75rem;
-  height: 7.5rem;
+  width: 5.75rem;
+  height: 6.5rem;
   background-image: url('/images/pocketMoney.png');
-  background-size: 6.75rem 7.3125rem;
+  background-size: 5.75rem 6.3125rem;
   :hover {
     filter: brightness(0.7);
   }
 `;
 
 export const LockPocket = styled(Sort)`
-  width: 6.75rem;
-  height: 7.5rem;
+  width: 5.75rem;
+  height: 6.5rem;
   background-image: url('/images/lockPocket.png');
-  background-size: 6.75rem 7.3125rem;
+  background-size: 5.75rem 6.3125rem;
   :hover {
     filter: brightness(0.7);
   }
 `;
 
 export const LockPocketMoney = styled(Sort)`
-  width: 6.75rem;
-  height: 7.5rem;
+  width: 5.75rem;
+  height: 6.4rem;
   background-image: url('/images/lockPocketMoney.png');
-  background-size: 6.75rem 7.3125rem;
+  background-size: 5.75rem 6.3125rem;
   :hover {
     filter: brightness(0.7);
   }

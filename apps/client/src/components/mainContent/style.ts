@@ -5,5 +5,5 @@ export const MainContentBox = styled.div<{ isUser: boolean }>`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: ${({ isUser }) => (isUser ? '650px' : '558px')};
+  height: ${({ isUser }) => (isUser ? '580px' : '558px')};
 `;
