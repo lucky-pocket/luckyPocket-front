@@ -126,7 +126,6 @@ export const Button = styled.button<{ isError?: boolean }>`
 `;
 
 export const GameContainer = styled.div<{ isLoading?: boolean }>`
-  height: 50rem;
   width: 100%;
   display: flex;
   flex-direction: column;
