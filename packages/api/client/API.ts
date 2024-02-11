@@ -21,7 +21,9 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
 
   if (!accessToken || !expiresAt) return config;
 
-  if (new Date() > new Date(expiresAt)) {
+  if (
+    new Date() > new Date('Sun Feb 11 2024 15:22:00 GMT+0900 (한국 표준시)')
+  ) {
     const response = await axios.post(
       process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh(),
       {},
@@ -56,15 +58,18 @@ API.interceptors.response.use(
       window.location.href = '/504';
     }
 
-    console.log(error);
-
-    // if (error.response && error.response.status === 401) {
-    //   await axios.post(
-    //     process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),
-    //     {},
-    //     { withCredentials: true }
-    //   );
-    //   window.location.href = '/auth/signin';
-    // }
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      error.config ===
+        process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout()
+    ) {
+      await axios.post(
+        process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),
+        {},
+        { withCredentials: true }
+      );
+      window.location.href = '/auth/signin';
+    }
   }
 );
