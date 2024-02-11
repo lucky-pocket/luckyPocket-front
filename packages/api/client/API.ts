@@ -10,14 +10,8 @@ export const API = axios.create({
 });
 
 API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
-  const cookie = document.cookie.split(';');
-
-  let accessToken = cookie
-    .find((item) => item.includes('accessToken'))
-    ?.split('=')[1];
-  let expiresAt = cookie
-    .find((item) => item.includes('expiresAt'))
-    ?.split('=')[1];
+  let accessToken = localStorage.getItem('accessToken');
+  let expiresAt = localStorage.getItem('expiresAt');
 
   if (!accessToken || !expiresAt) return config;
 
@@ -28,13 +22,23 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
       { withCredentials: true }
     );
     try {
-      document.cookie = `accessToken=${response.data.accessToken}; path='/';`;
-      document.cookie = `expiresAt=${new Date(
-        response.data.expiresAt
-      )}; path='/';`;
+      localStorage.setItem('accessToken', response.data.accessToken);
+      localStorage.setItem('expiresAt', response.data.expiresAt);
       accessToken = response.data.accessToken;
-    } catch (e) {
-      console.log(e);
+    } catch (error: any) {
+      if (
+        error.response &&
+        error.response.status === 401 &&
+        error.config ===
+          process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
+      ) {
+        await axios.post(
+          process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),
+          {},
+          { withCredentials: true }
+        );
+        window.location.href = '/auth/signin';
+      }
     }
   }
 
@@ -54,20 +58,6 @@ API.interceptors.response.use(
 
     if (error.response && error.response.status === 504) {
       window.location.href = '/504';
-    }
-
-    if (
-      error.response &&
-      error.response.status === 401 &&
-      error.config ===
-        process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
-    ) {
-      await axios.post(
-        process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),
-        {},
-        { withCredentials: true }
-      );
-      window.location.href = '/auth/signin';
     }
   }
 );
