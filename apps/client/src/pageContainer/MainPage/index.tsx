@@ -6,6 +6,7 @@ import { MyPocketListType, MyInfoType } from 'client/types';
 import { API } from 'api/client/API';
 import { userMyUrl, userMyPocketUrl } from 'api/client';
 import { useQuery } from '@tanstack/react-query';
+import MainFooter from 'client/components/mainContent/mainFooter';
 
 interface Props {}
 
@@ -41,6 +42,7 @@ const Main: React.FC<Props> = ({}) => {
           totalCount={pocketList?.pockets.length}
           userInfo={userInfo}
           refetchPocketList={refetchPocketList}
+          isUser={true}
         />
       </S.Background>
     </S.Main>
