@@ -35,7 +35,7 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
       );
       accessToken = response.data.accessToken;
       expiresAt = new Date(response.data.expiresAt).toString();
-      config.headers['Authorization'] = response.data.accessToken;
+      config.headers['Authorization'] = `Bearer ${response.data.accessToken}`;
     } catch (error: any) {
       if (
         error.response &&
