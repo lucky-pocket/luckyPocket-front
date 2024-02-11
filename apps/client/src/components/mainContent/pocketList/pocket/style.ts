@@ -35,6 +35,20 @@ export const DetailSender = styled(Sort)`
   top: 40px;
 `;
 
+export const Coin = styled.div`
+  display: flex;
+  justify-content: space-between;
+  ${({ theme }) => theme.typo.title.small}
+  width: 50px;
+  position: relative;
+  left: -160px;
+  top: 20px;
+  svg {
+    left: 10px;
+    bottom: 0.5px;
+  }
+`;
+
 export const WriteBoxContainer = styled.div`
   width: 100%;
   height: 100%;
