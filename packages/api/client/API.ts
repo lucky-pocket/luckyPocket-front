@@ -23,8 +23,12 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
     );
     try {
       localStorage.setItem('accessToken', response.data.accessToken);
-      localStorage.setItem('expiresAt', response.data.expiresAt);
+      localStorage.setItem(
+        'expiresAt',
+        new Date(response.data.expiresAt).toString()
+      );
       accessToken = response.data.accessToken;
+      expiresAt = new Date(response.data.expiresAt).toString();
     } catch (error: any) {
       if (
         error.response &&
