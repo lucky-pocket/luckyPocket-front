@@ -17,7 +17,7 @@ export default function Rank() {
   };
 
   const { data, refetch: refetchData } = useQuery<PocketListType>(
-    ['getRank'],
+    ['getRank', option],
     () => getRank(option)
   );
 
@@ -37,6 +37,7 @@ export default function Rank() {
             data={data}
             refetchData={refetchData}
             setOption={setOption}
+            option={option}
           />
         )}
       </S.Background>
