@@ -24,6 +24,7 @@ const FilterModal: React.FC<Props> = ({
   onGradeClick,
   onGradeClassClick,
 }) => {
+  console.log(selectedStandard);
   return (
     <S.FilterModal>
       <S.Title>필터</S.Title>

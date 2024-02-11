@@ -9,7 +9,7 @@ import Link from 'next/link';
 interface Props {
   user: PocketType;
   rank: number;
-  selectedStandard: '복주머니' | '엽전';
+  selectedStandard: '복주머니' | '엽전' | null;
 }
 
 const UserCard: React.FC<Props> = ({ user, rank, selectedStandard }) => {

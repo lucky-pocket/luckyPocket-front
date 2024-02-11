@@ -40,6 +40,7 @@ export default function User({ userId }: UserProps) {
           totalCount={pocketList?.pockets.length}
           userInfo={userInfo}
           refetchPocketList={refetchPocketList}
+          isUser={false}
         />
       </S.Background>
     </S.User>

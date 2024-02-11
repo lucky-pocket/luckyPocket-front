@@ -15,6 +15,7 @@ interface Props {
   data: PocketListType;
   refetchData: () => void;
   setOption: React.Dispatch<React.SetStateAction<'COIN' | 'POCKET'>>;
+  option: 'COIN' | 'POCKET';
 }
 
 const SearchBar: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const SearchBar: React.FC<Props> = ({
   data,
   refetchData,
   setOption,
+  option,
 }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -39,6 +41,11 @@ const SearchBar: React.FC<Props> = ({
   const [selectedStandard, setSelectedStandard] = useState<'복주머니' | '엽전'>(
     '복주머니'
   );
+
+  useEffect(() => {
+    setSelectedStandard(option === 'COIN' ? '엽전' : '복주머니');
+  }, [option]);
+
   const [selectedGrade, setSelectedGrade] = useState<
     '전체' | '1학년' | '2학년' | '3학년' | '선생님'
   >('전체');
@@ -47,12 +54,11 @@ const SearchBar: React.FC<Props> = ({
   >('전체');
 
   const handleStandardClick = async (standard: '복주머니' | '엽전') => {
-    {
-      standard === '엽전' ? setOption('POCKET') : setOption('COIN');
-    }
-    await refetchData();
-    console.log(standard);
     setSelectedStandard(standard);
+    standard === '엽전' ? setOption('COIN') : setOption('POCKET');
+
+    console.log(standard);
+    console.log(selectedStandard);
   };
 
   const handleGradeClick = (
@@ -69,7 +75,11 @@ const SearchBar: React.FC<Props> = ({
 
   useEffect(() => {
     updateFilteredUsers();
-  }, [selectedStandard, selectedGrade, selectedGradeClass]);
+  }, [selectedGrade, selectedGradeClass]);
+
+  useEffect(() => {
+    setFilteredUsers(data.users);
+  }, [data]);
 
   const updateFilteredUsers = useCallback(() => {
     let filtered = data.users.filter((user) => {
@@ -88,7 +98,7 @@ const SearchBar: React.FC<Props> = ({
       return true;
     });
     setFilteredUsers(filtered);
-  }, [selectedStandard, selectedGrade, selectedGradeClass]);
+  }, [selectedGrade, selectedGradeClass]);
 
   const getGradeValue = (
     grade: '전체' | '1학년' | '2학년' | '3학년' | '선생님'
