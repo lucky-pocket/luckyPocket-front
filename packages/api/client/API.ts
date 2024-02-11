@@ -17,6 +17,9 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
 
   if (!accessToken || !expiresAt) return config;
 
+  config.headers['Authorization'] = accessToken
+    ? `Bearer ${accessToken}`
+    : undefined;
   if (new Date() >= new Date(expiresAt) && !isRefreshed) {
     isRefreshed = true;
     const response = await axios.post(
@@ -32,6 +35,7 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
       );
       accessToken = response.data.accessToken;
       expiresAt = new Date(response.data.expiresAt).toString();
+      config.headers['Authorization'] = response.data.accessToken;
     } catch (error: any) {
       if (
         error.response &&
@@ -49,10 +53,6 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
     }
     isRefreshed = false;
   }
-
-  config.headers['Authorization'] = accessToken
-    ? `Bearer ${accessToken}`
-    : undefined;
 
   return config;
 });
