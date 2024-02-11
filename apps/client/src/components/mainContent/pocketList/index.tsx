@@ -89,11 +89,14 @@ const PocketList: React.FC<PocketListProps> = ({
           onClick={handleNextSlide}
           isVisible={slideIndex !== maxIndex - 1}
         >
-          <I.ChevronIcon turn={'left'} />
+          {pockets?.length === 0 ? <></> : <I.ChevronIcon turn={'left'} />}
         </S.ChevronBox>
       </S.Container>
       <S.Index>
-        {slideIndex + 1}/{maxIndex}
+        {pockets?.length === 0
+          ? '0/0'
+          : `
+        ${slideIndex + 1}/${maxIndex}`}
       </S.Index>
     </S.PocketListContainer>
   );
