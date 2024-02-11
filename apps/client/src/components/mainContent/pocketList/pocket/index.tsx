@@ -5,6 +5,7 @@ import { RevealModal } from 'client/components';
 import { API } from 'api/client/API';
 import { userMyNoticeUrl, pocketUrl } from 'api/client';
 import { Sender } from 'client/types';
+import * as I from 'client/assets';
 
 import { WriteBoard } from 'client/assets';
 import { DetailPocketType } from 'client/types';
@@ -29,11 +30,13 @@ const Pocket: React.FC<PocketProps> = ({
   const [showContentModal, setShowContentModal] = useState<boolean>(false);
   const [content, setContent] = useState<string>('');
   const [detailSender, setDetailSender] = useState<Sender | null>(null);
+  const [coin, setCoin] = useState<number>(0);
 
   const handlePocketClick = async () => {
     try {
       const pocketData = await getDetailPocket(pocketId);
       setContent(pocketData.content);
+      setCoin(pocketData.coins);
       setShowContentModal(true);
     } catch (error) {
       console.error('Error fetching pocket data:', error);
@@ -104,6 +107,10 @@ const Pocket: React.FC<PocketProps> = ({
             <S.WriteBoard ref={modalRef}>
               <p>{content}</p>
               <S.DetailSender>From. {detailSender?.name}</S.DetailSender>
+              <S.Coin>
+                {coin}
+                <I.Coin />
+              </S.Coin>
             </S.WriteBoard>
           </S.WriteBoxContainer>
         ))}
