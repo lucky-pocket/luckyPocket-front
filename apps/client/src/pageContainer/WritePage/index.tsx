@@ -12,7 +12,6 @@ export default function Write() {
     setPocketSend({ ...pocketSend, message: e.target.value });
   };
   const isTextareaEmpty = pocketSend.message.trim() === '';
-  const MAX_LENGTH = 300 as const;
 
   return (
     <S.Write>
@@ -23,8 +22,10 @@ export default function Write() {
           <S.WriteBox
             placeholder='최대 300글자까지 작성할 수 있습니다.*'
             value={pocketSend.message}
-            onChange={handleTextareaChange}
-            maxLength={MAX_LENGTH}
+            onChange={(e) => {
+              if (e.target.value.length > 300) return;
+              handleTextareaChange(e);
+            }}
           />
         </S.WriteBoxContainer>
         <WriteButton
