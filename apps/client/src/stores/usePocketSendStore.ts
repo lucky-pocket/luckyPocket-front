@@ -13,6 +13,7 @@ interface PocketSendStore {
   setPocketSend: (value: PocketSend) => void;
   receiverName: string;
   setReceiverName: (value: string) => void;
+  reset: () => void;
 }
 
 export type PocketSendPersist = (
@@ -20,18 +21,21 @@ export type PocketSendPersist = (
   options: PersistOptions<PocketSendStore>
 ) => StateCreator<PocketSendStore>;
 
+const initialState = {
+  receiverID: 0,
+  isPublic: false,
+  coins: 0,
+  message: '',
+};
+
 export const usePocketSendState = create<PocketSendStore>(
   (persist as PocketSendPersist)(
     (set) => ({
-      pocketSend: {
-        receiverID: 0,
-        isPublic: false,
-        coins: 0,
-        message: '',
-      },
+      pocketSend: initialState,
       setPocketSend: (value) => set({ pocketSend: value }),
       receiverName: '',
       setReceiverName: (value) => set({ receiverName: value }),
+      reset: () => set({ pocketSend: initialState }),
     }),
     { name: 'pocketSend' }
   )

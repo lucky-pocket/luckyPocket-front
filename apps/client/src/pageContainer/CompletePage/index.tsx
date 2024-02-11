@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Complete() {
-  const { receiverName, pocketSend } = usePocketSendState();
+  const { receiverName, pocketSend, reset } = usePocketSendState();
   const router = useRouter();
 
   const sendPocket = async () => {
@@ -19,7 +19,7 @@ export default function Complete() {
 
   useEffect(() => {
     sendPocket().then(() => {
-      localStorage.removeItem('pocketSend');
+      reset();
       setTimeout(() => router.push('/'), 3000);
     });
   }, []);
