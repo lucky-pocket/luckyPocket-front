@@ -24,7 +24,7 @@ const SearchUserList = ({ searchedUsers }: SearchUserListProps) => {
     return window.atob(encodedString);
   }
 
-  let accessToken = localStorage.getItem('accessToken') ?? '';
+  let accessToken = localStorage.getItem('accessToken')?.split('.')[1] ?? '';
   let decodedObject = JSON.parse(base64Decode(accessToken));
 
   return (

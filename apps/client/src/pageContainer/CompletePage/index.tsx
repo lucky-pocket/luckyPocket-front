@@ -19,6 +19,7 @@ export default function Complete() {
 
   useEffect(() => {
     sendPocket().then(() => {
+      localStorage.removeItem('pocketSend');
       setTimeout(() => router.push('/'), 3000);
     });
   }, []);
