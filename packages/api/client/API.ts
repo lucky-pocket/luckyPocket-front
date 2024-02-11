@@ -60,7 +60,7 @@ API.interceptors.response.use(
       error.response &&
       error.response.status === 401 &&
       error.config ===
-        process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout()
+        process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
     ) {
       await axios.post(
         process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),

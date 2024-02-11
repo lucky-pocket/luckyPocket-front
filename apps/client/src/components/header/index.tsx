@@ -60,7 +60,6 @@ const Header = ({ hasNorigae }: { hasNorigae?: boolean }) => {
               }
             />
           </S.Alarm>
-          <div>로그아웃</div>
         </S.NavBar>
       </S.HeaderWrap>
       {hasNorigae && <Norigae />}
