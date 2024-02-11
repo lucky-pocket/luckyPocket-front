@@ -56,13 +56,15 @@ API.interceptors.response.use(
       window.location.href = '/504';
     }
 
-    if (error.response && error.response.status === 401) {
-      axios.post(
-        process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),
-        {},
-        { withCredentials: true }
-      );
-      window.location.href = '/auth/signin';
-    }
+    console.log(error);
+
+    // if (error.response && error.response.status === 401) {
+    //   await axios.post(
+    //     process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),
+    //     {},
+    //     { withCredentials: true }
+    //   );
+    //   window.location.href = '/auth/signin';
+    // }
   }
 );
