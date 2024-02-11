@@ -1,6 +1,8 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import { authUrl } from './src';
 
+let isRefreshed = false;
+
 export const API = axios.create({
   baseURL: process.env.NEXT_PUBLIC_CLIENT_API_URL,
   headers: {
@@ -15,7 +17,8 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
 
   if (!accessToken || !expiresAt) return config;
 
-  if (new Date() > new Date(expiresAt)) {
+  if (new Date() >= new Date(expiresAt) && !isRefreshed) {
+    isRefreshed = true;
     const response = await axios.post(
       process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh(),
       {},
@@ -44,6 +47,7 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
         window.location.href = '/auth/signin';
       }
     }
+    isRefreshed = false;
   }
 
   config.headers['Authorization'] = accessToken
