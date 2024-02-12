@@ -26,6 +26,10 @@ export const WriteBoard = styled(Sort)`
     height: 348px;
     line-height: 180%;
     word-break: break-all;
+    resize: none;
+    outline: none;
+    background: none;
+    border: none;
   }
 `;
 
