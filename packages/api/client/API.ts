@@ -22,12 +22,12 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
     : undefined;
   if (new Date() >= new Date(expiresAt) && !isRefreshed) {
     isRefreshed = true;
-    const response = await axios.post(
-      process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh(),
-      {},
-      { withCredentials: true }
-    );
     try {
+      const response = await axios.post(
+        process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh(),
+        {},
+        { withCredentials: true }
+      );
       localStorage.setItem('accessToken', response.data.accessToken);
       localStorage.setItem(
         'expiresAt',
@@ -36,6 +36,7 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
       accessToken = response.data.accessToken;
       expiresAt = new Date(response.data.expiresAt).toString();
       config.headers['Authorization'] = `Bearer ${response.data.accessToken}`;
+      isRefreshed = false;
     } catch (error: any) {
       if (
         error.response &&
@@ -51,21 +52,7 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
         window.location.href = '/auth/signin';
       }
     }
-    isRefreshed = false;
   }
 
   return config;
 });
-
-API.interceptors.response.use(
-  async (config) => await config,
-  async (error) => {
-    if (error.response && error.response.status === 500) {
-      window.location.href = '/error';
-    }
-
-    if (error.response && error.response.status === 504) {
-      window.location.href = '/504';
-    }
-  }
-);
