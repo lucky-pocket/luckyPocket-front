@@ -1,13 +1,20 @@
 'use client';
 
-import { Header, WriteButton } from 'client/components';
+import { Header, PocketLimitModal } from 'client/components';
 import * as S from './style';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ScopeType } from 'client/types/ScopeType';
 import { API } from 'api/client/API';
-import { userMyUrl } from 'api/client';
+import { pocketUrl, userMyUrl } from 'api/client';
 import { useQuery } from '@tanstack/react-query';
-import { usePocketSendState } from 'client/stores';
+import {
+  usePocketLimitModalState,
+  usePocketSendState,
+  useSearchedUsersState,
+} from 'client/stores';
+import Link from 'next/link';
+import { ArrowIcon } from 'client/assets';
+import { useRouter } from 'next/navigation';
 
 const Send = () => {
   const getMyCoins = async () => {
@@ -23,7 +30,12 @@ const Send = () => {
   const [coinsToSend, setCoinsToSend] = useState<number | null>(null);
   const [coinsError, setCoinsError] = useState<boolean>(false);
   const [selectedScope, setSelectedScope] = useState<ScopeType>('PRIVATE');
-  const { pocketSend, setPocketSend } = usePocketSendState();
+  const { pocketSend, setPocketSend, reset } = usePocketSendState();
+  const { pocketLimitModal, setPocketLimitModal } = usePocketLimitModalState();
+  const modalRef = useRef<HTMLDivElement>(null);
+  const { setSelectedId } = useSearchedUsersState();
+  const router = useRouter();
+  const getArrowIcon = (stroke: string) => <ArrowIcon stroke={stroke} />;
 
   const ERROR_MESSAGES =
     '복주머니 배송비는 엽전 1닢입니다, 선물 금액은 배송비를 고려해 정해주세요!';
@@ -62,11 +74,27 @@ const Send = () => {
     }
   };
 
+  const modalOutSideClick = (e: any) => {
+    if (modalRef.current === e.target) {
+      setPocketLimitModal(false);
+    }
+  };
+
+  const sendPocket = async () => {
+    await API.post(pocketUrl.postPocket(), pocketSend);
+  };
+
   return (
     <S.Send>
       <S.Background>
         <Header hasNorigae />
         <S.ContentWrapper>
+          {pocketLimitModal && (
+            <PocketLimitModal
+              modalRef={modalRef}
+              modalOutSideClick={modalOutSideClick}
+            />
+          )}
           <S.Section>
             <S.SectionTitleWrapper>
               <S.Title>엽전으로 마음을 표현해봐요</S.Title>
@@ -113,11 +141,35 @@ const Send = () => {
             </S.ScopeButtonWrapper>
           </S.Section>
         </S.ContentWrapper>
-        <WriteButton
-          disabled={coinsError || selectedScope === null || currentCoins < 1}
-          beforeButton='/write'
-          nextLink='/complete'
-        />
+        <S.ButtonContainer>
+          <Link href='/write'>
+            <S.BeforeButton>
+              {getArrowIcon('#6F6B63')}
+              이전
+            </S.BeforeButton>
+          </Link>
+          <S.NextButton
+            disabled={coinsError || selectedScope === null || currentCoins < 1}
+            onClick={() => {
+              sendPocket()
+                .then(() => {
+                  reset();
+                  setSelectedId(null);
+                  router.push('/complete');
+                })
+                .catch((error) => {
+                  if (error.status === 418) {
+                    setPocketLimitModal(true);
+                  }
+                });
+            }}
+          >
+            다음
+            {coinsError || selectedScope === null || currentCoins < 1
+              ? getArrowIcon('#6F6B63')
+              : getArrowIcon('#F2EDE5')}
+          </S.NextButton>
+        </S.ButtonContainer>
       </S.Background>
     </S.Send>
   );
