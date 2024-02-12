@@ -1,4 +1,8 @@
-import { usePocketLimitModalState, usePocketSendState } from 'client/stores';
+import {
+  usePocketLimitModalState,
+  usePocketSendState,
+  useSearchedUsersState,
+} from 'client/stores';
 import * as S from './style';
 import { useRouter } from 'next/navigation';
 
@@ -10,6 +14,7 @@ interface propsType {
 const PocketLimitModal = ({ modalRef, modalOutSideClick }: propsType) => {
   const { setPocketLimitModal } = usePocketLimitModalState();
   const { reset } = usePocketSendState();
+  const { setSelectedId } = useSearchedUsersState();
   const router = useRouter();
 
   return (
@@ -18,6 +23,7 @@ const PocketLimitModal = ({ modalRef, modalOutSideClick }: propsType) => {
       onClick={(e) => {
         modalOutSideClick(e);
         reset();
+        setSelectedId(null);
         router.push('/search');
       }}
     >
@@ -33,6 +39,7 @@ const PocketLimitModal = ({ modalRef, modalOutSideClick }: propsType) => {
             onClick={() => {
               setPocketLimitModal(false);
               reset();
+              setSelectedId(null);
               router.push('/search');
             }}
           >
