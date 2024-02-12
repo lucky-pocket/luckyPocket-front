@@ -33,7 +33,11 @@ const UserCard: React.FC<Props> = ({ user, rank, selectedStandard }) => {
           <S.Person>
             <S.Name>{user.name}</S.Name>
             <S.Class>
-              {user.grade}학년 {user.class}반
+              {user.userType === 'GRADUATE'
+                ? '졸업생'
+                : user.userType === 'TEACHER'
+                ? '선생님'
+                : `${user.grade}학년 ${user.class}반`}
             </S.Class>
           </S.Person>
           <S.Amount>

@@ -31,13 +31,17 @@ const SearchUserList = ({ searchedUsers }: SearchUserListProps) => {
     <S.UserListWrapper>
       {searchedUsers
         .filter((item) => decodedObject.userId !== item.userId)
-        .map(({ userId, grade, class: userClass, name }) => (
+        .map(({ userId, grade, class: userClass, name, userType }) => (
           <SearchUserItem
             key={userId}
             isClicked={selectedId === userId}
             onClick={() => handleItemClick(userId, name)}
           >
-            {grade}학년 {userClass}반 {name}
+            {userType === 'GRADUATE'
+              ? `졸업생 ${name}`
+              : userType === 'TEACHER'
+              ? `${name} 선생님`
+              : `${grade}학년 ${userClass}반 ${name}`}
           </SearchUserItem>
         ))}
       <S.BackgroundFilter />

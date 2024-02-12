@@ -22,10 +22,10 @@ export const Wrapper = styled.div`
 `;
 
 export const CoinWrapper = styled.div`
-  height: 3.5rem;
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  margin: 16px 0;
 `;
 
 export const CoinCount = styled.span`
@@ -42,7 +42,7 @@ export const AlarmWrapper = styled.div`
 `;
 
 export const AlarmItem = styled.div`
-  width: 21.5rem;
+  width: 21.2rem;
   padding: 0.625rem 1.25rem;
   display: flex;
   align-items: center;
