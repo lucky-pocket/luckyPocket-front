@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const UserListContainer = styled.div`
-  height: 55rem;
   overflow-y: scroll;
 
   ::-webkit-scrollbar {
@@ -11,7 +10,6 @@ export const UserListContainer = styled.div`
 
 export const UserList = styled.div`
   display: grid;
-
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.125rem;
 `;

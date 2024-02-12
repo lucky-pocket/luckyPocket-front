@@ -127,12 +127,13 @@ export const Button = styled.button<{ isError?: boolean }>`
 
 export const GameContainer = styled.div<{ isLoading?: boolean }>`
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  position: relative;
-  top: 3.25rem;
+
+  padding-top: 5rem;
 `;
 
 export const BottomBox = styled.div`

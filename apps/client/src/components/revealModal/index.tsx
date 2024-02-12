@@ -52,7 +52,7 @@ const RevealModal: React.FC<RevealModalProps> = ({
       <S.RevealModal>
         <S.TopBox>
           <S.Title>정말 알아볼까요?</S.Title>
-          <S.SubTitle>옆전 1닢이 소모돼요.</S.SubTitle>
+          <S.SubTitle>옆전 2닢이 소모돼요.</S.SubTitle>
         </S.TopBox>
         <S.BottomBox>
           <S.Esc onClick={handleClick}>취소</S.Esc>
