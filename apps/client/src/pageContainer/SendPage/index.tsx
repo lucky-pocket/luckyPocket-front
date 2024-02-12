@@ -81,9 +81,17 @@ const Send = () => {
   };
 
   const sendPocket = async () => {
-    return await API.post(pocketUrl.postPocket(), pocketSend).catch((error) => {
-      console.log(error);
-    });
+    await API.post(pocketUrl.postPocket(), pocketSend)
+      .then(() => {
+        reset();
+        setSelectedId(null);
+        router.push('/complete');
+      })
+      .catch((error) => {
+        if (error.response.status === 406) {
+          setPocketLimitModal(true);
+        }
+      });
   };
 
   return (
@@ -152,16 +160,8 @@ const Send = () => {
           </Link>
           <S.NextButton
             disabled={coinsError || selectedScope === null || currentCoins < 5}
-            onClick={async () => {
-              try {
-                const response = await sendPocket();
-                console.log(response);
-                reset();
-                setSelectedId(null);
-                router.push('/complete');
-              } catch (error: any) {
-                console.log(error);
-              }
+            onClick={() => {
+              sendPocket();
             }}
           >
             보내기

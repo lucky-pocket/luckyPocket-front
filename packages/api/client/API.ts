@@ -67,6 +67,6 @@ API.interceptors.response.use(
     if (error.response && error.response.status === 504) {
       window.location.href = '/504';
     }
-    return error;
+    return Promise.reject(error);
   }
 );
