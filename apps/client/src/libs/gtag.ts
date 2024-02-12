@@ -1,21 +1,21 @@
-export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID;
-
-// https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const event = (
-  action: Gtag.EventNames,
-  { event_category, event_label, value }: Gtag.EventParams
-) => {
-  window.gtag('event', action, {
-    event_category,
-    event_label,
-    value,
-  });
+type WindowWithDataLayer = Window & {
+  dataLayer: Record<string, any>[];
 };
 
-// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
+declare const window: WindowWithDataLayer;
+
+export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID;
+
 export const pageview = (url: string) => {
-  if (GA_TRACKING_ID)
-    window.gtag('config', GA_TRACKING_ID, {
-      page_path: url,
+  if (typeof window.dataLayer !== 'undefined') {
+    window.dataLayer.push({
+      event: 'pageview',
+      page: url,
     });
+  } else {
+    console.log({
+      event: 'pageview',
+      page: url,
+    });
+  }
 };
