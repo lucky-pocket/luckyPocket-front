@@ -7,6 +7,7 @@ import { API } from 'api/client/API';
 import { userMyUrl, userMyPocketUrl } from 'api/client';
 import { useQuery } from '@tanstack/react-query';
 import MainFooter from 'client/components/mainContent/mainFooter';
+import { useEffect } from 'react';
 
 interface Props {}
 
@@ -32,6 +33,13 @@ const Main: React.FC<Props> = ({}) => {
 
   const { data: pocketList, refetch: refetchPocketList } =
     useQuery<MyPocketListType>(['getPocketList'], () => getPocketList(0, 300));
+
+  useEffect(() => {
+    return () => {
+      getPocketList(0, 300);
+      getMyInfo();
+    };
+  }, []);
 
   return (
     <S.Main>
