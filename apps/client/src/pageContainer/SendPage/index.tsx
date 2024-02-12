@@ -81,11 +81,9 @@ const Send = () => {
   };
 
   const sendPocket = async () => {
-    try {
-      return await API.post(pocketUrl.postPocket(), pocketSend);
-    } catch (error: any) {
+    return await API.post(pocketUrl.postPocket(), pocketSend).catch((error) => {
       console.log(error);
-    }
+    });
   };
 
   return (
