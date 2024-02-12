@@ -3,27 +3,16 @@
 import { Header } from 'client/components';
 import * as S from './style';
 import { CompletePocket } from 'client/assets';
-import { usePocketSendState, useSearchedUsersState } from 'client/stores';
-import { API } from 'api/client/API';
-import { pocketUrl } from 'api/client';
+import { usePocketSendState } from 'client/stores';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Complete() {
-  const { receiverName, pocketSend, reset } = usePocketSendState();
-  const { setSelectedId } = useSearchedUsersState();
+  const { receiverName } = usePocketSendState();
   const router = useRouter();
 
-  const sendPocket = async () => {
-    await API.post(pocketUrl.postPocket(), pocketSend);
-  };
-
   useEffect(() => {
-    sendPocket().then(() => {
-      reset();
-      setSelectedId(null);
-      setTimeout(() => router.push('/'), 3000);
-    });
+    setTimeout(() => router.push('/'), 2000);
   }, []);
 
   return (
