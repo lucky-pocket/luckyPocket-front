@@ -38,7 +38,7 @@ const Send = () => {
   const getArrowIcon = (stroke: string) => <ArrowIcon stroke={stroke} />;
 
   const ERROR_MESSAGES =
-    '복주머니 배송비는 엽전 1닢입니다, 선물 금액은 배송비를 고려해 정해주세요!';
+    '복주머니 배송비는 엽전 5닢입니다, 선물 금액은 배송비를 고려해 정해주세요!';
 
   const hasError = (value: number) => {
     setCoinsError(value > currentCoins - 1);
@@ -111,7 +111,7 @@ const Send = () => {
               <S.SectionDetail>
                 현재 보유중인 엽전 개수 <S.Coins>{currentCoins}닢</S.Coins>
               </S.SectionDetail>
-              {coinsError || currentCoins < 1 ? (
+              {coinsError || currentCoins < 5 ? (
                 <S.Caption>{ERROR_MESSAGES}</S.Caption>
               ) : (
                 <S.SectionDetail>{ERROR_MESSAGES}</S.SectionDetail>
@@ -149,18 +149,21 @@ const Send = () => {
             </S.BeforeButton>
           </Link>
           <S.NextButton
-            disabled={coinsError || selectedScope === null || currentCoins < 1}
-            onClick={() => {
-              sendPocket().then((response) => {
+            disabled={coinsError || selectedScope === null || currentCoins < 5}
+            onClick={async () => {
+              try {
+                const response = await sendPocket();
                 console.log(response);
                 reset();
                 setSelectedId(null);
                 router.push('/complete');
-              });
+              } catch (error: any) {
+                console.log(error);
+              }
             }}
           >
             보내기
-            {coinsError || selectedScope === null || currentCoins < 1
+            {coinsError || selectedScope === null || currentCoins < 5
               ? getArrowIcon('#6F6B63')
               : getArrowIcon('#F2EDE5')}
           </S.NextButton>
