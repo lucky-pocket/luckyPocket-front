@@ -81,13 +81,12 @@ const Send = () => {
   };
 
   const sendPocket = async () => {
-    try {
-      await API.post(pocketUrl.postPocket(), pocketSend);
-    } catch (error: any) {
+    await API.post(pocketUrl.postPocket(), pocketSend).catch((error: any) => {
+      console.log(error);
       if (error.status === 418) {
         setPocketLimitModal(true);
       }
-    }
+    });
   };
 
   return (
