@@ -6,7 +6,7 @@ interface PocketSendStore {
 }
 
 export const usePocketLimitModalState = create<PocketSendStore>((set) => ({
-  pocketLimitModal: true,
+  pocketLimitModal: false,
   setPocketLimitModal: (value: boolean) => set({ pocketLimitModal: value }),
 }));
 
