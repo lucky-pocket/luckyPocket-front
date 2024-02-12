@@ -90,7 +90,7 @@ const Game: React.FC<GameProps> = () => {
       ) : (
         <>
           <S.Count>
-            오늘 윷을 던진 횟수
+            오늘 남은 기회
             <div> {count !== undefined ? 30 - count : 0}번</div>
           </S.Count>
           <S.Game>
