@@ -81,12 +81,7 @@ const Send = () => {
   };
 
   const sendPocket = async () => {
-    await API.post(pocketUrl.postPocket(), pocketSend).catch((error: any) => {
-      console.log(error);
-      if (error.status === 418) {
-        setPocketLimitModal(true);
-      }
-    });
+    return await API.post(pocketUrl.postPocket(), pocketSend);
   };
 
   return (
@@ -156,7 +151,8 @@ const Send = () => {
           <S.NextButton
             disabled={coinsError || selectedScope === null || currentCoins < 1}
             onClick={() => {
-              sendPocket().then(() => {
+              sendPocket().then((response) => {
+                console.log(response);
                 reset();
                 setSelectedId(null);
                 router.push('/complete');
