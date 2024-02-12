@@ -58,7 +58,7 @@ const Game: React.FC<GameProps> = () => {
   });
 
   const handleButtonClick = async () => {
-    if (coinsData !== undefined && coinsData.coins !== 0) {
+    if (count !== 30 && coinsData !== undefined && coinsData.coins !== 0) {
       try {
         setIsLoading(true);
         setShowResult(true);
@@ -66,15 +66,19 @@ const Game: React.FC<GameProps> = () => {
       } catch (error) {
         console.error(error);
       } finally {
-        setInterval(() => {
+        setTimeout(() => {
           setIsLoading(false);
         }, 3000);
-        setInterval(() => {
+        setTimeout(() => {
           window.location.reload();
         }, 6000);
       }
     } else {
-      alert('보유하신 잔액이 부족합니다');
+      if (count === 30) {
+        alert('오늘의 윷 던지기 횟수를 모두 사용하셨습니다.');
+      } else {
+        alert('보유하신 잔액이 부족합니다.');
+      }
       setDisabled(true);
     }
   };
@@ -87,7 +91,7 @@ const Game: React.FC<GameProps> = () => {
         <>
           <S.Count>
             오늘 윷을 던진 횟수
-            <div> {count}번</div>
+            <div> {count !== undefined ? 30 - count : 0}번</div>
           </S.Count>
           <S.Game>
             <S.YutBox>
