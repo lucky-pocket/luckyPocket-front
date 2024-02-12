@@ -13,3 +13,4 @@ export { default as SearchBar } from './searchBar';
 export { default as FilterModal } from './filterModal';
 export { default as RevealModal } from './revealModal';
 export { default as MainContent } from './mainContent';
+export { default as PocketLimitModal } from './pocketLimitModal';
