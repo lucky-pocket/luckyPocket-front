@@ -41,7 +41,7 @@ const Send = () => {
     '복주머니 배송비는 엽전 5닢입니다, 선물 금액은 배송비를 고려해 정해주세요!';
 
   const hasError = (value: number) => {
-    setCoinsError(value > currentCoins - 1);
+    setCoinsError(value > currentCoins - 5);
   };
 
   const handleButtonClick = (scope: ScopeType) => {
@@ -81,7 +81,11 @@ const Send = () => {
   };
 
   const sendPocket = async () => {
-    return await API.post(pocketUrl.postPocket(), pocketSend);
+    try {
+      return await API.post(pocketUrl.postPocket(), pocketSend);
+    } catch (error: any) {
+      console.log(error);
+    }
   };
 
   return (
