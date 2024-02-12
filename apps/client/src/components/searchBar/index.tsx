@@ -47,7 +47,7 @@ const SearchBar: React.FC<Props> = ({
   }, [option]);
 
   const [selectedGrade, setSelectedGrade] = useState<
-    '전체' | '1학년' | '2학년' | '3학년' | '선생님'
+    '전체' | '1학년' | '2학년' | '3학년' | '졸업생'
   >('전체');
   const [selectedGradeClass, setSelectedGradeClass] = useState<
     '전체' | '1반' | '2반' | '3반' | '4반'
@@ -62,7 +62,7 @@ const SearchBar: React.FC<Props> = ({
   };
 
   const handleGradeClick = (
-    grade: '전체' | '1학년' | '2학년' | '3학년' | '선생님'
+    grade: '전체' | '1학년' | '2학년' | '3학년' | '졸업생'
   ) => {
     setSelectedGrade(grade);
   };
@@ -101,7 +101,7 @@ const SearchBar: React.FC<Props> = ({
   }, [selectedGrade, selectedGradeClass]);
 
   const getGradeValue = (
-    grade: '전체' | '1학년' | '2학년' | '3학년' | '선생님'
+    grade: '전체' | '1학년' | '2학년' | '3학년' | '졸업생'
   ): number | null => {
     switch (grade) {
       case '1학년':
@@ -110,7 +110,7 @@ const SearchBar: React.FC<Props> = ({
         return 2;
       case '3학년':
         return 3;
-      case '선생님':
+      case '졸업생':
         return null;
       default:
         return null;
