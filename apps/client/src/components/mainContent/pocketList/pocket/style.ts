@@ -19,12 +19,17 @@ export const WriteBoard = styled(Sort)`
   height: 600px;
   background-size: 480px 600px;
   flex-direction: column;
-  p {
+  textArea {
     z-index: 10;
     ${({ theme }) => theme.typo.text.small}
     width: 338px;
     height: 348px;
     line-height: 180%;
+    word-break: break-all;
+    resize: none;
+    outline: none;
+    background: none;
+    border: none;
   }
 `;
 
