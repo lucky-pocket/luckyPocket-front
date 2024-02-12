@@ -151,20 +151,21 @@ const Send = () => {
           <S.NextButton
             disabled={coinsError || selectedScope === null || currentCoins < 1}
             onClick={() => {
-              sendPocket()
-                .then(() => {
+              try {
+                sendPocket().then(() => {
                   reset();
                   setSelectedId(null);
                   router.push('/complete');
-                })
-                .catch((error) => {
-                  if (error.status === 418) {
-                    setPocketLimitModal(true);
-                  }
                 });
+              } catch (error: any) {
+                console.log(error);
+                if (error.status === 418) {
+                  setPocketLimitModal(true);
+                }
+              }
             }}
           >
-            다음
+            보내기
             {coinsError || selectedScope === null || currentCoins < 1
               ? getArrowIcon('#6F6B63')
               : getArrowIcon('#F2EDE5')}
