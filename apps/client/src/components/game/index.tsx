@@ -115,7 +115,7 @@ const Game: React.FC<GameProps> = () => {
               있습니다.
             </S.WarnMessage>
             <S.Message>
-              도 개는 1냥, 걸은 2냥, 윷은 3냥, 모는 5냥, 빽도는 -2냥을 얻게
+              도 개는 2냥, 걸은 3냥, 윷은 4냥, 모는 6냥, 빽도는 -2냥을 얻게
               됩니다.
             </S.Message>
           </S.BottomBox>
