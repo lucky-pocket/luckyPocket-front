@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const UserListContainer = styled.div`
   overflow-y: scroll;
+  padding-bottom: 7rem;
 
   ::-webkit-scrollbar {
     display: none;
