@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const UserListContainer = styled.div`
+  height: 55rem;
   overflow-y: scroll;
   padding-bottom: 7rem;
 

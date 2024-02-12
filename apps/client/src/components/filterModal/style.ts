@@ -12,7 +12,7 @@ export const FilterModal = styled.div`
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  top: 9.375rem;
+  top: 80px;
   right: 0.675rem;
   z-index: 1;
 `;
