@@ -9,11 +9,6 @@ export default function Send() {
 
     if (!accessToken) {
       redirect('/auth/signin');
-    } else {
-      const status = 401;
-      if (status === 401) {
-        redirect('/auth/signin');
-      }
     }
   }, []);
   return (
