@@ -96,7 +96,7 @@ const Pocket: React.FC<PocketProps> = ({
         (isLock ? (
           <S.WriteBoxContainer>
             <S.WriteBoard ref={modalRef}>
-              <p>{content}</p>
+              <textarea>{content}</textarea>
               <S.RevealButton onClick={lockPocketClick}>
                 누가 보냈는지 알아보기
               </S.RevealButton>
@@ -105,7 +105,7 @@ const Pocket: React.FC<PocketProps> = ({
         ) : (
           <S.WriteBoxContainer>
             <S.WriteBoard ref={modalRef}>
-              <p>{content}</p>
+              <textarea>{content}</textarea>
               <S.DetailSender>From. {detailSender?.name}</S.DetailSender>
               <S.Coin>
                 {coin}
