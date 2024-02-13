@@ -23,7 +23,7 @@ const waitRefreshEnd = () =>
 
 API.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    let accessToken = localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem('accessToken');
 
     config.headers['Authorization'] = accessToken
       ? `Bearer ${accessToken}`
@@ -39,6 +39,7 @@ API.interceptors.response.use(
     if (response.config.url === authUrl.postRefresh()) {
       isRefreshing = false;
     }
+
     if (response.status >= 200 && response.status <= 300) {
       return response;
     }
@@ -78,7 +79,9 @@ API.interceptors.response.use(
           })
           .catch((error) => {
             console.error('Error occurred during token refresh:', error);
+
             isRefreshing = false;
+
             throw error;
           });
 
