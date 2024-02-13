@@ -58,7 +58,11 @@ const Game: React.FC<GameProps> = () => {
   });
 
   const handleButtonClick = async () => {
-    if (count !== 30 && coinsData !== undefined && coinsData.coins !== 0) {
+    if (
+      count !== 30 &&
+      coinsData !== undefined &&
+      (coinsData.coins !== 0 || isFree)
+    ) {
       try {
         setIsLoading(true);
         setShowResult(true);
@@ -76,7 +80,7 @@ const Game: React.FC<GameProps> = () => {
     } else {
       if (count === 30) {
         alert('오늘의 윷 던지기 횟수를 모두 사용하셨습니다.');
-      } else {
+      } else if (coinsData?.coins === 0 && !isFree) {
         alert('보유하신 잔액이 부족합니다.');
       }
       setDisabled(true);
