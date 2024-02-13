@@ -9,7 +9,7 @@ export default function Main() {
     const accessToken = localStorage.getItem('accessToken');
 
     if (!accessToken) {
-      redirect('/auth/signin');
+      // redirect('/auth/signin');
     }
   }, []);
   return <MainPage />;

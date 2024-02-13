@@ -8,7 +8,7 @@ export default function Send() {
     const accessToken = localStorage.getItem('accessToken');
 
     if (!accessToken) {
-      redirect('/auth/signin');
+      // redirect('/auth/signin');
     }
   }, []);
   return (

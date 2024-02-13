@@ -13,7 +13,7 @@ export default async function User({ params: { userId } }: UserPageProps) {
     const accessToken = localStorage.getItem('accessToken');
 
     if (!accessToken) {
-      redirect('/auth/signin');
+      // redirect('/auth/signin');
     }
   }, []);
   return (
