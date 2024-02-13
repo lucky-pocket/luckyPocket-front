@@ -16,9 +16,9 @@ const waitRefreshEnd = () =>
   new Promise<void>((resolve) => {
     if (isRefreshing === false) {
       resolve();
-    } else {
-      setTimeout(() => waitRefreshEnd().then(resolve), 100); // wait for refresh to complete
+      return;
     }
+    setTimeout(() => waitRefreshEnd().then(resolve), 100); // wait for refresh to complete
   });
 
 API.interceptors.request.use(
@@ -57,36 +57,36 @@ API.interceptors.response.use(
         await waitRefreshEnd();
 
         return API(error.config);
-      } else {
-        isRefreshing = true;
-
-        // token refresh
-        refreshPromise = API.post(authUrl.postRefresh())
-          .then((response) => {
-            localStorage.setItem('accessToken', response.data.accessToken);
-            localStorage.setItem(
-              'expiresAt',
-              new Date(response.data.expiresAt).toString()
-            );
-
-            error.config.headers[
-              'Authorization'
-            ] = `Bearer ${response.data.accessToken}`;
-
-            isRefreshing = false;
-
-            return API(error.config);
-          })
-          .catch((error) => {
-            console.error('Error occurred during token refresh:', error);
-
-            isRefreshing = false;
-
-            throw error;
-          });
-
-        return refreshPromise;
       }
+
+      // token refresh
+      isRefreshing = true;
+
+      refreshPromise = API.post(authUrl.postRefresh())
+        .then((response) => {
+          localStorage.setItem('accessToken', response.data.accessToken);
+          localStorage.setItem(
+            'expiresAt',
+            new Date(response.data.expiresAt).toString()
+          );
+
+          error.config.headers[
+            'Authorization'
+          ] = `Bearer ${response.data.accessToken}`;
+
+          isRefreshing = false;
+
+          return API(error.config);
+        })
+        .catch((error) => {
+          console.error('Error occurred during token refresh:', error);
+
+          isRefreshing = false;
+
+          throw error;
+        });
+
+      return refreshPromise;
     }
 
     if (error.response && error.response.status === 500) {
