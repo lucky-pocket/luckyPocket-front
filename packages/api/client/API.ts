@@ -1,7 +1,7 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import { authUrl } from './src';
 
-let isRefreshed = false;
+let isRefreshing = false;
 let refreshPromise: Promise<any> | null = null;
 
 export const API = axios.create({
@@ -14,7 +14,7 @@ export const API = axios.create({
 
 const waitRefreshEnd = () =>
   new Promise<void>((resolve) => {
-    if (isRefreshed === false) {
+    if (isRefreshing === false) {
       resolve();
     } else {
       setTimeout(() => waitRefreshEnd().then(resolve), 100); // wait for refresh to complete
@@ -37,7 +37,7 @@ API.interceptors.request.use(
 API.interceptors.response.use(
   (response) => {
     if (response.config.url === authUrl.postRefresh()) {
-      isRefreshed = false;
+      isRefreshing = false;
     }
     if (response.status >= 200 && response.status <= 300) {
       return response;
@@ -47,17 +47,17 @@ API.interceptors.response.use(
   },
   async (error) => {
     if (error.config.url === authUrl.postRefresh()) {
-      isRefreshed = false;
+      isRefreshing = false;
       return Promise.resolve(error);
     }
 
     if (error.response.status === 401) {
-      if (isRefreshed) {
+      if (isRefreshing) {
         await waitRefreshEnd();
 
         return API(error.config);
       } else {
-        isRefreshed = true;
+        isRefreshing = true;
 
         // token refresh
         refreshPromise = API.post(authUrl.postRefresh())
@@ -72,13 +72,13 @@ API.interceptors.response.use(
               'Authorization'
             ] = `Bearer ${response.data.accessToken}`;
 
-            isRefreshed = false;
+            isRefreshing = false;
 
             return API(error.config);
           })
           .catch((error) => {
             console.error('Error occurred during token refresh:', error);
-            isRefreshed = false;
+            isRefreshing = false;
             throw error;
           });
 
