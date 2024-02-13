@@ -24,29 +24,30 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   if (new Date() >= new Date(expiresAt) && !isRefreshed) {
     isRefreshed = true;
 
-    // const { data } = await API.post(
-    //   process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
-    // );
+    const { data } = await API.post(
+      process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
+    );
 
-    // try {
-    //   localStorage.setItem('accessToken', data.accessToken);
-    //   localStorage.setItem('expiresAt', new Date(data.expiresAt).toString());
-    //   accessToken = data.accessToken;
-    //   expiresAt = new Date(data.expiresAt).toString();
-    //   config.headers['Authorization'] = `Bearer ${data.accessToken}`;
-    // } catch (error: any) {
-    //   if (
-    //     error.response &&
-    //     error.response.status === 401 &&
-    //     error.config ===
-    //       process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
-    //   ) {
-    //     await API.post(
-    //       process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout()
-    //     );
-    //     window.location.href = '/auth/signin';
-    //   }
-    // }
+    try {
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('expiresAt', new Date(data.expiresAt).toString());
+      accessToken = data.accessToken;
+      expiresAt = new Date(data.expiresAt).toString();
+      config.headers['Authorization'] = `Bearer ${data.accessToken}`;
+      return API(config);
+    } catch (error: any) {
+      if (
+        error.response &&
+        error.response.status === 401 &&
+        error.config ===
+          process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
+      ) {
+        await API.post(
+          process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout()
+        );
+        window.location.href = '/auth/signin';
+      }
+    }
     isRefreshed = false;
   }
 
@@ -54,19 +55,16 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
 });
 
 API.interceptors.response.use(
-  (response) => {
-    if (response.status >= 200 && response.status <= 300) {
-      return response.data;
-    }
-
-    return Promise.reject(response.data);
-  },
+  async (config) => await config,
   async (error) => {
-    console.log(error.response.status);
     if (error.response.status === 401) {
       try {
-        const { data } = await API.post(
-          process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
+        const { data } = await axios.post(
+          process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh(),
+          {},
+          {
+            withCredentials: true,
+          }
         );
 
         localStorage.setItem('accessToken', data.accessToken);
@@ -83,7 +81,7 @@ API.interceptors.response.use(
       error.config.url.includes(authUrl.postRefresh()) &&
       error.response.status === 401
     ) {
-      location.replace('/auth/signin');
+      // location.replace('/auth/signin');
     }
 
     if (error.response && error.response.status === 500) {
