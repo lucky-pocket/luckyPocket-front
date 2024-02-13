@@ -20,22 +20,20 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   config.headers['Authorization'] = accessToken
     ? `Bearer ${accessToken}`
     : undefined;
+
   if (new Date() >= new Date(expiresAt) && !isRefreshed) {
     isRefreshed = true;
-    const response = await axios.post(
-      process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh(),
-      {},
-      { withCredentials: true }
+
+    const { data } = await API.post(
+      process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
     );
+
     try {
-      localStorage.setItem('accessToken', response.data.accessToken);
-      localStorage.setItem(
-        'expiresAt',
-        new Date(response.data.expiresAt).toString()
-      );
-      accessToken = response.data.accessToken;
-      expiresAt = new Date(response.data.expiresAt).toString();
-      config.headers['Authorization'] = `Bearer ${response.data.accessToken}`;
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('expiresAt', new Date(data.expiresAt).toString());
+      accessToken = data.accessToken;
+      expiresAt = new Date(data.expiresAt).toString();
+      config.headers['Authorization'] = `Bearer ${data.accessToken}`;
     } catch (error: any) {
       if (
         error.response &&
@@ -43,10 +41,8 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
         error.config ===
           process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
       ) {
-        await axios.post(
-          process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout(),
-          {},
-          { withCredentials: true }
+        await API.post(
+          process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postLogout()
         );
         window.location.href = '/auth/signin';
       }
@@ -60,6 +56,31 @@ API.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
 API.interceptors.response.use(
   async (config) => await config,
   async (error) => {
+    if (error.response.status === 401) {
+      try {
+        const { data } = await API.post(
+          process.env.NEXT_PUBLIC_CLIENT_API_URL + authUrl.postRefresh()
+        );
+
+        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('expiresAt', new Date(data.expiresAt).toString());
+        error.config.headers['Authorization'] = `Bearer ${data.accessToken}`;
+
+        return API(error.config);
+      } catch (error) {
+        console.error('Error occurred during patch call:', error);
+      }
+    }
+
+    if (
+      error.config.url.includes(authUrl.postRefresh()) &&
+      error.response.status === 401
+    ) {
+      location.replace('/auth/signin');
+
+      return Promise.reject(error);
+    }
+
     if (error.response && error.response.status === 500) {
       window.location.href = '/error';
     }
