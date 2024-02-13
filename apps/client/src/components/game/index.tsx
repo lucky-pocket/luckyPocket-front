@@ -58,7 +58,11 @@ const Game: React.FC<GameProps> = () => {
   });
 
   const handleButtonClick = async () => {
-    if (count !== 30 && coinsData !== undefined && coinsData.coins !== 0) {
+    if (
+      count !== 30 &&
+      coinsData !== undefined &&
+      (coinsData.coins !== 0 || isFree)
+    ) {
       try {
         setIsLoading(true);
         setShowResult(true);
