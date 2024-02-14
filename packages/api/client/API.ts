@@ -5,7 +5,7 @@ let isRefreshing = false;
 let refreshPromise: Promise<any> | null = null;
 
 export const API = axios.create({
-  baseURL: '/api',
+  baseURL: process.env.NEXT_PUBLIC_CLIENT_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
