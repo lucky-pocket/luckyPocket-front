@@ -5,7 +5,7 @@ let isRefreshing = false;
 let refreshPromise: Promise<any> | null = null;
 
 export const API = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_CLIENT_API_URL,
+  baseURL: '/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -47,8 +47,11 @@ API.interceptors.response.use(
     return Promise.reject(response);
   },
   async (error) => {
-    if (error.config.url === authUrl.postRefresh()) {
+    if (error.config.url.includes(authUrl.postRefresh())) {
       isRefreshing = false;
+
+      location.href = '/auth/signin';
+
       return Promise.resolve(error);
     }
 
@@ -90,7 +93,7 @@ API.interceptors.response.use(
     }
 
     if (error.response && error.response.status === 500) {
-      window.location.href = '/error';
+      // window.location.href = '/error';
     }
 
     if (error.response && error.response.status === 504) {
