@@ -93,7 +93,7 @@ API.interceptors.response.use(
     }
 
     if (error.response && error.response.status === 500) {
-      // window.location.href = '/error';
+      window.location.href = '/error';
     }
 
     if (error.response && error.response.status === 504) {
