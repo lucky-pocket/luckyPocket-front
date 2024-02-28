@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const Conatiner = styled.div`
+export const Container = styled.div`
   width: 38rem;
   height: calc(100vh - 4.5rem);
 `;
@@ -22,10 +22,10 @@ export const Wrapper = styled.div`
 `;
 
 export const CoinWrapper = styled.div`
-  height: 3.5rem;
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  margin: 16px 0;
 `;
 
 export const CoinCount = styled.span`
@@ -42,7 +42,7 @@ export const AlarmWrapper = styled.div`
 `;
 
 export const AlarmItem = styled.div`
-  width: 21.5rem;
+  width: 21.2rem;
   padding: 0.625rem 1.25rem;
   display: flex;
   align-items: center;
@@ -66,7 +66,7 @@ export const AlarmContent = styled.span<{ isRead?: boolean }>`
           color: ${theme.color.gray['050']};
         `
       : css`
-          color: ${theme.color.ivory['050']};
+          color: ${theme.color.sub.brown['500']};
         `}
 `;
 

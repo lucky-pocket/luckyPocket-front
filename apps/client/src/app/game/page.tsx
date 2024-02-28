@@ -1,8 +1,8 @@
+'use client';
+
+import React from 'react';
 import { GamePage } from 'client/pageContainer';
+
 export default function Game() {
-  return (
-    <div>
-      <GamePage />
-    </div>
-  );
+  return <GamePage />;
 }

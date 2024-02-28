@@ -5,11 +5,11 @@ import * as S from './style';
 
 interface Props {
   selectedStandard: '복주머니' | '엽전';
-  selectedGrade: '전체' | '1학년' | '2학년' | '3학년' | '선생님';
+  selectedGrade: '전체' | '1학년' | '2학년' | '3학년' | '졸업생';
   selectedGradeClass: '전체' | '1반' | '2반' | '3반' | '4반';
   onStandardClick: (standard: '복주머니' | '엽전') => void;
   onGradeClick: (
-    grade: '전체' | '1학년' | '2학년' | '3학년' | '선생님'
+    grade: '전체' | '1학년' | '2학년' | '3학년' | '졸업생'
   ) => void;
   onGradeClassClick: (
     gradeClass: '전체' | '1반' | '2반' | '3반' | '4반'
@@ -24,6 +24,7 @@ const FilterModal: React.FC<Props> = ({
   onGradeClick,
   onGradeClassClick,
 }) => {
+  console.log(selectedStandard);
   return (
     <S.FilterModal>
       <S.Title>필터</S.Title>
@@ -45,12 +46,12 @@ const FilterModal: React.FC<Props> = ({
         <S.Grade>
           <S.Desc>학년</S.Desc>
           <S.OptionBox>
-            {['전체', '1학년', '2학년', '3학년', '선생님'].map((grade) => (
+            {['전체', '1학년', '2학년', '3학년', '졸업생'].map((grade) => (
               <S.Option
                 key={grade}
                 onClick={() =>
                   onGradeClick(
-                    grade as '전체' | '1학년' | '2학년' | '3학년' | '선생님'
+                    grade as '전체' | '1학년' | '2학년' | '3학년' | '졸업생'
                   )
                 }
                 isActive={selectedGrade === grade}

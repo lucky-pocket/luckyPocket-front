@@ -28,7 +28,7 @@ export const ChevronBox = styled.div<{ isVisible: boolean }>`
 export const PocketBox = styled.div<{ slideIndex: number }>`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.0625rem;
+  gap: 26px;
   svg {
     position: absolute;
     z-index: 1;
@@ -37,11 +37,11 @@ export const PocketBox = styled.div<{ slideIndex: number }>`
 
 export const PocketDrawer = styled.div`
   position: relative;
-  top: 1.875rem;
+  top: 20px;
   background-image: url('/images/drawer.png');
-  background-size: 30rem 32.125rem;
-  width: 30rem;
-  height: 31rem;
+  background-size: 28rem 30.125rem;
+  width: 28rem;
+  height: 464px;
 `;
 
 export const Container = styled.div`
@@ -53,8 +53,8 @@ export const Container = styled.div`
 `;
 
 export const DrawerBox = styled.div`
-  top: 7.6875rem;
-  height: 17.0625rem;
+  top: 7rem;
+  height: 16.0625rem;
   background-color: pink;
   display: flex;
   justify-content: space-between;

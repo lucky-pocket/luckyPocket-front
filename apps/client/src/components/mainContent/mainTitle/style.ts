@@ -2,18 +2,25 @@ import styled from '@emotion/styled';
 
 export const Title = styled.div`
   ${({ theme }) => theme.typo.title.medium};
+  font-size: 30px;
   span {
     ${({ theme }) => theme.typo.title.large};
+    font-size: 35px;
   }
 `;
 
 export const SubTitle = styled.div`
   ${({ theme }) => theme.typo.title.medium};
+  font-size: 30px;
   p {
     ${({ theme }) => theme.typo.title.large};
+    font-size: 30px;
   }
   span {
     ${({ theme }) => theme.typo.title.large};
+    font-size: 35px;
+    position: relative;
+    top: 2px;
     color: ${({ theme }) => theme.color.sub.brown['500']};
   }
 `;

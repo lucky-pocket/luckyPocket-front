@@ -9,15 +9,15 @@ import Link from 'next/link';
 interface Props {
   user: PocketType;
   rank: number;
-  selectedStandard: '복주머니' | '엽전';
+  selectedStandard: '복주머니' | '엽전' | null;
 }
 
 const UserCard: React.FC<Props> = ({ user, rank, selectedStandard }) => {
   const rabbitComponents = [
-    <I.Rabbit1 />,
-    <I.Rabbit2 />,
-    <I.Rabbit3 />,
-    <I.Rabbit4 />,
+    <I.Rabbit1 key={1} />,
+    <I.Rabbit2 key={2} />,
+    <I.Rabbit3 key={3} />,
+    <I.Rabbit4 key={4} />,
   ];
 
   const randomIndex = Math.floor(Math.random() * rabbitComponents.length);
@@ -33,12 +33,16 @@ const UserCard: React.FC<Props> = ({ user, rank, selectedStandard }) => {
           <S.Person>
             <S.Name>{user.name}</S.Name>
             <S.Class>
-              {user.grade}학년 {user.class}반
+              {user.userType === 'GRADUATE'
+                ? '졸업생'
+                : user.userType === 'TEACHER'
+                ? '선생님'
+                : `${user.grade}학년 ${user.class}반`}
             </S.Class>
           </S.Person>
           <S.Amount>
             {selectedStandard === '복주머니' ? <I.LuckyPocket /> : <I.Coin />}
-            <S.Score>{100}</S.Score>
+            <S.Score>{user.amount}</S.Score>
           </S.Amount>
         </S.DescBox>
       </S.UserCard>

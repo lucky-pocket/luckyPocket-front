@@ -1,7 +1,7 @@
 const Drawer = () => {
   return (
     <svg
-      width='480'
+      width='450'
       height='16'
       viewBox='0 0 480 16'
       fill='none'

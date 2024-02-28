@@ -11,6 +11,10 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         defaultOptions: {
           queries: {
             retry: false,
+            refetchOnWindowFocus: false,
+          },
+          mutations: {
+            retry: false,
           },
         },
       })

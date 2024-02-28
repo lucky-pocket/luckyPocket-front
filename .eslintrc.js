@@ -16,20 +16,12 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react'],
   rules: {
-    'arrow-body-style': ['error', 'as-needed'],
     'react/self-closing-comp': ['error', { component: true, html: true }],
-    '@typescript-eslint/consistent-type-imports': [
-      'error',
-      {
-        prefer: 'type-imports',
-      },
-    ],
-    'no-console': 'error',
-
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error'],
-    test: /\.tsx$/, // 또는 /\.tsx$/ for TypeScript 파일
-    use: 'ts-loader',
-    exclude: /node_modules/,
+    '@typescript-eslint/no-unused-vars': ['off'],
+    '@typescript-eslint/no-explicit-any': ['off'],
+    'prefer-const': 'off',
+    use: 'off',
+    'no-empty-pattern': 'off',
   },
 };

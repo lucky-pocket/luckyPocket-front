@@ -4,6 +4,9 @@ import MainFooter from './mainFooter';
 import MainTitle from './mainTitle';
 import PocketList from './pocketList';
 import * as S from './style';
+import { MyPocketListType } from 'client/types';
+
+import { MyInfoType } from 'client/types';
 
 interface Pocket {
   id: number;
@@ -13,16 +16,25 @@ interface Pocket {
 }
 
 interface MainContentProps {
-  pockets: Pocket[];
-  totalCount: number;
+  pockets?: Pocket[];
+  totalCount?: number;
+  userInfo?: MyInfoType;
+  refetchPocketList: () => void;
+  isUser: boolean;
 }
 
-const MainContent: React.FC<MainContentProps> = ({ pockets, totalCount }) => {
+const MainContent: React.FC<MainContentProps> = ({
+  pockets,
+  totalCount,
+  userInfo,
+  refetchPocketList,
+  isUser,
+}) => {
   return (
-    <S.MainContentBox>
-      <MainTitle totalCount={totalCount} />
-      <PocketList pockets={pockets} />
-      <MainFooter />
+    <S.MainContentBox isUser={isUser}>
+      <MainTitle totalCount={totalCount} userInfo={userInfo} />
+      <PocketList pockets={pockets} refetchPocketList={refetchPocketList} />
+      {isUser && <MainFooter />}
     </S.MainContentBox>
   );
 };

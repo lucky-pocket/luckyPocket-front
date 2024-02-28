@@ -1,15 +1,9 @@
+import { UsersType } from 'client/types';
 import { create } from 'zustand';
 
-interface SearchedUser {
-  userId: number;
-  grade: number;
-  class: number;
-  name: string;
-}
-
 interface SearchedUsersStore {
-  searchedUsers: SearchedUser[];
-  setSearchedUsers: (value: SearchedUser[]) => void;
+  searchedUsers: UsersType[];
+  setSearchedUsers: (value: UsersType[]) => void;
   searchUser: string;
   setSearchUser: (value: string) => void;
   selectedId: number | null;

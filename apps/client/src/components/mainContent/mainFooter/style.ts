@@ -6,7 +6,10 @@ export const FooterBox = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 20rem;
-  height: 6.5rem;
+  height: 104px;
+  position: relative;
+  bottom: 30px;
+  gap: 10px;
 `;
 
 export const Message = styled.div`

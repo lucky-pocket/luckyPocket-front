@@ -8,7 +8,8 @@
     "api": "pnpm --filter api",
     "client": "pnpm --filter client",
     "admin": "pnpm --filter admin",
-    "shared": "pnpm --filter shared"
+    "shared": "pnpm --filter shared",
+    "build:client": "pnpm run client build"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
+    "@types/gtag.js": "^0.0.19",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
     "eslint": "^8.56.0",

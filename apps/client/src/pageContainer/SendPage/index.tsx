@@ -1,31 +1,55 @@
 'use client';
 
-import { Header, WriteButton } from 'client/components';
+import { Header, PocketLimitModal } from 'client/components';
 import * as S from './style';
-import { useState } from 'react';
-import { ScopeType } from 'client/type/ScopeType';
+import { useRef, useState } from 'react';
+import { ScopeType } from 'client/types/ScopeType';
+import { API } from 'api/client/API';
+import { pocketUrl, userMyUrl } from 'api/client';
+import { useQuery } from '@tanstack/react-query';
+import {
+  usePocketLimitModalState,
+  usePocketSendState,
+  useSearchedUsersState,
+} from 'client/stores';
+import Link from 'next/link';
+import { ArrowIcon } from 'client/assets';
+import { useRouter } from 'next/navigation';
 
 const Send = () => {
-  let coins = 46;
+  const getMyCoins = async () => {
+    const response = await API.get(userMyUrl.getMyCoin());
+    return response.data;
+  };
 
-  const [coinsToSend, setCoinsToSend] = useState<string | null>(null);
+  const { data: coinsData } = useQuery<{ coins: number }>(['getMyCoin'], () =>
+    getMyCoins()
+  );
+
+  const currentCoins = coinsData?.coins || 0;
+  const [coinsToSend, setCoinsToSend] = useState<number | null>(null);
   const [coinsError, setCoinsError] = useState<boolean>(false);
   const [selectedScope, setSelectedScope] = useState<ScopeType>('PRIVATE');
+  const { pocketSend, setPocketSend, reset } = usePocketSendState();
+  const { pocketLimitModal, setPocketLimitModal } = usePocketLimitModalState();
+  const modalRef = useRef<HTMLDivElement>(null);
+  const { setSelectedId } = useSearchedUsersState();
+  const router = useRouter();
+  const getArrowIcon = (stroke: string) => <ArrowIcon stroke={stroke} />;
 
   const ERROR_MESSAGES =
-    '복주머니 배송비는 엽전 1닢입니다, 선물 금액은 배송비를 고려해 정해주세요!';
-
-  const notNullCoinToSend =
-    coinsToSend === '' || coinsToSend === null ? 0 : coinsToSend;
-
-  console.log(notNullCoinToSend);
+    '복주머니 배송비는 엽전 5닢입니다, 선물 금액은 배송비를 고려해 정해주세요!';
 
   const hasError = (value: number) => {
-    setCoinsError(value > coins - 1);
+    setCoinsError(value > currentCoins - 5);
   };
 
   const handleButtonClick = (scope: ScopeType) => {
     setSelectedScope((prev) => (prev === scope ? null : scope));
+    setPocketSend({
+      ...pocketSend,
+      isPublic: scope === 'PUBLIC' ? true : false,
+    });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,15 +61,37 @@ const Send = () => {
     if (!isNotNumber(e.target.value)) {
       const value = e.target.value;
 
-      const sanitizedValue = value
-        .replace(/^0+/, '0')
-        .replace(/^0+(\d+)/, '$1');
+      const sanitizedValue = Number(
+        value.replace(/^0+/, '0').replace(/^0+(\d+)/, '$1')
+      );
+      const notNullCoinToSend = sanitizedValue === null ? 0 : sanitizedValue;
 
-      if (!isNaN(Number(sanitizedValue))) {
+      if (!isNaN(sanitizedValue)) {
         setCoinsToSend(sanitizedValue);
-        hasError(Number(sanitizedValue));
+        hasError(sanitizedValue);
+        setPocketSend({ ...pocketSend, coins: notNullCoinToSend });
       }
     }
+  };
+
+  const modalOutSideClick = (e: any) => {
+    if (modalRef.current === e.target) {
+      setPocketLimitModal(false);
+    }
+  };
+
+  const sendPocket = async () => {
+    await API.post(pocketUrl.postPocket(), pocketSend)
+      .then(() => {
+        reset();
+        setSelectedId(null);
+        router.push('/complete');
+      })
+      .catch((error) => {
+        if (error.response.status === 406) {
+          setPocketLimitModal(true);
+        }
+      });
   };
 
   return (
@@ -53,6 +99,12 @@ const Send = () => {
       <S.Background>
         <Header hasNorigae />
         <S.ContentWrapper>
+          {pocketLimitModal && (
+            <PocketLimitModal
+              modalRef={modalRef}
+              modalOutSideClick={modalOutSideClick}
+            />
+          )}
           <S.Section>
             <S.SectionTitleWrapper>
               <S.Title>엽전으로 마음을 표현해봐요</S.Title>
@@ -67,9 +119,9 @@ const Send = () => {
             />
             <S.SectionDetailWrapper>
               <S.SectionDetail>
-                현재 보유중인 엽전 개수 <S.Coins>{coins}닢</S.Coins>
+                현재 보유중인 엽전 개수 <S.Coins>{currentCoins}닢</S.Coins>
               </S.SectionDetail>
-              {coinsError ? (
+              {coinsError || currentCoins < 5 ? (
                 <S.Caption>{ERROR_MESSAGES}</S.Caption>
               ) : (
                 <S.SectionDetail>{ERROR_MESSAGES}</S.SectionDetail>
@@ -99,11 +151,25 @@ const Send = () => {
             </S.ScopeButtonWrapper>
           </S.Section>
         </S.ContentWrapper>
-        <WriteButton
-          disabled={coinsError || selectedScope === null}
-          beforeButton='/write'
-          nextLink='/complete'
-        />
+        <S.ButtonContainer>
+          <Link href='/write'>
+            <S.BeforeButton>
+              {getArrowIcon('#6F6B63')}
+              이전
+            </S.BeforeButton>
+          </Link>
+          <S.NextButton
+            disabled={coinsError || selectedScope === null || currentCoins < 5}
+            onClick={() => {
+              sendPocket();
+            }}
+          >
+            보내기
+            {coinsError || selectedScope === null || currentCoins < 5
+              ? getArrowIcon('#6F6B63')
+              : getArrowIcon('#F2EDE5')}
+          </S.NextButton>
+        </S.ButtonContainer>
       </S.Background>
     </S.Send>
   );

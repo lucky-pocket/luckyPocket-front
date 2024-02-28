@@ -6,6 +6,10 @@ import Pocket from './pocket';
 import * as I from 'client/assets';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { MyPocketListType } from 'client/types';
+import { API } from 'api/client/API';
+import { userMyNoticeUrl, pocketUrl } from 'api/client';
+import { useQuery } from '@tanstack/react-query';
 
 interface Pocket {
   id: number;
@@ -15,25 +19,22 @@ interface Pocket {
 }
 
 interface PocketListProps {
-  pockets: Pocket[];
+  pockets?: Pocket[];
+  refetchPocketList: () => void;
 }
 
-const usePocketMutation = () => {
-  return useMutation((pocketId: number) =>
-    axios.post(`${process.env.CLIENT_API_URL}/pockets/${pocketId}`)
-  );
-};
-
-const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
-  const pocketMutation = usePocketMutation();
+const PocketList: React.FC<PocketListProps> = ({
+  pockets,
+  refetchPocketList,
+}) => {
   const [slideIndex, setSlideIndex] = useState<number>(0);
-  const maxIndex = Math.ceil(pockets.length / 16);
+  const maxIndex = Math.ceil((pockets?.length || 0) / 12);
   const pocketsPerPage = 12;
 
   const getCurrentPockets = () => {
     const startIndex = slideIndex * pocketsPerPage;
     const endIndex = startIndex + pocketsPerPage;
-    return pockets.slice(startIndex, endIndex);
+    return pockets?.slice(startIndex, endIndex);
   };
 
   const handlePrevSlide = () => {
@@ -45,14 +46,18 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
   };
 
   const handleNextSlide = () => {
-    if (maxIndex === slideIndex) {
+    if (maxIndex - 1 === slideIndex) {
       setSlideIndex(0);
     } else {
       setSlideIndex((curIndex) => curIndex + 1);
     }
   };
 
-  const drawer = [<I.Drawer />, <I.Drawer />, <I.Drawer />];
+  const drawer = [
+    <I.Drawer key={1} />,
+    <I.Drawer key={2} />,
+    <I.Drawer key={3} />,
+  ];
 
   return (
     <S.PocketListContainer>
@@ -62,13 +67,14 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
         </S.ChevronBox>
         <S.PocketDrawer>
           <S.PocketBox slideIndex={slideIndex}>
-            {getCurrentPockets().map((pocket) => (
+            {getCurrentPockets()?.map((pocket) => (
               <div key={pocket.id}>
                 <Pocket
                   isEmpty={pocket.isEmpty}
                   isPublic={pocket.isPublic}
                   sender={pocket.sender}
-                  onClick={() => pocketMutation.mutate(pocket.id)}
+                  pocketId={pocket.id}
+                  refetchPocketList={refetchPocketList}
                 />
               </div>
             ))}
@@ -81,12 +87,19 @@ const PocketList: React.FC<PocketListProps> = ({ pockets }) => {
         </S.PocketDrawer>
         <S.ChevronBox
           onClick={handleNextSlide}
-          isVisible={slideIndex !== maxIndex}
+          isVisible={
+            !!pockets && pockets.length > 12 && slideIndex + 1 !== maxIndex
+          }
         >
           <I.ChevronIcon turn={'left'} />
         </S.ChevronBox>
       </S.Container>
-      <S.Index>{`${slideIndex + 1}/${maxIndex + 1}`}</S.Index>
+      <S.Index>
+        {pockets?.length === 0
+          ? '0/0'
+          : `
+        ${slideIndex + 1}/${maxIndex}`}
+      </S.Index>
     </S.PocketListContainer>
   );
 };

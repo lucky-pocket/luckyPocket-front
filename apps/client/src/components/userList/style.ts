@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const UserListContainer = styled.div`
   height: 55rem;
   overflow-y: scroll;
+  padding-bottom: 7rem;
 
   ::-webkit-scrollbar {
     display: none;
@@ -11,7 +12,6 @@ export const UserListContainer = styled.div`
 
 export const UserList = styled.div`
   display: grid;
-
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.125rem;
 `;

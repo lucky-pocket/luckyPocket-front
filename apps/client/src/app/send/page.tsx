@@ -1,5 +1,7 @@
+'use client';
+
 import { SendPage } from 'client/pageContainer';
-export default function Rank() {
+export default function Send() {
   return (
     <div>
       <SendPage />
